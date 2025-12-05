@@ -1,0 +1,34 @@
+/*
+   This file is for breakpoints.
+   @2025-12-05: Not a complete system by any means.
+   These are just the brainpoints i found myself using over many projects.
+*/
+
+	 /* 🗿 */
+@layer base {
+	:root {
+		/* Small mobile */
+		--breakpoint-1: 320px; 
+		/* Normal mobile */
+		--breakpoint-2: 375px;
+		/* Larger mobile */
+		--breakpoint-3: 400px;
+		/* Extra Small Tablet */
+		--breakpoint-4: 500px;
+		/* Small Tablet */
+		--breakpoint-5: 600px;
+		/* Tablet */
+		--breakpoint-6: 765px;
+		/* Large Tablet -> Extra Small Desktop */
+		--breakpoint-7: 900px;
+		/* Small Desktop */
+		--breakpoint-8: 1020px;
+		/* Desktop */
+		--breakpoint-9: 1440px;
+		/* Large Desktop */
+		--breakpoint-10: 1600px;
+		/* Extra Large Desktop  */
+		--breakpoint-11: 2000px;
+	}
+	
+}

@@ -1,0 +1,29 @@
+@layer utilities {
+	.fluid-row {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+
+		@media screen and (min-width: var(--breakpoint-4)) {
+			flex-direction: row;
+		}
+	}
+
+	.row {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border-width: 0;
+	}
+}

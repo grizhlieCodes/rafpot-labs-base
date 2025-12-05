@@ -1,1 +1,6 @@
-@import 'styles/_styles.css';
+@import './styles/_styles.css';
+
+
+html {
+    font-family: var(--font-sans);
+}
