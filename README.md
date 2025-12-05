@@ -29,7 +29,8 @@ I also want to create a color system that I can use across all of my projects (o
       - [ ] Input(s)
       - [ ] Select
       - [ ] Checkbox
-      - [ ] Form
+      - [ ] Form -> tricky component overall, build my own pattern for it
+         - Will initially be worse than prebuilts, but eh. More learning.
       - [ ] Button
       - [ ] Accordion
       - [ ] Alert Dialog
@@ -60,3 +61,41 @@ I also want to create a color system that I can use across all of my projects (o
       - [ ] Works with App Shell
       - [ ] Works well with mobile -> turns into an app like ui? 
       - [ ]
+
+
+## CSS Things to look into
+- [ ] Cascade Layers (`@layer`)
+   - Create layers of CSS.
+   - You can import and SET the imported file into a layer
+      - `@import "./reset"  layer(reset);` 
+   - Just create the order of your css essentially
+- [ ] View Transitions
+- [ ] Container Queries
+   - The element knows how much space they have and know what they are inside of
+   - There is a quantity-query??
+   - 
+- [ ] oklch color system
+   - An interesigly simple way to describe a color.
+   - Lightness, 0-100%. Chroma (saturation sort of), 0-0.5. Hue: 0-360. Alpha, 0-100%.
+- [ ] Field Sizing
+   - `field-sizing: content;` -> Grow automatically as you type into an input/textarea/select
+   - Add defensive styles:
+   ```CSS
+   textarea {
+      min-block-size: 31h;
+      max-block-size: 80svh;
+      min-inline-size: var(--size-content-1);
+      max-inline-size: var(--size-content-1);
+   }
+   ```
+   - [ ] Color Scheme
+      - Enables light and dark modes easily.
+      - You can set colors with this system: `color: light-dark(white, black);`
+   - [ ] [Scroll Driven Animation](https://youtu.be/QW6GECIzvsw?t=1001)
+   - [ ] Linear() -> for animations
+   - [ ] Text Wrap
+      - `text-wrap: balance;`
+      - `text-wrap: pretty;`
+   - [ ] Scrollbar styling (simple)
+   - [ ] Starting Style
+   - [ ] `:has`, `:is`, `:where` etc.
