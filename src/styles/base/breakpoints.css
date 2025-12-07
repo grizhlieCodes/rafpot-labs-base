@@ -4,11 +4,11 @@
    These are just the brainpoints i found myself using over many projects.
 */
 
-	 /* 🗿 */
+/* 🗿 */
 @layer base {
 	:root {
 		/* Small mobile */
-		--breakpoint-1: 320px; 
+		--breakpoint-1: 320px;
 		/* Normal mobile */
 		--breakpoint-2: 375px;
 		/* Larger mobile */
@@ -30,5 +30,4 @@
 		/* Extra Large Desktop  */
 		--breakpoint-11: 2000px;
 	}
-	
 }

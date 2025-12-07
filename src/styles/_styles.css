@@ -6,3 +6,4 @@
 @import './base/text.css';
 @import './base/colors.css';
 @import './base/utilities.css';
+@import './semantics/color-tokens.css';
