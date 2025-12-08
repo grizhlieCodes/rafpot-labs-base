@@ -5,5 +5,7 @@
 @import './base/fonts.css';
 @import './base/text.css';
 @import './base/colors.css';
+@import './base/rest.css';
 @import './base/utilities.css';
 @import './semantics/color-tokens.css';
+@import './semantics/component-tokens.css';
