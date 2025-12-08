@@ -1,32 +1,22 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/Button.svelte';
+
 	import type { ButtonProps } from '$lib/components/ui/types';
 
-	// type Paragraphs = Array<{
-	// 	style: 'angry' | 'happy' | 'sad';
-	// 	content: string;
-	// }>;
+	type ButtonPropsWithContent = ButtonProps & { content: string };
 
-	// let paragraphs: Paragraphs = [
-	// 	{ style: 'angry', content: 'Angreeeeh' },
-	// 	{ style: 'happy', content: 'I love life1!!!!' },
-	// 	{ style: 'sad', content: "What's the point....." }
-	// ];
-
-	const buttons = [
-		{ content: 'Sign Up', variant: 'primary', size: 'default', href: 'https://google.com' }
+	const buttons: ButtonPropsWithContent[] = [
+		{ content: 'Sign up', variant: 'secondary', size: 'small', href: 'https://google.com' },
+		{ content: 'Sign up', variant: 'secondary', size: 'medium', href: 'https://google.com' },
+		{ content: 'Sign up', variant: 'secondary', size: 'default', href: 'https://google.com' },
+		{ content: 'Sign up', variant: 'secondary', size: 'large', href: 'https://google.com' },
+		{ content: 'Sign up', variant: 'secondary', size: 'extra_large', href: 'https://google.com' }
 	];
 </script>
 
-<!-- {#each paragraphs as { style, content }, _i (content)}
-	<Test {style}>
-		{content}
-	</Test>
-{/each} -->
-
 <div class="daddy">
 	<div class="buttons-container fluid-row">
-		{#each buttons as btn, _i (btn.content)}
+		{#each buttons as btn, _i (btn.size)}
 			<Button variant={btn.variant} size={btn.size} href={btn.href}>
 				{btn.content}
 			</Button>
@@ -35,24 +25,14 @@
 </div>
 
 <style>
-	/* .daddy {
-		width: 100%;
-		background: red;
-		min-height: 100vh;
-		container-type: inline-size;
-	} */
-
+	.daddy {
+		background-color: var(--col-base-0);
+	}
 	.buttons-container {
 		width: 100%;
 		min-height: 100vh;
 		justify-content: center;
 		align-items: center;
-		background: var(--col-white);
+		gap: 1.5rem;
 	}
-
-	/* @container (width > 600px){
-		.buttons-container {
-
-		}
-	} */
 </style>
