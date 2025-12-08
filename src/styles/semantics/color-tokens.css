@@ -6,7 +6,7 @@
 @layer semantics {
 	:root {
 		--col-primary-0: var(--col-orange-0);
-		--col-primary-2: var(--col-orange-1);
+		--col-primary-1: var(--col-orange-1);
 		--col-primary-2: var(--col-orange-2);
 		--col-primary-3: var(--col-orange-3);
 		--col-primary-4: var(--col-orange-4);
@@ -18,7 +18,7 @@
 		--col-primary-10: var(--col-orange-10);
 
 		--col-secondary-0: var(--col-green-0);
-		--col-secondary-2: var(--col-green-1);
+		--col-secondary-1: var(--col-green-1);
 		--col-secondary-2: var(--col-green-2);
 		--col-secondary-3: var(--col-green-3);
 		--col-secondary-4: var(--col-green-4);
@@ -30,7 +30,7 @@
 		--col-secondary-10: var(--col-green-10);
 
 		--col-base-0: var(--col-neutral-0);
-		--col-base-2: var(--col-neutral-1);
+		--col-base-1: var(--col-neutral-1);
 		--col-base-2: var(--col-neutral-2);
 		--col-base-3: var(--col-neutral-3);
 		--col-base-4: var(--col-neutral-4);
@@ -41,5 +41,43 @@
 		--col-base-9: var(--col-neutral-9);
 		--col-base-10: var(--col-neutral-10);
 
+		&.dark {
+			--col-primary-0: var(--col-orange-10);
+			--col-primary-1: var(--col-orange-9);
+			--col-primary-2: var(--col-orange-8);
+			--col-primary-3: var(--col-orange-7);
+			--col-primary-4: var(--col-orange-6);
+			--col-primary-5: var(--col-orange-5);
+			--col-primary-6: var(--col-orange-4);
+			--col-primary-7: var(--col-orange-3);
+			--col-primary-8: var(--col-orange-2);
+			--col-primary-9: var(--col-orange-1);
+			--col-primary-10: var(--col-orange-0);
+
+			--col-secondary-0: var(--col-green-10);
+			--col-secondary-1: var(--col-green-9);
+			--col-secondary-2: var(--col-green-8);
+			--col-secondary-3: var(--col-green-7);
+			--col-secondary-4: var(--col-green-6);
+			--col-secondary-5: var(--col-green-5);
+			--col-secondary-6: var(--col-green-4);
+			--col-secondary-7: var(--col-green-3);
+			--col-secondary-8: var(--col-green-2);
+			--col-secondary-9: var(--col-green-1);
+			--col-secondary-10: var(--col-green-0);
+
+			
+			--col-base-0: var(--col-neutral-10);
+			--col-base-1: var(--col-neutral-9);
+			--col-base-2: var(--col-neutral-8);
+			--col-base-3: var(--col-neutral-7);
+			--col-base-4: var(--col-neutral-6);
+			--col-base-5: var(--col-neutral-5);
+			--col-base-6: var(--col-neutral-4);
+			--col-base-7: var(--col-neutral-3);
+			--col-base-8: var(--col-neutral-2);
+			--col-base-9: var(--col-neutral-1);
+			--col-base-10: var(--col-neutral-0);
+		}
 	}
 }

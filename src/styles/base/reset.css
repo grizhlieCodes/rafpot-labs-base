@@ -376,4 +376,8 @@
 		/* eslint-disable-next-line */
 		display: none !important;
 	}
+
+	:root {
+		interpolate-size: allow-keywords;
+	}
 }
