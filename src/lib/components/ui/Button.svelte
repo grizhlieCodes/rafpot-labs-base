@@ -24,7 +24,7 @@
 		calculated = true;
 		let { width } = buttonElement.getBoundingClientRect();
 		let remWidth = width / 16 + 1;
-		buttonElement.style.minWidth = `calc(${remWidth}rem + var(--deco-dot-size) + var(--decorative-btn-padding))`;
+		buttonElement.style.minWidth = `calc(${remWidth}rem + var(--deco-dot-size) + var(--decorative-button-padding))`;
 	});
 </script>
 
@@ -55,14 +55,14 @@
 		.button {
 			height: auto;
 
-			background-color: var(--btn-bg-col_hover, var(--btn-bg-col));
-			color: var(--btn-text-col_hover, var(--btn-text-col));
+			background-color: var(--button-bg-col-hover, var(--button-bg-col));
+			color: var(--button-text-col-hover, var(--button-text-col));
 			border-radius: var(--theme-radius);
-			font-weight: var(--btn-font-weight);
+			font-weight: var(--button-font-weight);
 			box-shadow: 1px 3px 10px color-mix(in oklch, var(--col-base-5) 60%, var(--col-base-0));
-			border: var(--border-size-1) solid var(--btn-border-col_hover, var(--btn-border-col, transparent));
-			padding: var(--btn-padding);
-			font-size: var(--btn-font-size);
+			border: var(--border-size-1) solid var(--button-border-col-hover, var(--button-border-col, transparent));
+			padding: var(--_button-padding);
+			font-size: var(--_button-font-size);
 
 			display: flex;
 			flex-direction: row;
@@ -80,38 +80,38 @@
 		*/
 		.button {
 			&.small {
-				--btn-padding: 0.25rem 0.2rem;
-				--btn-font-size: var(--text-3);
+				--_button-padding: 0.25rem 0.2rem;
+				--_button-font-size: var(--text-3);
 				--deco-dot-size: 0.35rem;
-				--decorative-btn-padding: 0.25rem;
+				--decorative-button-padding: 0.25rem;
 			}
 
 			&.medium {
-				--btn-padding: 0.35rem 0.5rem;
-				--btn-font-size: var(--text-4);
+				--_button-padding: 0.35rem 0.5rem;
+				--_button-font-size: var(--text-4);
 				--deco-dot-size: 0.4rem;
-				--decorative-btn-padding: 0.3rem;
+				--decorative-button-padding: 0.3rem;
 			}
 
 			&.default {
-				--btn-padding: 0.5rem 0.75rem;
-				--btn-font-size: var(--text-6);
+				--_button-padding: 0.5rem 0.75rem;
+				--_button-font-size: var(--text-6);
 				--deco-dot-size: 0.425rem;
-				--decorative-btn-padding: 0.4rem;
+				--decorative-button-padding: 0.4rem;
 			}
 
 			&.large {
-				--btn-padding: 0.5rem 0.75rem;
-				--btn-font-size: var(--text-7);
+				--_button-padding: 0.5rem 0.75rem;
+				--_button-font-size: var(--text-7);
 				--deco-dot-size: 0.45rem;
-				--decorative-btn-padding: 0.5rem;
+				--decorative-button-padding: 0.5rem;
 			}
 
-			&.extra_large {
-				--btn-padding: 0.55rem 1rem;
-				--btn-font-size: var(--text-8);
+			&.extra-large {
+				--_button-padding: 0.55rem 1rem;
+				--_button-font-size: var(--text-8);
 				--deco-dot-size: 0.5rem;
-				--decorative-btn-padding: 0.55rem;
+				--decorative-button-padding: 0.55rem;
 			}
 		}
 
@@ -121,44 +121,45 @@
 			>> This predominantly controls the colors. <<
 		*/
 		.button {
+			/* See color-tokens.css to review/change these values */
 			&.base {
-				--btn-bg-col: var(--col-base-2);
-				--btn-text-col: var(--col-base-8);
-				--deco-dot-col: var(--col-primary-5);
-				--btn-border-col: var(--col-base-3);
+				--button-bg-col: var(--button-bg-base);
+				--button-text-col: var(--button-text-base);
+				--deco-dot-col: var(--button-deco-dot-base);
+				--button-border-col: var(--button-border-base);
 			}
 
 			&.brand {
-				--btn-bg-col: var(--col-primary-3);
-				--btn-text-col: var(--col-primary-10);
-				--deco-dot-col: var(--col-primary-5);
-				--btn-border-col: var(--col-primary-4);
+				--button-bg-col: var(--button-bg-brand);
+				--button-text-col: var(--button-text-brand);
+				--deco-dot-col: var(--button-deco-dot-brand);
+				--button-border-col: var(--button-border-brand);
 			}
 
 			&.secondary {
-				--btn-bg-col: var(--col-secondary-3);
-				--btn-text-col: var(--col-secondary-10);
-				--deco-dot-col: var(--col-secondary-5);
-				--btn-border-col: var(--col-secondary-4);
+				--button-bg-col: var(--button-bg-secondary);
+				--button-text-col: var(--button-text-secondary);
+				--deco-dot-col: var(--button-deco-dot-secondary);
+				--button-border-col: var(--button-border-secondary);
 			}
 
 			&:not(:is(.decorative)) {
 				&:hover {
 					&.base {
-						--btn-text-col_hover: var(--col-base-2);
-						--btn-bg-col: var(--col-base-7);
-						--btn-border-col_hover: var(--col-base-5);
+						--button-text-col-hover: var(--button-text-base-hover);
+						--button-bg-col: var(--button-bg-base-hover);
+						--button-border-col-hover: var(--button-border-base-hover);
 					}
 
 					&.brand {
-						--btn-text-col_hover: var(--col-primary-1);
-						--btn-bg-col_hover: var(--col-primary-5);
-						--btn-border-col_hover: var(--col-primary-4);
+						--button-text-col-hover: var(--button-text-brand-hover);
+						--button-bg-col-hover: var(--button-bg-brand-hover);
+						--button-border-col-hover: var(--button-border-brand-hover);
 					}
 					&.secondary {
-						--btn-text-col_hover: var(--col-secondary-10);
-						--btn-bg-col_hover: var(--col-secondary-4);
-						--btn-border-col_hover: var(--col-secondary-5);
+						--button-text-col-hover: var(--button-text-secondary-hover);
+						--button-bg-col-hover: var(--button-bg-secondary-hover);
+						--button-border-col-hover: var(--button-border-secondary-hover);
 					}
 				}
 			}
@@ -170,7 +171,7 @@
 			> .text-content {
 				z-index: 10;
 				position: relative;
-				padding-right: calc(var(--decorative-btn-padding) + var(--deco-dot-size));
+				padding-right: calc(var(--decorative-button-padding) + var(--deco-dot-size));
 				transition: all 300ms ease-in-out;
 
 				&::before {

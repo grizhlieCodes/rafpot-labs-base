@@ -1,0 +1,12 @@
+/*
+  To see available radius options go to ./base/fonts.css
+  To see available font family options go to ./base/fonts.css
+*/
+
+@layer theme {
+  html {
+    --theme-radius: var(--radius-3);
+    --heading-font: var(--font-sans);
+    --heading-body: var(--font-sans);
+  }
+}

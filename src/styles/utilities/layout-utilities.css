@@ -1,0 +1,17 @@
+@layer utilities {
+  .fluid-row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    @media screen and (min-width: var(--breakpoint-4)) {
+      flex-direction: row;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+}

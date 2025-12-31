@@ -1,0 +1,372 @@
+@layer utilities {
+
+  /* Headings <h1...h12> */
+  .h-1-base-styles {
+    /* 36px */
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 72px */
+      font-size: var(--text-14);
+      line-height: var(--text-14-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 128px */
+      font-size: var(--text-16);
+      line-height: var(--text-16-line-height);
+    }
+  }
+
+  .h-2-base-styles {
+    /* 30px */
+    font-size: var(--text-10);
+    line-height: var(--text-10-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 60px */
+      font-size: var(--text-13);
+      line-height: var(--text-13-line-height);
+    }
+
+    @media screen and (min-width: 1020px) {
+      /* 72px */
+      font-size: var(--text-14);
+      line-height: var(--text-14-line-height);
+    }
+  }
+
+  .h-3-base-styles {
+    /* 24px */
+    font-size: var(--text-9);
+    line-height: var(--text-9-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 48px */
+      font-size: var(--text-12);
+      line-height: var(--text-12-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 60px */
+      font-size: var(--text-13);
+      line-height: var(--text-13-line-height);
+    }
+  }
+
+  .h-4-base-styles {
+    /* 20px */
+    font-size: var(--text-8);
+    line-height: var(--text-8-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 36px */
+      font-size: var(--text-11);
+      line-height: var(--text-11-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 48px */
+      font-size: var(--text-12);
+      line-height: var(--text-12-line-height);
+    }
+  }
+
+  .h-5-base-styles {
+    /* 18px */
+    font-size: var(--text-7);
+    line-height: var(--text-7-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 30px */
+      font-size: var(--text-10);
+      line-height: var(--text-10-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 36px */
+      font-size: var(--text-11);
+      line-height: var(--text-11-line-height);
+    }
+  }
+
+  .h-6-base-styles {
+    /* 16px */
+    font-size: var(--text-6);
+    line-height: var(--text-6-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 24px */
+      font-size: var(--text-9);
+      line-height: var(--text-9-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 30px */
+      font-size: var(--text-10);
+      line-height: var(--text-10-line-height);
+    }
+  }
+
+  .h-7-base-styles {
+    /* 14px */
+    font-size: var(--text-5);
+    line-height: var(--text-5-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 20px */
+      font-size: var(--text-8);
+      line-height: var(--text-8-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 24px */
+      font-size: var(--text-9);
+      line-height: var(--text-9-line-height);
+    }
+  }
+
+  .h-8-base-styles {
+    /* 13px */
+    font-size: var(--text-4);
+    line-height: var(--text-4-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 18px */
+      font-size: var(--text-7);
+      line-height: var(--text-7-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 20px */
+      font-size: var(--text-8);
+      line-height: var(--text-8-line-height);
+    }
+  }
+
+  .h-9-base-styles {
+    /* 12px */
+    font-size: var(--text-3);
+    line-height: var(--text-3-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 16px */
+      font-size: var(--text-6);
+      line-height: var(--text-6-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 18px */
+      font-size: var(--text-7);
+      line-height: var(--text-7-line-height);
+    }
+  }
+
+  .h-10-base-styles {
+    /* 10px */
+    font-size: var(--text-2);
+    line-height: var(--text-2-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 14px */
+      font-size: var(--text-5);
+      line-height: var(--text-5-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 16px */
+      font-size: var(--text-6);
+      line-height: var(--text-6-line-height);
+    }
+  }
+
+  .h-11-base-styles {
+    /* 8px */
+    font-size: var(--text-1);
+    line-height: var(--text-1-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 13px */
+      font-size: var(--text-4);
+      line-height: var(--text-4-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 14px */
+      font-size: var(--text-5);
+      line-height: var(--text-5-line-height);
+    }
+  }
+
+  .h-12-base-styles {
+    /* 8px */
+    font-size: var(--text-1);
+    line-height: var(--text-1-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 12px */
+      font-size: var(--text-3);
+      line-height: var(--text-3-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 13px */
+      font-size: var(--text-4);
+      line-height: var(--text-4-line-height);
+    }
+  }
+
+  /* Paragraphs <p1...p12> */
+  .p-1-base-styles {
+    /* 8px */
+    font-size: var(--text-1);
+    line-height: var(--text-1-line-height);
+  }
+
+  .p-2-base-styles {
+    /* 10px */
+    font-size: var(--text-2);
+    line-height: var(--text-2-line-height);
+  }
+
+  .p-3-base-styles {
+    /* 12px */
+    font-size: var(--text-3);
+    line-height: var(--text-3-line-height);
+  }
+
+  .p-4-base-styles {
+    /* 12px */
+    font-size: var(--text-3);
+    line-height: var(--text-3-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 13px */
+      font-size: var(--text-4);
+      line-height: var(--text-4-line-height);
+    }
+  }
+
+  .p-5-base-styles {
+    /* 12px */
+    font-size: var(--text-3);
+    line-height: var(--text-3-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 14px */
+      font-size: var(--text-5);
+      line-height: var(--text-5-line-height);
+    }
+  }
+
+  .p-6-base-styles {
+    /* 14px */
+    font-size: var(--text-5);
+    line-height: var(--text-5-line-height);
+  }
+
+  .p-7-base-styles {
+    /* 14px */
+    font-size: var(--text-5);
+    line-height: var(--text-5-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 16px */
+      font-size: var(--text-6);
+      line-height: var(--text-6-line-height);
+    }
+  }
+
+  .p-8-base-styles {
+    /* 16px */
+    font-size: var(--text-6);
+    line-height: var(--text-6-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 18px */
+      font-size: var(--text-7);
+      line-height: var(--text-7-line-height);
+    }
+  }
+
+  .p-9-base-styles {
+    /* 18px */
+    font-size: var(--text-7);
+    line-height: var(--text-7-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 20px */
+      font-size: var(--text-8);
+      line-height: var(--text-8-line-height);
+    }
+  }
+
+  .p-10-base-styles {
+    /* 20px */
+    font-size: var(--text-8);
+    line-height: var(--text-8-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 24px */
+      font-size: var(--text-9);
+      line-height: var(--text-9-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 30px */
+      font-size: var(--text-10);
+      line-height: var(--text-10-line-height);
+    }
+  }
+
+  .p-11-base-styles {
+    /* 24px */
+    font-size: var(--text-9);
+    line-height: var(--text-9-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 30px */
+      font-size: var(--text-10);
+      line-height: var(--text-10-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 36px */
+      font-size: var(--text-11);
+      line-height: var(--text-11-line-height);
+    }
+  }
+
+  .p-12-base-styles {
+    /* 30px */
+    font-size: var(--text-10);
+    line-height: var(--text-10-line-height);
+
+    @media screen and (min-width: 768px) {
+      /* 36px */
+      font-size: var(--text-11);
+      line-height: var(--text-11-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      /* 48px */
+      font-size: var(--text-12);
+      line-height: var(--text-12-line-height);
+    }
+  }
+
+  /*eyebrow as well and others will go here for links etc?*/
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}

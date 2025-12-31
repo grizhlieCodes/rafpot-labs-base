@@ -1,17 +1,16 @@
-@layer reset, base, tokens, semantics, utilities, components, theme;
+@layer reset, base, alias, semantic, components, utilities, theme;
 
 @import './base/reset.css';
 @import './base/breakpoints.css';
 @import './base/fonts.css';
 @import './base/text.css';
 @import './base/colors.css';
-@import './base/rest.css';
-@import './base/utilities.css';
-@import './tokens/color-tokens.css';
-
-
-@layer theme {
-  :root {
-    --theme-radius: var(--radius-3);
-  }
-}
+@import './base/misc.css';
+@import './alias/color-alias.css';
+@import './alias/typography-alias.css';
+@import './semantic/color-tokens.css';
+@import './semantic/typography-tokens.css';
+@import './utilities/general-utilities.css';
+@import './utilities/typography-utilities.css';
+@import './utilities/layout-utilities.css';
+@import './theme.css';

@@ -4,7 +4,7 @@
 
 /*      🗿   */
 @layer base {
-  :root {
+  html {
     --col-red-0: oklch(97.1% 0.013 17.38);
     --col-red-1: oklch(93.6% 0.032 17.717);
     --col-red-2: oklch(88.5% 0.062 18.334);

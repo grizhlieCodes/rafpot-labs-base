@@ -1,14 +1,5 @@
-/*
-   This file holds our semantic color system.
-   Version 1 will be relatively bad. I'll improve this as i test everything.
-*/
-
-/*
-  Edit the below variables to adapt it for the current project.
-*/
-
-@layer tokens {
-  :root {
+@layer alias {
+  html {
     --col-primary-0: var(--col-orange-0);
     --col-primary-1: var(--col-orange-1);
     --col-primary-2: var(--col-orange-2);

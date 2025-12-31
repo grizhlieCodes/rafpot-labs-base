@@ -1,0 +1,37 @@
+/*
+   This file holds our semantic color system.
+   Version 1 will be relatively bad. I'll improve this as i test everything.
+*/
+
+/*
+  Edit the below variables to adapt it for the current project.
+*/
+
+@layer semantic {
+  html {
+    /* Button.svelte */
+    --button-bg-base: var(--col-base-2);
+    --button-bg-base-hover: var(--col-base-7);
+    --button-text-base: var(--col-base-8);
+    --button-text-base-hover: var(--col-base-2);
+    --button-deco-dot-base: var(--col-primary-5);
+    --button-border-base: var(--col-base-3);
+    --button-border-base-hover: var(--col-base-5);
+
+    --button-bg-brand: var(--col-primary-3);
+    --button-bg-brand-hover: var(--col-primary-5);
+    --button-text-brand: var(--col-primary-10);
+    --button-text-brand-hover: var(--col-primary-1);
+    --button-deco-dot-brand: var(--col-primary-5);
+    --button-border-brand: var(--col-primary-4);
+    --button-border-brand-hover: var(--col-primary-4);
+
+    --button-bg-secondary: var(--col-secondary-3);
+    --button-bg-secondary-hover: var(--col-secondary-4);
+    --button-text-secondary: var(--col-secondary-10);
+    --button-text-secondary-hover: var(--col-secondary-10);
+    --button-deco-dot-secondary: var(--col-secondary-5);
+    --button-border-secondary: var(--col-secondary-4);
+    --button-border-secondary-hover: var(--col-secondary-5);
+  }
+}

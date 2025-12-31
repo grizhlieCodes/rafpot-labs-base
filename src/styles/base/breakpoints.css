@@ -6,7 +6,7 @@
 
 /*      🗿   */
 @layer base {
-  :root {
+  html {
     /* Small mobile */
     --breakpoint-1: 320px;
 
@@ -23,7 +23,7 @@
     --breakpoint-5: 600px;
 
     /* Tablet */
-    --breakpoint-6: 765px;
+    --breakpoint-6: 768px;
 
     /* Large Tablet -> Extra Small Desktop */
     --breakpoint-7: 900px;

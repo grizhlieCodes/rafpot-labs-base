@@ -1,0 +1,7 @@
+@layer semantic {
+    html {
+        /* ========== BUTTON ========== */
+        --button-font-family: var(--font-body);
+        --button-font-weight: var(--)
+    }
+}

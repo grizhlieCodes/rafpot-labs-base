@@ -4,7 +4,7 @@
 */
 
 @layer base {
-  :root {
+  html {
     /* 8px */
     --text-1: 0.5rem;
     --text-1-line-height: calc(1 / 0.65);
