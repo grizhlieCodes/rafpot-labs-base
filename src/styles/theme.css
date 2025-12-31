@@ -7,6 +7,6 @@
   html {
     --theme-radius: var(--radius-3);
     --heading-font: var(--font-sans);
-    --heading-body: var(--font-sans);
+    --body-font: var(--font-sans);
   }
 }
