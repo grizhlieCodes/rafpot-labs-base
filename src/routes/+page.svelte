@@ -6,12 +6,14 @@
 
 	type ButtonPropsWithContent = ButtonProps & { content: string };
 
+	const buttonVariant = 'secondary'
+	
 	const buttons: ButtonPropsWithContent[] = [
-		{ content: 'Sign up', variant: 'brand', size: 'small', href: null, decorative: true },
-		{ content: 'Sign up', variant: 'brand', size: 'medium', href: null, decorative: true },
-		{ content: 'Sign up', variant: 'brand', size: 'default', href: null, decorative: true },
-		{ content: 'Sign up', variant: 'brand', size: 'large', href: null, decorative: true },
-		{ content: 'Sign up', variant: 'brand', size: 'extra-large', href: null, decorative: true }
+		{ content: 'Sign up', variant: buttonVariant, size: 'small', href: null, decorative: true },
+		{ content: 'Sign up', variant: buttonVariant, size: 'medium', href: null, decorative: true },
+		{ content: 'Sign up', variant: buttonVariant, size: 'default', href: null, decorative: true },
+		{ content: 'Sign up', variant: buttonVariant, size: 'large', href: null, decorative: true },
+		{ content: 'Sign up', variant: buttonVariant, size: 'extra-large', href: null, decorative: true }
 	];
 
 </script>
@@ -19,7 +21,7 @@
 <div class="daddy">
 	<div class="p-container">
 		{#each arrayFromNumber(6).reverse() as h}
-		  <h1 style="font-size: var(--size-heading-{h});">Paragraph {h}</h1>
+		  <h1 style="font-size: var(--size-heading-{h});">Heading {h}</h1>
 		{/each}
 	</div>
 	<div class="p-container">
