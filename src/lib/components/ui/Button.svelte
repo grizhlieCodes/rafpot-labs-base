@@ -24,7 +24,7 @@
 		calculated = true;
 		let { width } = buttonElement.getBoundingClientRect();
 		let remWidth = width / 16 + 1;
-		buttonElement.style.minWidth = `calc(${remWidth}rem + var(--deco-dot-size) + var(--decorative-button-padding))`;
+		buttonElement.style.minWidth = `calc(${remWidth}rem + var(--_deco-dot-size) + var(--_decorative-button-padding))`;
 	});
 </script>
 
@@ -59,8 +59,9 @@
 			color: var(--button-text-col-hover, var(--button-text-col));
 			border-radius: var(--theme-radius);
 			font-weight: var(--button-font-weight);
+			font-family: var(--button-font-family);
 			box-shadow: 1px 3px 10px color-mix(in oklch, var(--col-base-5) 60%, var(--col-base-0));
-			border: var(--border-size-1) solid var(--button-border-col-hover, var(--button-border-col, transparent));
+			border: var(--button-border-size) solid var(--button-border-col-hover, var(--button-border-col, transparent));
 			padding: var(--_button-padding);
 			font-size: var(--_button-font-size);
 
@@ -81,37 +82,37 @@
 		.button {
 			&.small {
 				--_button-padding: 0.25rem 0.2rem;
-				--_button-font-size: var(--text-3);
-				--deco-dot-size: 0.35rem;
-				--decorative-button-padding: 0.25rem;
+				--_button-font-size: var(--button-font-size-small);
+				--_deco-dot-size: 0.35rem;
+				--_decorative-button-padding: 0.25rem;
 			}
 
 			&.medium {
 				--_button-padding: 0.35rem 0.5rem;
-				--_button-font-size: var(--text-4);
-				--deco-dot-size: 0.4rem;
-				--decorative-button-padding: 0.3rem;
+				--_button-font-size: var(--button-font-size-medium);
+				--_deco-dot-size: 0.4rem;
+				--_decorative-button-padding: 0.3rem;
 			}
 
 			&.default {
 				--_button-padding: 0.5rem 0.75rem;
-				--_button-font-size: var(--text-6);
-				--deco-dot-size: 0.425rem;
-				--decorative-button-padding: 0.4rem;
+				--_button-font-size: var(--button-font-size-default);
+				--_deco-dot-size: 0.425rem;
+				--_decorative-button-padding: 0.4rem;
 			}
 
 			&.large {
 				--_button-padding: 0.5rem 0.75rem;
-				--_button-font-size: var(--text-7);
-				--deco-dot-size: 0.45rem;
-				--decorative-button-padding: 0.5rem;
+				--_button-font-size: var(--button-font-size-large);
+				--_deco-dot-size: 0.45rem;
+				--_decorative-button-padding: 0.5rem;
 			}
 
 			&.extra-large {
 				--_button-padding: 0.55rem 1rem;
-				--_button-font-size: var(--text-8);
-				--deco-dot-size: 0.5rem;
-				--decorative-button-padding: 0.55rem;
+				--_button-font-size: var(--button-font-size-extra-large);
+				--_deco-dot-size: 0.5rem;
+				--_decorative-button-padding: 0.55rem;
 			}
 		}
 
@@ -147,7 +148,7 @@
 				&:hover {
 					&.base {
 						--button-text-col-hover: var(--button-text-base-hover);
-						--button-bg-col: var(--button-bg-base-hover);
+						--button-bg-col-hover: var(--button-bg-base-hover);
 						--button-border-col-hover: var(--button-border-base-hover);
 					}
 
@@ -171,7 +172,7 @@
 			> .text-content {
 				z-index: 10;
 				position: relative;
-				padding-right: calc(var(--decorative-button-padding) + var(--deco-dot-size));
+				padding-right: calc(var(--_decorative-button-padding) + var(--_deco-dot-size));
 				transition: all 300ms ease-in-out;
 
 				&::before {
@@ -180,8 +181,8 @@
 					right: 0;
 					top: 50%;
 					transform: translateY(-50%);
-					width: var(--deco-dot-size);
-					height: var(--deco-dot-size);
+					width: var(--_deco-dot-size);
+					height: var(--_deco-dot-size);
 					background-color: var(--deco-dot-col);
 					border-radius: 999px;
 					transition: transform 300ms ease-in-out;
