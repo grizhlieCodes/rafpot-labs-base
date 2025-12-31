@@ -14,19 +14,17 @@
 
 		/* ======= FONT SIZES ======= */
 		/* ======= FONT SIZES: HEADINGS ======= */
-		--size-heading-1: var(--_size-heading-1, var(--text-4));
-		--size-heading-2: var(--_size-heading-2, var(--text-5));
-		--size-heading-3: var(--_size-heading-3, var(--text-6));
-		--size-heading-4: var(--_size-heading-4, var(--text-7));
-		--size-heading-5: var(--_size-heading-5, var(--text-9));
+		--size-heading-1: var(--_size-heading-1, var(--text-6));
+		--size-heading-2: var(--_size-heading-2, var(--text-7));
+		--size-heading-3: var(--_size-heading-3, var(--text-8));
+		--size-heading-4: var(--_size-heading-4, var(--text-9));
+		--size-heading-5: var(--_size-heading-5, var(--text-10));
 		--size-heading-6: var(--_size-heading-6, var(--text-11));
 
 		@media screen and (min-width: 768px) {
-			--_size-heading-1: var(--text-5);
-			--_size-heading-2: var(--text-6);
-			--_size-heading-3: var(--text-7);
-			--_size-heading-4: var(--text-8);
-			--_size-heading-5: var(--text-9);
+			--_size-heading-3: var(--text-9);
+			--_size-heading-4: var(--text-10);
+			--_size-heading-5: var(--text-11);
 			--_size-heading-6: var(--text-12);
 		}
 
@@ -40,20 +38,20 @@
 		}
 
 		/* ======= FONT SIZES: BODY ======= */
-		--size-body-1: var(--_size-body-1, var(--text-1));
-		--size-body-2: var(--_size-body-2, var(--text-2));
-		--size-body-3: var(--_size-body-3, var(--text-3));
-		--size-body-4: var(--_size-body-4, var(--text-4));
-		--size-body-5: var(--_size-body-5, var(--text-5));
-		--size-body-6: var(--_size-body-6, var(--text-6));
-		--size-body-7: var(--_size-body-7, var(--text-7));
-		--size-body-8: var(--_size-body-8, var(--text-8));
+		--size-body-1: var(--_size-body-1, var(--text-2));
+		--size-body-2: var(--_size-body-2, var(--text-3));
+		--size-body-3: var(--_size-body-3, var(--text-4));
+		--size-body-4: var(--_size-body-4, var(--text-5));
+		--size-body-5: var(--_size-body-5, var(--text-6));
+		--size-body-6: var(--_size-body-6, var(--text-7));
+		--size-body-7: var(--_size-body-7, var(--text-8));
+		--size-body-8: var(--_size-body-8, var(--text-9));
 
 		@media screen and (min-width: 768px) {
-			--_size-body-5: var(--text-6);
-			--_size-body-6: var(--text-7);
-			--_size-body-7: var(--text-8);
-			--_size-body-8: var(--text-9);
+			--_size-body-5: var(--text-7);
+			--_size-body-6: var(--text-8);
+			--_size-body-7: var(--text-9);
+			--_size-body-8: var(--text-10);
 		}
 
 		@media screen and (min-width: 1020px) {
