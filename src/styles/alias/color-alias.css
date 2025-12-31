@@ -12,17 +12,17 @@
     --col-primary-9: var(--col-orange-9);
     --col-primary-10: var(--col-orange-10);
 
-    --col-secondary-0: var(--col-green-0);
-    --col-secondary-1: var(--col-green-1);
-    --col-secondary-2: var(--col-green-2);
-    --col-secondary-3: var(--col-green-3);
-    --col-secondary-4: var(--col-green-4);
-    --col-secondary-5: var(--col-green-5);
-    --col-secondary-6: var(--col-green-6);
-    --col-secondary-7: var(--col-green-7);
-    --col-secondary-8: var(--col-green-8);
-    --col-secondary-9: var(--col-green-9);
-    --col-secondary-10: var(--col-green-10);
+    --col-secondary-0: var(--col-sky-0);
+    --col-secondary-1: var(--col-sky-1);
+    --col-secondary-2: var(--col-sky-2);
+    --col-secondary-3: var(--col-sky-3);
+    --col-secondary-4: var(--col-sky-4);
+    --col-secondary-5: var(--col-sky-5);
+    --col-secondary-6: var(--col-sky-6);
+    --col-secondary-7: var(--col-sky-7);
+    --col-secondary-8: var(--col-sky-8);
+    --col-secondary-9: var(--col-sky-9);
+    --col-secondary-10: var(--col-sky-10);
 
     --col-base-0: var(--col-neutral-0);
     --col-base-1: var(--col-neutral-1);
