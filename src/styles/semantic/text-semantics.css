@@ -1,0 +1,165 @@
+@layer semantics {
+
+  /* Headings <h1...h12> */
+  h1 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+      line-height: var(--text-14-line-height);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+      line-height: var(--text-16-line-height);
+    }
+  }
+
+  h2 {
+    font-size: var(--text-10);
+    line-height: var(--text-10-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-13);
+      line-height: var(--text-13-line-height);
+    }
+
+    @media screen and (min-width: 1020px) {
+      font-size: var(--text-14);
+      line-height: var(--text-14-line-height);
+    }
+  }
+
+  h3 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h4 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h5 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h6 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h7 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h8 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h9 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h10 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h11 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  h12 {
+    font-size: var(--text-11);
+    line-height: var(--text-11-line-height);
+
+    @media screen and (min-width: 768px) {
+      font-size: var(--text-14);
+    }
+
+    @media screen and (min-width: 1024px) {
+      font-size: var(--text-16);
+    }
+  }
+
+  /* Paragraphs <h1...h12> */
+}

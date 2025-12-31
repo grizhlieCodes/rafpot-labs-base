@@ -1,15 +1,16 @@
 import type { Snippet } from 'svelte';
 
 export type ButtonProps = {
-	children?: Snippet;
-	href?: string | undefined | null;
-	disabled?: boolean | undefined | null;
-	class?: string | undefined | null;
-	variant?: 'base' | 'brand' | 'secondary' | 'tertiary' | 'outline' | 'ghost';
-	size?: 'small' | 'medium' | 'default' | 'large' | 'extra_large';
-	ref?: HTMLElement | undefined | null;
-	type?: 'button' | 'submit' | undefined | null;
-	decorative?: boolean;
+  children?: Snippet;
+  href?: string | undefined | null;
+  disabled?: boolean | undefined | null;
+  class?: string | undefined | null;
+  variant?: 'base' | 'brand' | 'secondary' | 'tertiary' | 'outline' | 'ghost';
+  size?: 'small' | 'medium' | 'default' | 'large' | 'extra_large';
+  ref?: HTMLElement | undefined | null;
+  type?: 'button' | 'submit' | undefined | null;
+  onclick?: () => void;
+  decorative?: boolean;
 };
 
 // export type CustomButtonProps = {

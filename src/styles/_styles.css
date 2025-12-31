@@ -1,4 +1,4 @@
-@layer reset, base, semantics, utilities, components;
+@layer reset, base, tokens, semantics, utilities, components, theme;
 
 @import './base/reset.css';
 @import './base/breakpoints.css';
@@ -7,5 +7,11 @@
 @import './base/colors.css';
 @import './base/rest.css';
 @import './base/utilities.css';
-@import './semantics/color-tokens.css';
-@import './semantics/component-tokens.css';
+@import './tokens/color-tokens.css';
+
+
+@layer theme {
+  :root {
+    --theme-radius: var(--radius-3);
+  }
+}

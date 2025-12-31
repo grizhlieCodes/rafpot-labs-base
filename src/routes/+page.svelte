@@ -6,18 +6,24 @@
 	type ButtonPropsWithContent = ButtonProps & { content: string };
 
 	const buttons: ButtonPropsWithContent[] = [
-		{ content: 'Sign up', variant: 'secondary', size: 'small', href: 'https://google.com' },
-		{ content: 'Sign up', variant: 'secondary', size: 'medium', href: 'https://google.com' },
-		{ content: 'Sign up', variant: 'secondary', size: 'default', href: 'https://google.com' },
-		{ content: 'Sign up', variant: 'secondary', size: 'large', href: 'https://google.com' },
-		{ content: 'Sign up', variant: 'secondary', size: 'extra_large', href: 'https://google.com' }
+		{ content: 'Sign up', variant: 'secondary', size: 'small', href: null, decorative: true },
+		{ content: 'Sign up', variant: 'secondary', size: 'medium', href: null, decorative: true },
+		{ content: 'Sign up', variant: 'secondary', size: 'default', href: null, decorative: true },
+		{ content: 'Sign up', variant: 'secondary', size: 'large', href: null, decorative: true },
+		{ content: 'Sign up', variant: 'secondary', size: 'extra_large', href: null, decorative: true }
 	];
 </script>
 
 <div class="daddy">
 	<div class="buttons-container fluid-row">
 		{#each buttons as btn, _i (btn.size)}
-			<Button variant={btn.variant} size={btn.size} href={btn.href}>
+			<Button
+				variant={btn.variant}
+				size={btn.size}
+				href={btn.href}
+				decorative={btn.decorative}
+				onclick={() => console.log('hehe')}
+			>
 				{btn.content}
 			</Button>
 		{/each}
@@ -26,7 +32,7 @@
 
 <style>
 	.daddy {
-		background-color: var(--col-base-0);
+		background-color: black;
 	}
 	.buttons-container {
 		width: 100%;

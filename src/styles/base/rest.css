@@ -1,9 +1,140 @@
 @layer base {
-    :root {
-        --rounding: 0.375rem;
-        --border-size-1: 0.03125rem;
-        --border-size-2: 0.0625rem;
-        --border-size-3: 0.1875rem;
-        --border-size-4: 0.25rem 
+  :root {
+    /* == ROUNDING == */
+    --radius-0: 0;
+    --radius-1: 0.125rem;
+    --radius-2: 0.25rem;
+    --radius-3: 0.375rem;
+    --radius-4: 0.5rem;
+    --radius-5: 0.75rem;
+    --radius-6: 1rem;
+    --radius-7: 1.5rem;
+    --radius-8: 2rem;
+    --radius-full: 62.5rem;
+
+    /* ================================= */
+
+    /* == SPACING == */
+    --default-spacing: 0.25rem;
+    --spacing-0: 0px;
+    --spacing-px: 1px;
+    --spacing-1: calc(var(--default-spacing) * 1);
+    --spacing-2: calc(var(--default-spacing) * 2);
+    --spacing-3: calc(var(--default-spacing) * 3);
+    --spacing-4: calc(var(--default-spacing) * 4);
+    --spacing-5: calc(var(--default-spacing) * 5);
+    --spacing-6: calc(var(--default-spacing) * 6);
+    --spacing-7: calc(var(--default-spacing) * 7);
+    --spacing-8: calc(var(--default-spacing) * 8);
+    --spacing-9: calc(var(--default-spacing) * 9);
+    --spacing-10: calc(var(--default-spacing) * 10);
+    --spacing-11: calc(var(--default-spacing) * 11);
+    --spacing-12: calc(var(--default-spacing) * 12);
+    --spacing-13: calc(var(--default-spacing) * 13);
+    --spacing-14: calc(var(--default-spacing) * 14);
+    --spacing-15: calc(var(--default-spacing) * 15);
+    --spacing-16: calc(var(--default-spacing) * 16);
+    --spacing-17: calc(var(--default-spacing) * 17);
+    --spacing-18: calc(var(--default-spacing) * 18);
+    --spacing-19: calc(var(--default-spacing) * 19);
+    --spacing-20: calc(var(--default-spacing) * 20);
+    --spacing-24: calc(var(--default-spacing) * 24);
+    --spacing-28: calc(var(--default-spacing) * 28);
+    --spacing-32: calc(var(--default-spacing) * 32);
+    --spacing-36: calc(var(--default-spacing) * 36);
+    --spacing-40: calc(var(--default-spacing) * 40);
+    --spacing-44: calc(var(--default-spacing) * 44);
+    --spacing-48: calc(var(--default-spacing) * 48);
+    --spacing-52: calc(var(--default-spacing) * 52);
+    --spacing-56: calc(var(--default-spacing) * 56);
+    --spacing-60: calc(var(--default-spacing) * 60);
+    --spacing-64: calc(var(--default-spacing) * 64);
+    --spacing-72: calc(var(--default-spacing) * 72);
+    --spacing-80: calc(var(--default-spacing) * 80);
+    --spacing-96: calc(var(--default-spacing) * 96);
+
+    /* ================================= */
+
+    /* == BLUR == */
+    --blur-1: 4px;
+    --blur-2: 8px;
+    --blur-3: 12px;
+    --blur-4: 16px;
+    --blur-5: 24px;
+    --blur-6: 40px;
+    --blur-7: 64px;
+
+
+
+
+
+    /* ================================= */
+
+    /* == ASPECT RATIO == */
+    --aspect-square: 1 / 1;
+    --aspect-video: 16 / 9;
+
+    /* ================================= */
+
+    /* == ANIMATIONS == */
+
+    --animate-spin: spin 1s linear infinite;
+    --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    --animate-bounce: bounce 1s infinite;
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
+
+    @keyframes ping {
+
+      75%,
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+      }
+
+      50% {
+        transform: none;
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+      }
+    }
+
+    /* ================================= */
+
+    /* == SPACING == */
+    /* ================================= */
+
+    /* == SPACING == */
+    /* ================================= */
+
+    /* == SPACING == */
+    /* ================================= */
+
+    /* == SPACING == */
+    /* ================================= */
+
+    /* == SPACING == */
+    /* ================================= */
+
+    /* == SPACING == */
+  }
 }
