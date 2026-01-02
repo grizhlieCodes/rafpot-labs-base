@@ -6,14 +6,15 @@
 
 	type ButtonPropsWithContent = ButtonProps & { content: string };
 
-	const buttonVariant = 'secondary'
+	const buttonVariant = 'base'
+	const decorative = false
 	
 	const buttons: ButtonPropsWithContent[] = [
-		{ content: 'Sign up', variant: buttonVariant, size: 'small', href: null, decorative: true },
-		{ content: 'Sign up', variant: buttonVariant, size: 'medium', href: null, decorative: true },
-		{ content: 'Sign up', variant: buttonVariant, size: 'default', href: null, decorative: true },
-		{ content: 'Sign up', variant: buttonVariant, size: 'large', href: null, decorative: true },
-		{ content: 'Sign up', variant: buttonVariant, size: 'extra-large', href: null, decorative: true }
+		{ content: 'Sign up', variant: buttonVariant, size: 'small', href: null, decorative },
+		{ content: 'Sign up', variant: buttonVariant, size: 'medium', href: null, decorative },
+		{ content: 'Sign up', variant: buttonVariant, size: 'default', href: null, decorative },
+		{ content: 'Sign up', variant: buttonVariant, size: 'large', href: null, decorative },
+		{ content: 'Sign up', variant: buttonVariant, size: 'extra-large', href: null, decorative }
 	];
 
 </script>
@@ -45,9 +46,6 @@
 </div>
 
 <style>
-	.daddy {
-		background-color: black;
-	}
 	.buttons-container {
 		width: 100%;
 		min-height: 100vh;

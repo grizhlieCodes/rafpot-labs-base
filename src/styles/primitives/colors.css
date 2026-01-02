@@ -3,7 +3,7 @@
 */
 
 /*      🗿   */
-@layer base {
+@layer primitives {
   html {
     --col-red-0: oklch(97.1% 0.013 17.38);
     --col-red-1: oklch(93.6% 0.032 17.717);

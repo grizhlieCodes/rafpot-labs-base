@@ -5,7 +5,7 @@
 */
 
 /*      🗿   */
-@layer base {
+@layer primitives {
   html {
     /* Small mobile */
     --breakpoint-1: 320px;

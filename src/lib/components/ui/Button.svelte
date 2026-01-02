@@ -55,13 +55,13 @@
 		.button {
 			height: auto;
 
-			background-color: var(--button-bg-col-hover, var(--button-bg-col));
-			color: var(--button-text-col-hover, var(--button-text-col));
+			background-color: var(--_button-bg-col-hover, var(--_button-bg-col));
+			color: var(--_button-text-col-hover, var(--_button-text-col));
 			border-radius: var(--theme-radius);
 			font-weight: var(--button-font-weight);
 			font-family: var(--button-font-family);
 			box-shadow: 1px 3px 10px color-mix(in oklch, var(--col-base-5) 60%, var(--col-base-0));
-			border: var(--button-border-size) solid var(--button-border-col-hover, var(--button-border-col, transparent));
+			border: var(--button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
 			padding: var(--_button-padding);
 			font-size: var(--_button-font-size);
 
@@ -82,35 +82,35 @@
 		.button {
 			&.small {
 				--_button-padding: 0.25rem 0.2rem;
-				--_button-font-size: var(--button-font-size-small);
+				--_button-font-size: var(--size-body-3);
 				--_deco-dot-size: 0.35rem;
 				--_decorative-button-padding: 0.25rem;
 			}
 
 			&.medium {
 				--_button-padding: 0.35rem 0.5rem;
-				--_button-font-size: var(--button-font-size-medium);
+				--_button-font-size: var(--size-body-4);
 				--_deco-dot-size: 0.4rem;
 				--_decorative-button-padding: 0.3rem;
 			}
 
 			&.default {
 				--_button-padding: 0.5rem 0.75rem;
-				--_button-font-size: var(--button-font-size-default);
+				--_button-font-size: var(--size-body-5);
 				--_deco-dot-size: 0.425rem;
 				--_decorative-button-padding: 0.4rem;
 			}
 
 			&.large {
 				--_button-padding: 0.5rem 0.75rem;
-				--_button-font-size: var(--button-font-size-large);
+				--_button-font-size: var(--size-body-6);
 				--_deco-dot-size: 0.45rem;
 				--_decorative-button-padding: 0.5rem;
 			}
 
 			&.extra-large {
 				--_button-padding: 0.55rem 1rem;
-				--_button-font-size: var(--button-font-size-extra-large);
+				--_button-font-size: var(--size-body-7);
 				--_deco-dot-size: 0.5rem;
 				--_decorative-button-padding: 0.55rem;
 			}
@@ -124,43 +124,50 @@
 		.button {
 			/* See color-tokens.css to review/change these values */
 			&.base {
-				--button-bg-col: var(--button-bg-base);
-				--button-text-col: var(--button-text-base);
-				--deco-dot-col: var(--button-deco-dot-base);
-				--button-border-col: var(--button-border-base);
+				--_button-bg-col: var(--col-base-2);
+				--_button-text-col: var(--col-base-7);
+				--_deco-dot-col: var(--col-primary-4);
+				--_button-border-col: var(--col-base-3);
 			}
 
-			&.brand {
-				--button-bg-col: var(--button-bg-brand);
-				--button-text-col: var(--button-text-brand);
-				--deco-dot-col: var(--button-deco-dot-brand);
-				--button-border-col: var(--button-border-brand);
+			&.primary {
+				--_button-bg-col: var(--col-primary-6);
+				--_button-text-col: var(--col-primary-0);
+				--_deco-dot-col: var(--col-primary-2);
+				--_button-border-col: var(--col-primary-8);
 			}
 
-			&.secondary {
-				--button-bg-col: var(--button-bg-secondary);
-				--button-text-col: var(--button-text-secondary);
-				--deco-dot-col: var(--button-deco-dot-secondary);
-				--button-border-col: var(--button-border-secondary);
-			}
-
-			&:not(:is(.decorative)) {
-				&:hover {
+			&:hover {
+				&:not(:is(.decorative)) {
 					&.base {
-						--button-text-col-hover: var(--button-text-base-hover);
-						--button-bg-col-hover: var(--button-bg-base-hover);
-						--button-border-col-hover: var(--button-border-base-hover);
+						--_button-text-col-hover: var(--col-base-9);
+						--_button-bg-col-hover: var(--col-base-3);
+						--_button-border-col-hover: var(--col-base-4);
 					}
 
-					&.brand {
-						--button-text-col-hover: var(--button-text-brand-hover);
-						--button-bg-col-hover: var(--button-bg-brand-hover);
-						--button-border-col-hover: var(--button-border-brand-hover);
+					&.primary {
+						--_button-text-col-hover: var(--col-primary-1);
+						--_button-bg-col-hover: var(--col-primary-7);
+						--_button-border-col-hover: var(--col-primary-9);
+					}
+				}
+
+				&:is(.decorative) {
+					&.base {
+						--_button-text-col-hover: var(--col-base-9);
+						/* --_button-bg-col-hover: var(--button-bg-base-hover);
+					--_button-border-col-hover: var(--button-border-base-hover); */
+					}
+
+					&.primary {
+						--_button-text-col-hover: var(--col-primary-8);
+						--_button-bg-col-hover: var(--col-primary-8);
+						--_button-border-col-hover: var(--col-primary-9);
 					}
 					&.secondary {
-						--button-text-col-hover: var(--button-text-secondary-hover);
-						--button-bg-col-hover: var(--button-bg-secondary-hover);
-						--button-border-col-hover: var(--button-border-secondary-hover);
+						--_button-text-col-hover: var(--);
+						/* --_button-bg-col-hover: var(--button-bg-secondary-hover); */
+						/* --_button-border-col-hover: var(--button-border-secondary-hover); */
 					}
 				}
 			}
@@ -183,7 +190,7 @@
 					transform: translateY(-50%);
 					width: var(--_deco-dot-size);
 					height: var(--_deco-dot-size);
-					background-color: var(--deco-dot-col);
+					background-color: var(--_deco-dot-col);
 					border-radius: 999px;
 					transition: transform 300ms ease-in-out;
 					z-index: -1;
@@ -195,7 +202,7 @@
 					padding-right: 0;
 
 					&::before {
-						transform: scale(3000%);
+						transform: scale(4000%);
 					}
 				}
 			}

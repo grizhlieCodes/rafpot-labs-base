@@ -1,3 +1,7 @@
 {
-    "workbench.colorTheme": "Kanagawa"
+    "workbench.colorTheme": "Kanagawa Wave",
+    "workbench.preferredDarkColorTheme": "Kanagawa Wave",
+    "workbench.preferredLightColorTheme": "Kanagawa Lotus",
+    "workbench.preferredHighContrastColorTheme": "Kanagawa Wave",
+    "workbench.preferredHighContrastLightColorTheme": "Kanagawa Lotus"
 }

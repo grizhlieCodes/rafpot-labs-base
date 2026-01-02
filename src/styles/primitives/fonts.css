@@ -75,7 +75,7 @@
    <<<<< SET FONT VARIABLES & THEME HERE 👇 >>>>>
 */
 
-@layer base {
+@layer primitives {
   html {
     --font-sans:
       'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',

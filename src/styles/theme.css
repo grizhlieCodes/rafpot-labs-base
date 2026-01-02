@@ -1,12 +1,97 @@
-/*
-  To see available radius options go to ./base/fonts.css
-  To see available font family options go to ./base/fonts.css
-*/
+@layer alias {
+  /* Colors */
+  html {
+    --col-primary-0: var(--col-orange-0);
+    --col-primary-1: var(--col-orange-1);
+    --col-primary-2: var(--col-orange-2);
+    --col-primary-3: var(--col-orange-3);
+    --col-primary-4: var(--col-orange-4);
+    --col-primary-5: var(--col-orange-5);
+    --col-primary-6: var(--col-orange-6);
+    --col-primary-7: var(--col-orange-7);
+    --col-primary-8: var(--col-orange-8);
+    --col-primary-9: var(--col-orange-9);
+    --col-primary-10: var(--col-orange-10);
+
+    --col-base-0: var(--col-neutral-0);
+    --col-base-1: var(--col-neutral-1);
+    --col-base-2: var(--col-neutral-2);
+    --col-base-3: var(--col-neutral-3);
+    --col-base-4: var(--col-neutral-4);
+    --col-base-5: var(--col-neutral-5);
+    --col-base-6: var(--col-neutral-6);
+    --col-base-7: var(--col-neutral-7);
+    --col-base-8: var(--col-neutral-8);
+    --col-base-9: var(--col-neutral-9);
+    --col-base-10: var(--col-neutral-10);
+
+    --col-info-0: var(--col-sky-0);
+    --col-info-1: var(--col-sky-1);
+    --col-info-2: var(--col-sky-2);
+    --col-info-3: var(--col-sky-3);
+    --col-info-4: var(--col-sky-4);
+    --col-info-5: var(--col-sky-5);
+    --col-info-6: var(--col-sky-6);
+    --col-info-7: var(--col-sky-7);
+    --col-info-8: var(--col-sky-8);
+    --col-info-9: var(--col-sky-9);
+    --col-info-10: var(--col-sky-10);
+
+    --col-warning-0: var(--col-amber-0);
+    --col-warning-1: var(--col-amber-1);
+    --col-warning-2: var(--col-amber-2);
+    --col-warning-3: var(--col-amber-3);
+    --col-warning-4: var(--col-amber-4);
+    --col-warning-5: var(--col-amber-5);
+    --col-warning-6: var(--col-amber-6);
+    --col-warning-7: var(--col-amber-7);
+    --col-warning-8: var(--col-amber-8);
+    --col-warning-9: var(--col-amber-9);
+    --col-warning-10: var(--col-amber-10);
+
+  
+    --col-danger-0: var(--col-red-0);
+    --col-danger-1: var(--col-red-1);
+    --col-danger-2: var(--col-red-2);
+    --col-danger-3: var(--col-red-3);
+    --col-danger-4: var(--col-red-4);
+    --col-danger-5: var(--col-red-5);
+    --col-danger-6: var(--col-red-6);
+    --col-danger-7: var(--col-red-7);
+    --col-danger-8: var(--col-red-8);
+    --col-danger-9: var(--col-red-9);
+    --col-danger-10: var(--col-red-10);
+
+    --col-success-0: var(--col-green-0);
+    --col-success-1: var(--col-green-1);
+    --col-success-2: var(--col-green-2);
+    --col-success-3: var(--col-green-3);
+    --col-success-4: var(--col-green-4);
+    --col-success-5: var(--col-green-5);
+    --col-success-6: var(--col-green-6);
+    --col-success-7: var(--col-green-7);
+    --col-success-8: var(--col-green-8);
+    --col-success-9: var(--col-green-9);
+    --col-success-10: var(--col-green-10);
+
+  
+  }
+
+  /*  */
+  html[data-dark-mode] {
+    --test: red;
+  }
+}
+
 
 @layer theme {
   html {
     --theme-radius: var(--radius-3);
     --heading-font: var(--font-sans);
     --body-font: var(--font-sans);
+  }
+
+  body {
+    background-color: var(--surface-page-default);
   }
 }

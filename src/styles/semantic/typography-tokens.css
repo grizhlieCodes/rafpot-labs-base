@@ -1,17 +1,14 @@
-@layer semantic {
+/* @layer semantic {
   html {
-    /* ========== BUTTON ========== */
 
-    /* ========== General ========== */
     --button-font-family: var(--font-body);
     --button-font-weight: var(--weight-medium);
     --button-border-size: var(--border-size-1);
     
-    /* ========== General ========== */
     --button-font-size-small: var(--size-body-3);
     --button-font-size-medium: var(--size-body-4);
     --button-font-size-default: var(--size-body-5);
     --button-font-size-large: var(--size-body-6);
     --button-font-size-extra-large: var(--size-body-7);
   }
-}
+} */

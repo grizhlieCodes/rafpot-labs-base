@@ -7,31 +7,161 @@
   Edit the below variables to adapt it for the current project.
 */
 
-@layer semantic {
-  html {
-    /* Button.svelte */
-    --button-bg-base: var(--col-base-2);
-    --button-bg-base-hover: var(--col-base-7);
-    --button-text-base: var(--col-base-8);
-    --button-text-base-hover: var(--col-base-2);
-    --button-deco-dot-base: var(--col-primary-5);
-    --button-border-base: var(--col-base-3);
-    --button-border-base-hover: var(--col-base-5);
+/* @layer semantic {
+	html {
+		--surface-base-0: var(--col-base-0);
+		--surface-base-1: var(--col-base-1);
+		--surface-base-2: var(--col-base-2);
+		--surface-base-3: var(--col-base-3);
+		--surface-base-4: var(--col-base-4);
+		--surface-base-5: var(--col-base-5);
 
-    --button-bg-brand: var(--col-primary-3);
-    --button-bg-brand-hover: var(--col-primary-5);
-    --button-text-brand: var(--col-primary-10);
-    --button-text-brand-hover: var(--col-primary-1);
-    --button-deco-dot-brand: var(--col-primary-5);
-    --button-border-brand: var(--col-primary-4);
-    --button-border-brand-hover: var(--col-primary-4);
+		--text-base-0: var(--col-base-5);
+		--text-base-1: var(--col-base-6);
+		--text-base-2: var(--col-base-7);
+		--text-base-3: var(--col-base-8);
+		--text-base-4: var(--col-base-9);
+		--text-base-5: var(--col-base-10);
 
-    --button-bg-secondary: var(--col-secondary-3);
-    --button-bg-secondary-hover: var(--col-secondary-4);
-    --button-text-secondary: var(--col-secondary-10);
-    --button-text-secondary-hover: var(--col-secondary-10);
-    --button-deco-dot-secondary: var(--col-secondary-5);
-    --button-border-secondary: var(--col-secondary-4);
-    --button-border-secondary-hover: var(--col-secondary-5);
-  }
-}
+		--border-base-0: var(--col-base-1);
+		--border-base-1: var(--col-base-2);
+		--border-base-2: var(--col-base-3);
+		--border-base-3: var(--col-base-4);
+		--border-base-4: var(--col-base-5);
+		--border-base-5: var(--col-base-6);
+
+		--surface-primary-0: var(--col-primary-0);
+		--surface-primary-1: var(--col-primary-1);
+		--surface-primary-2: var(--col-primary-2);
+		--surface-primary-3: var(--col-primary-3);
+		--surface-primary-4: var(--col-primary-4);
+		--surface-primary-5: var(--col-primary-5);
+
+		--text-primary-0: var(--col-primary-5);
+		--text-primary-1: var(--col-primary-6);
+		--text-primary-2: var(--col-primary-7);
+		--text-primary-3: var(--col-primary-8);
+		--text-primary-4: var(--col-primary-9);
+		--text-primary-5: var(--col-primary-10);
+
+		--border-primary-0: var(--col-primary-1);
+		--border-primary-1: var(--col-primary-2);
+		--border-primary-2: var(--col-primary-3);
+		--border-primary-3: var(--col-primary-4);
+		--border-primary-4: var(--col-primary-5);
+		--border-primary-5: var(--col-primary-6);
+
+		--surface-secondary-0: var(--col-secondary-0);
+		--surface-secondary-1: var(--col-secondary-1);
+		--surface-secondary-2: var(--col-secondary-2);
+		--surface-secondary-3: var(--col-secondary-3);
+		--surface-secondary-4: var(--col-secondary-4);
+		--surface-secondary-5: var(--col-secondary-5);
+
+		--text-secondary-0: var(--col-secondary-5);
+		--text-secondary-1: var(--col-secondary-6);
+		--text-secondary-2: var(--col-secondary-7);
+		--text-secondary-3: var(--col-secondary-8);
+		--text-secondary-4: var(--col-secondary-9);
+		--text-secondary-5: var(--col-secondary-10);
+
+		--border-secondary-0: var(--col-secondary-1);
+		--border-secondary-1: var(--col-secondary-2);
+		--border-secondary-2: var(--col-secondary-3);
+		--border-secondary-3: var(--col-secondary-4);
+		--border-secondary-4: var(--col-secondary-5);
+		--border-secondary-5: var(--col-secondary-6);
+
+		--surface-danger-0: var(--col-red-0);
+		--surface-danger-1: var(--col-red-1);
+		--surface-danger-2: var(--col-red-2);
+		--surface-danger-3: var(--col-red-3);
+		--surface-danger-4: var(--col-red-4);
+		--surface-danger-5: var(--col-red-5);
+
+		--text-danger-0: var(--col-red-5);
+		--text-danger-1: var(--col-red-6);
+		--text-danger-2: var(--col-red-7);
+		--text-danger-3: var(--col-red-8);
+		--text-danger-4: var(--col-red-9);
+		--text-danger-5: var(--col-red-10);
+
+		--border-danger-0: var(--col-red-1);
+		--border-danger-1: var(--col-red-2);
+		--border-danger-2: var(--col-red-3);
+		--border-danger-3: var(--col-red-4);
+		--border-danger-4: var(--col-red-5);
+		--border-danger-5: var(--col-red-6);
+
+		--surface-info-0: var(--col-sky-0);
+		--surface-info-1: var(--col-sky-1);
+		--surface-info-2: var(--col-sky-2);
+		--surface-info-3: var(--col-sky-3);
+		--surface-info-4: var(--col-sky-4);
+		--surface-info-5: var(--col-sky-5);
+
+		--text-info-0: var(--col-sky-5);
+		--text-info-1: var(--col-sky-6);
+		--text-info-2: var(--col-sky-7);
+		--text-info-3: var(--col-sky-8);
+		--text-info-4: var(--col-sky-9);
+		--text-info-5: var(--col-sky-10);
+
+		--border-info-0: var(--col-sky-1);
+		--border-info-1: var(--col-sky-2);
+		--border-info-2: var(--col-sky-3);
+		--border-info-3: var(--col-sky-4);
+		--border-info-4: var(--col-sky-5);
+		--border-info-5: var(--col-sky-6);
+
+		--surface-warning-0: var(--col-amber-0);
+		--surface-warning-1: var(--col-amber-1);
+		--surface-warning-2: var(--col-amber-2);
+		--surface-warning-3: var(--col-amber-3);
+		--surface-warning-4: var(--col-amber-4);
+		--surface-warning-5: var(--col-amber-5);
+
+		--text-warning-0: var(--col-amber-5);
+		--text-warning-1: var(--col-amber-6);
+		--text-warning-2: var(--col-amber-7);
+		--text-warning-3: var(--col-amber-8);
+		--text-warning-4: var(--col-amber-9);
+		--text-warning-5: var(--col-amber-10);
+
+		--border-warning-0: var(--col-amber-1);
+		--border-warning-1: var(--col-amber-2);
+		--border-warning-2: var(--col-amber-3);
+		--border-warning-3: var(--col-amber-4);
+		--border-warning-4: var(--col-amber-5);
+		--border-warning-5: var(--col-amber-6);
+	}
+} */
+
+/* Button.svelte */
+/* @layer semantic {
+	html {
+		--button-bg-base: var(--surface-base-2);
+		--button-bg-base-hover: var(--surface-base-4);
+		--button-text-base: var(--text-base-2);
+		--button-text-base-hover: var(--text-base-4);
+		--button-deco-dot-base: var(--surface-primary-4);
+		--button-border-base: var(--border-base-2);
+		--button-border-base-hover: var(--border-base-3);
+
+		--button-bg-brand: var(--surface-primary-3);
+		--button-bg-brand-hover: var(--surface-primary-5);
+		--button-text-brand: var(--text-primary-5);
+		--button-text-brand-hover: var(--text-primary-0);
+		--button-deco-dot-brand: var(--col-primary-5);
+		--button-border-brand: var(--col-primary-4);
+		--button-border-brand-hover: var(--col-primary-4);
+
+		--button-bg-secondary: var(--col-secondary-3);
+		--button-bg-secondary-hover: var(--col-secondary-4);
+		--button-text-secondary: var(--col-secondary-10);
+		--button-text-secondary-hover: var(--col-secondary-10);
+		--button-deco-dot-secondary: var(--col-secondary-5);
+		--button-border-secondary: var(--col-secondary-4);
+		--button-border-secondary-hover: var(--col-secondary-5);
+	}
+} */

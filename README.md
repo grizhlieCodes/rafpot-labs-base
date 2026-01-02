@@ -10,10 +10,9 @@ Since SvelteKit scopes styling, it won't really be difficult.
 
 I also want to create a color system that I can use across all of my projects (of which there will be many).
 
-
 ## Stack
 - *[SvelteKit](https://svelte.dev/)*: Metaframework of choice
-- *[Bits UI](https://www.bits-ui.com/)* or *[Melt UI](https://next.melt-ui.com/)* for accessible primitives
+- *[Bits UI](https://www.bits-ui.com/)* for accessible headless components
 - *[Runed](https://runed.dev/docs)*: Helper library for all things Svelte
 - *[PocketBase](https://pocketbase.io/)*: for most database needs
 - *[Convex](https://www.convex.dev/)*: for heavy database needs
@@ -64,7 +63,7 @@ I also want to create a color system that I can use across all of my projects (o
 
 
 ## CSS Things to look into
-- [ ] Cascade Layers (`@layer`)
+- [X] Cascade Layers (`@layer`)
    - Create layers of CSS.
    - You can import and SET the imported file into a layer
       - `@import "./reset"  layer(reset);` 
@@ -97,5 +96,5 @@ I also want to create a color system that I can use across all of my projects (o
       - `text-wrap: balance;`
       - `text-wrap: pretty;`
    - [ ] Scrollbar styling (simple)
-   - [ ] Starting Style
+   - [X] Starting Style
    - [ ] `:has`, `:is`, `:where` etc.

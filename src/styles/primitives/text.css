@@ -3,7 +3,7 @@
    @todo: Check if the line heights are correct by eye.
 */
 
-@layer base {
+@layer primitives {
   html {
     /* 8px */
     --text-1: 0.5rem;

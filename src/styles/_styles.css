@@ -1,12 +1,11 @@
-@layer reset, base, alias, semantic, components, utilities, theme;
+@layer reset, primitives, alias, semantic, components, utilities, theme;
 
-@import './base/reset.css';
-@import './base/breakpoints.css';
-@import './base/fonts.css';
-@import './base/text.css';
-@import './base/colors.css';
-@import './base/misc.css';
-@import './alias/color-alias.css';
+@import './reset.css';
+@import './primitives/breakpoints.css';
+@import './primitives/fonts.css';
+@import './primitives/text.css';
+@import './primitives/colors.css';
+@import './primitives/misc.css';
 @import './alias/typography-alias.css';
 @import './semantic/color-tokens.css';
 @import './semantic/typography-tokens.css';
