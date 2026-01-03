@@ -7,7 +7,7 @@
 	type ButtonPropsWithContent = ButtonProps & { content: string };
 
 	const buttonVariant = 'base'
-	const decorative = false
+	const decorative = true
 	
 	const buttons: ButtonPropsWithContent[] = [
 		{ content: 'Sign up', variant: buttonVariant, size: 'small', href: null, decorative },

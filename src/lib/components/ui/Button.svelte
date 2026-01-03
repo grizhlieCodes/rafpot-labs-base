@@ -57,10 +57,10 @@
 
 			background-color: var(--_button-bg-col-hover, var(--_button-bg-col));
 			color: var(--_button-text-col-hover, var(--_button-text-col));
-			border-radius: var(--theme-radius);
-			font-weight: var(--button-font-weight);
-			font-family: var(--button-font-family);
-			box-shadow: 1px 3px 10px color-mix(in oklch, var(--col-base-5) 60%, var(--col-base-0));
+			border-radius: var(--radius-base);
+			font-weight: var(--_button-font-weight, var(--font-weight-5));
+			font-family: var(--base-font-family);
+			box-shadow: 1px 3px 10px color-mix(in oklch, var(--color-surface-500) 60%, var(--color-surface-50));
 			border: var(--button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
 			padding: var(--_button-padding);
 			font-size: var(--_button-font-size);
@@ -81,7 +81,7 @@
 		*/
 		.button {
 			&.small {
-				--_button-padding: 0.25rem 0.2rem;
+				--_button-padding: 0.35rem 0.2rem;
 				--_button-font-size: var(--size-body-3);
 				--_deco-dot-size: 0.35rem;
 				--_decorative-button-padding: 0.25rem;
@@ -95,7 +95,7 @@
 			}
 
 			&.default {
-				--_button-padding: 0.5rem 0.75rem;
+				--_button-padding: 0.5rem 0.65rem;
 				--_button-font-size: var(--size-body-5);
 				--_deco-dot-size: 0.425rem;
 				--_decorative-button-padding: 0.4rem;
@@ -109,10 +109,11 @@
 			}
 
 			&.extra-large {
-				--_button-padding: 0.55rem 1rem;
+				--_button-padding: 0.55rem 1.25rem;
 				--_button-font-size: var(--size-body-7);
 				--_deco-dot-size: 0.5rem;
 				--_decorative-button-padding: 0.55rem;
+				--_button-font-weight: var(--font-weight-4);
 			}
 		}
 
@@ -124,45 +125,44 @@
 		.button {
 			/* See color-tokens.css to review/change these values */
 			&.base {
-				--_button-bg-col: var(--col-base-2);
-				--_button-text-col: var(--col-base-7);
-				--_deco-dot-col: var(--col-primary-4);
-				--_button-border-col: var(--col-base-3);
+				--_button-bg-col: var(--color-surface-2);
+				--_button-text-col: var(--color-surface-7);
+				--_deco-dot-col: var(--color-primary-4);
+				--_button-border-col: var(--color-surface-3);
 			}
 
 			&.primary {
-				--_button-bg-col: var(--col-primary-6);
-				--_button-text-col: var(--col-primary-0);
-				--_deco-dot-col: var(--col-primary-2);
-				--_button-border-col: var(--col-primary-8);
+				--_button-bg-col: var(--color-primary-6);
+				--_button-text-col: var(--color-primary-0);
+				--_deco-dot-col: var(--color-primary-2);
+				--_button-border-col: var(--color-primary-8);
 			}
 
 			&:hover {
 				&:not(:is(.decorative)) {
 					&.base {
-						--_button-text-col-hover: var(--col-base-9);
-						--_button-bg-col-hover: var(--col-base-3);
-						--_button-border-col-hover: var(--col-base-4);
+						--_button-text-col-hover: var(--color-surface-9);
+						--_button-bg-col-hover: var(--color-surface-3);
+						--_button-border-col-hover: var(--color-surface-4);
 					}
 
 					&.primary {
-						--_button-text-col-hover: var(--col-primary-1);
-						--_button-bg-col-hover: var(--col-primary-7);
-						--_button-border-col-hover: var(--col-primary-9);
+						--_button-text-col-hover: var(--color-primary-1);
+						--_button-bg-col-hover: var(--color-primary-7);
+						--_button-border-col-hover: var(--color-primary-9);
 					}
 				}
 
 				&:is(.decorative) {
 					&.base {
-						--_button-text-col-hover: var(--col-base-9);
-						/* --_button-bg-col-hover: var(--button-bg-base-hover);
-					--_button-border-col-hover: var(--button-border-base-hover); */
+						--_button-text-col-hover: var(--color-surface-9);
+						--_button-border-col-hover: var(--color-surface-5);
 					}
 
 					&.primary {
-						--_button-text-col-hover: var(--col-primary-8);
-						--_button-bg-col-hover: var(--col-primary-8);
-						--_button-border-col-hover: var(--col-primary-9);
+						--_button-text-col-hover: var(--color-primary-8);
+						--_button-bg-col-hover: var(--color-primary-8);
+						--_button-border-col-hover: var(--color-primary-9);
 					}
 					&.secondary {
 						--_button-text-col-hover: var(--);
