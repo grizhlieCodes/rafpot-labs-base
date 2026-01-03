@@ -9,7 +9,13 @@
 			"files": "*.svelte",
 			"options": {
 				"parser": "svelte",
-				"printWidth": 120
+				"printWidth": 200
+			}
+		},
+		{
+			"files": ["*.ts", "*.css"],
+			"options": {
+				"printWidth": 160
 			}
 		}
 	]
