@@ -15,16 +15,14 @@
 		...restProps
 	}: ButtonProps = $props();
 
-	let buttonElement: HTMLElement | undefined = $state();
-	let calculated = $state(false);
+	let buttonRef: HTMLElement | undefined = $state();
 
 	$effect(() => {
-		if (!buttonElement || calculated || !decorative) return;
+		if (!buttonRef || !decorative) return;
 		// Set a minWidth of element width + decorative sizing
-		calculated = true;
-		let { width } = buttonElement.getBoundingClientRect();
+		let { width } = buttonRef.getBoundingClientRect();
 		let remWidth = width / 16 + 1;
-		buttonElement.style.minWidth = `calc(${remWidth}rem + var(--_deco-dot-size) + var(--_decorative-button-padding))`;
+		buttonRef.style.minWidth = `calc(${remWidth}rem + var(--_deco-dot-size) + var(--_decorative-button-padding-right))`;
 	});
 </script>
 
@@ -32,7 +30,7 @@
 	this={href ? 'a' : 'button'}
 	{href}
 	{onclick}
-	bind:this={buttonElement}
+	bind:this={buttonRef}
 	disabled={href ? undefined : disabled}
 	aria-disabled={href ? disabled : undefined}
 	class="button {variant} {size} {className}"
@@ -57,26 +55,29 @@
 
 			background-color: var(--_button-bg-col-hover, var(--_button-bg-col));
 			color: var(--_button-text-col-hover, var(--_button-text-col));
-			border-radius: var(--radius-base);
+
 			font-weight: var(--_button-font-weight, var(--font-weight-5));
 			font-family: var(--base-font-family);
+
+			font-size: var(--_button-font-size);
 			box-shadow: 1px 3px 10px color-mix(in oklch, var(--color-surface-500) 60%, var(--color-surface-50));
 			border: var(--button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
 			padding: var(--_button-padding);
-			font-size: var(--_button-font-size);
-
+			border-radius: var(--radius-base);
+			
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
 			align-items: center;
 			justify-content: center;
+
 			transition: all 250ms ease-in-out;
 			overflow: hidden;
 		}
 
 		/*
 			>>> SIZE SYSTEM <<<
-			"small" | "medium" | "default" | "large" | "extra_large"
+			"small" | "medium" | "default" | "large" | "extra-large"
 			This controls things like font size, padding, decorative dot size
 		*/
 		.button {
@@ -84,35 +85,35 @@
 				--_button-padding: 0.35rem 0.2rem;
 				--_button-font-size: var(--size-body-3);
 				--_deco-dot-size: 0.35rem;
-				--_decorative-button-padding: 0.25rem;
+				--_decorative-button-padding-right: 0.25rem;
 			}
 
 			&.medium {
 				--_button-padding: 0.35rem 0.5rem;
 				--_button-font-size: var(--size-body-4);
 				--_deco-dot-size: 0.4rem;
-				--_decorative-button-padding: 0.3rem;
+				--_decorative-button-padding-right: 0.3rem;
 			}
 
 			&.default {
 				--_button-padding: 0.5rem 0.65rem;
 				--_button-font-size: var(--size-body-5);
 				--_deco-dot-size: 0.425rem;
-				--_decorative-button-padding: 0.4rem;
+				--_decorative-button-padding-right: 0.4rem;
 			}
 
 			&.large {
 				--_button-padding: 0.5rem 0.75rem;
 				--_button-font-size: var(--size-body-6);
 				--_deco-dot-size: 0.45rem;
-				--_decorative-button-padding: 0.5rem;
+				--_decorative-button-padding-right: 0.5rem;
 			}
 
 			&.extra-large {
 				--_button-padding: 0.55rem 1.25rem;
 				--_button-font-size: var(--size-body-7);
 				--_deco-dot-size: 0.5rem;
-				--_decorative-button-padding: 0.55rem;
+				--_decorative-button-padding-right: 0.55rem;
 				--_button-font-weight: var(--font-weight-4);
 			}
 		}
@@ -165,7 +166,7 @@
 						--_button-border-col-hover: var(--color-primary-9);
 					}
 					&.secondary {
-						--_button-text-col-hover: var(--);
+						--_button-text-col-hover: var(--color-secondary-8);
 						/* --_button-bg-col-hover: var(--button-bg-secondary-hover); */
 						/* --_button-border-col-hover: var(--button-border-secondary-hover); */
 					}
@@ -179,7 +180,7 @@
 			> .text-content {
 				z-index: 10;
 				position: relative;
-				padding-right: calc(var(--_decorative-button-padding) + var(--_deco-dot-size));
+				padding-right: calc(var(--_decorative-button-padding-right) + var(--_deco-dot-size));
 				transition: all 300ms ease-in-out;
 
 				&::before {
