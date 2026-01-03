@@ -1,0 +1,104 @@
+/* Font sizes */
+@layer alias {
+	html {
+		/* ======= FONT FAMILIES ======= */
+		--font-heading: var(--font-sans);
+		--font-body: var(--font-sans);
+		--font-code: var(--font-mono);
+
+		/* ======= FONT WEIGHTS ======= */
+		--weight-normal: var(--font-weight-4);
+		--weight-medium: var(--font-weight-5);
+		--weight-semibold: var(--font-weight-6);
+		--weight-bold: var(--font-weight-7);
+
+		/* ======= FONT SIZES ======= */
+		/* ======= FONT SIZES: HEADINGS ======= */
+		--size-heading-1: var(--_size-heading-1, var(--font-size-6));
+		--size-heading-2: var(--_size-heading-2, var(--font-size-7));
+		--size-heading-3: var(--_size-heading-3, var(--font-size-8));
+		--size-heading-4: var(--_size-heading-4, var(--font-size-9));
+		--size-heading-5: var(--_size-heading-5, var(--font-size-10));
+		--size-heading-6: var(--_size-heading-6, var(--font-size-11));
+
+		@media screen and (min-width: 768px) {
+			--_size-heading-3: var(--font-size-9);
+			--_size-heading-4: var(--font-size-10);
+			--_size-heading-5: var(--font-size-11);
+			--_size-heading-6: var(--font-size-12);
+		}
+
+		@media screen and (min-width: 1020px) {
+			--_size-heading-1: var(--font-size-7);
+			--_size-heading-2: var(--font-size-8);
+			--_size-heading-3: var(--font-size-9);
+			--_size-heading-4: var(--font-size-10);
+			--_size-heading-5: var(--font-size-12);
+			--_size-heading-6: var(--font-size-14);
+		}
+
+		/* ======= FONT SIZES: BODY ======= */
+		--size-body-1: var(--_size-body-1, var(--font-size-2));
+		--size-body-2: var(--_size-body-2, var(--font-size-3));
+		--size-body-3: var(--_size-body-3, var(--font-size-4));
+		--size-body-4: var(--_size-body-4, var(--font-size-5));
+		--size-body-5: var(--_size-body-5, var(--font-size-6));
+		--size-body-6: var(--_size-body-6, var(--font-size-7));
+		--size-body-7: var(--_size-body-7, var(--font-size-8));
+		--size-body-8: var(--_size-body-8, var(--font-size-9));
+
+		@media screen and (min-width: 768px) {
+			--_size-body-5: var(--font-size-7);
+			--_size-body-6: var(--font-size-8);
+			--_size-body-7: var(--font-size-9);
+			--_size-body-8: var(--font-size-10);
+		}
+
+		@media screen and (min-width: 1020px) {
+			--_size-body-4: var(--font-size-6);
+			--_size-body-5: var(--font-size-7);
+			--_size-body-6: var(--font-size-8);
+			--_size-body-7: var(--font-size-9);
+			--_size-body-8: var(--font-size-10);
+		}
+
+		/* ======= FONT SIZES: DISPLAY ======= */
+		--size-display-1: var(--_size-display-1, var(--font-size-8));
+		--size-display-2: var(--_size-display-2, var(--font-size-9));
+		--size-display-3: var(--_size-display-3, var(--font-size-10));
+
+		/* Heading Media Queries */
+		@media screen and (min-width: 768px) {
+			--_size-display-1: var(--font-size-10);
+			--_size-display-2: var(--font-size-11);
+			--_size-display-3: var(--font-size-12);
+		}
+
+		@media screen and (min-width: 1020px) {
+			--_size-display-1: var(--font-size-12);
+			--_size-display-2: var(--font-size-14);
+			--_size-display-3: var(--font-size-16);
+		}
+
+		/* ======= FONT SIZES: UTILITY ======= */
+		--size-caption: var(--_size-caption, var(--font-size-3));
+		--size-label: var(--_size-label, var(--font-size-4));
+		--size-overline: var(--_size-display, var(--font-size-3));
+
+		@media screen and (min-width: 768px) {
+			--_size-label: var(--font-size-5);
+		}
+
+		/* ======= MISC ======= */
+        /* ======= MISC: LINE HEIGHT MAPPINGS ======= */
+		--leading-tight: var(--leading-1);
+		--leading-normal: var(--leading-3);
+		--leading-relaxed: var(--leading-4);
+		--leading-loose: var(--leading-5);
+
+        /* ======= MISC: LETTER SPACING MAPPINGS ======= */
+		--tracking-tight: var(--tracking-1);
+		--tracking-normal: var(--tracking-3);
+		--tracking-wide: var(--tracking-5);
+	}
+}
