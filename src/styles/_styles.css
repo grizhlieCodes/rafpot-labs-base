@@ -1,14 +1,9 @@
 @layer reset, primitives, alias, semantic, components, utilities, theme;
 
 @import './reset.css';
-@import './primitives/breakpoints.css';
-@import './primitives/fonts.css';
-@import './primitives/text.css';
-@import './primitives/colors.css';
-@import './primitives/misc.css';
-@import './alias/typography-alias.css';
-@import './semantic/color-tokens.css';
-@import './semantic/typography-tokens.css';
+@import './fonts.css';
+@import './primitives.css';
+@import './typography-alias.css';
 @import './utilities/general-utilities.css';
 @import './utilities/typography-utilities.css';
 @import './utilities/layout-utilities.css';
