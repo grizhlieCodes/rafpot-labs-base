@@ -13,8 +13,6 @@ I find it harder to read Tailwind when i go back into a project. Something about
 A lot of the time I will have to inject tailwind into Javascript. You might have seen variables like
 `const baseStyles = "tailwind-classes-go-here"`. There's a good reason for this, it's hard to apply the correct tailwind classes without using some javascript when having any component with variants. You either need to add some classes based on a variant, or ignore them. The following is from the button component from [shadcn-svelte](https://www.shadcn-svelte.com/):
 
-<details>
-  <summary>View Code</summary>
 ```typescript
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
@@ -57,4 +55,3 @@ A lot of the time I will have to inject tailwind into Javascript. You might have
 			size?: ButtonSize;
 		};
 ```
-</details>
