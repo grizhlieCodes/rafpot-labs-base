@@ -15,8 +15,7 @@ A lot of the time I will have to inject tailwind into Javascript. You might have
 
 <details>
   <summary>View Code</summary>
-```svelte
-<script lang="ts" module>
+```typescript
 	import { cn, type WithElementRef } from "$lib/utils.js";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 	import { type VariantProps, tv } from "tailwind-variants";
@@ -57,6 +56,5 @@ A lot of the time I will have to inject tailwind into Javascript. You might have
 			variant?: ButtonVariant;
 			size?: ButtonSize;
 		};
-</script>
 ```
 </details>
