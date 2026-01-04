@@ -54,6 +54,7 @@
 			height: auto;
 
 			background-color: var(--_button-bg-col-hover, var(--_button-bg-col));
+
 			color: var(--_button-text-col-hover, var(--_button-text-col));
 
 			font-weight: var(--_button-font-weight, var(--font-weight-5));
@@ -64,7 +65,7 @@
 			border: var(--button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
 			padding: var(--_button-padding);
 			border-radius: var(--radius-base);
-			
+
 			display: flex;
 			flex-direction: row;
 			flex-wrap: nowrap;
@@ -120,7 +121,7 @@
 
 		/*
 			>>> VARIANT SYSTEM <<<
-			>> "base" | "brand" | "secondary" | "tertiary" | "outline" | "ghost" <<
+			>> "base" | "primary" | "secondary" | "tertiary" | "outline" | "ghost" <<
 			>> This predominantly controls the colors. <<
 		*/
 		.button {
@@ -167,8 +168,6 @@
 					}
 					&.secondary {
 						--_button-text-col-hover: var(--color-secondary-8);
-						/* --_button-bg-col-hover: var(--button-bg-secondary-hover); */
-						/* --_button-border-col-hover: var(--button-border-secondary-hover); */
 					}
 				}
 			}
