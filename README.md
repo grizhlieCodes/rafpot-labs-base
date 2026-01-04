@@ -19,18 +19,18 @@ I also want to create a color system that I can use across all of my projects (o
 - *[Zod](https://zod.dev/)*: Schema validation
 
 ## Tasks
-- [ ] Build a good CSS base
+- [X] Build a good CSS base
 - [ ] Build a good base of UI Components that will feed all of my projects
    - ** Key Lessons To Learn**
       - Learn some modern css like `@container`, `:has`, `:is` and so on.
-      - Implement `oklch` system slowly and build an intuition towards it.
+      - [X] Implement `oklch` system slowly and build an intuition towards it.
    - **Core Components**
       - [ ] Input(s)
       - [ ] Select
       - [ ] Checkbox
       - [ ] Form -> tricky component overall, build my own pattern for it
          - Will initially be worse than prebuilts, but eh. More learning.
-      - [ ] Button
+      - [X] Button
       - [ ] Accordion
       - [ ] Alert Dialog
       - [ ] Calendar
@@ -72,20 +72,19 @@ I also want to create a color system that I can use across all of my projects (o
 - [ ] Container Queries
    - The element knows how much space they have and know what they are inside of
    - There is a quantity-query??
-   - 
-- [ ] oklch color system
+- [X] oklch color system
    - An interesigly simple way to describe a color.
    - Lightness, 0-100%. Chroma (saturation sort of), 0-0.5. Hue: 0-360. Alpha, 0-100%.
 - [ ] Field Sizing
    - `field-sizing: content;` -> Grow automatically as you type into an input/textarea/select
    - Add defensive styles:
    ```CSS
-   textarea {
-      min-block-size: 31h;
-      max-block-size: 80svh;
-      min-inline-size: var(--size-content-1);
-      max-inline-size: var(--size-content-1);
-   }
+      textarea {
+         min-block-size: 31h;
+         max-block-size: 80svh;
+         min-inline-size: var(--size-content-1);
+         max-inline-size: var(--size-content-1);
+      }
    ```
    - [ ] Color Scheme
       - Enables light and dark modes easily.
