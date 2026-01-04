@@ -1,12 +1,12 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/Button.svelte';
+	import Button from '$lib/components/ui/button/Button.svelte';
 
 	import type { ButtonProps } from '$lib/components/ui/types';
 	import { arrayFromNumber } from '$lib/scripts/utils';
 
 	type ButtonPropsWithContent = ButtonProps & { content: string };
 
-	const buttonVariant = 'base'
+	const buttonVariant = 'base '
 	const decorative = true
 	
 	const buttons: ButtonPropsWithContent[] = [
@@ -27,7 +27,7 @@
 	</div>
 	<div class="p-container">
 		{#each arrayFromNumber(8) as p}
-		  <p class="p{p}">Paragraph {p}</p>
+		  <p style="font-size: var(--size-body-{p});">Paragraph {p}</p>
 		{/each}
 	</div>
 	<div class="buttons-container fluid-row">
