@@ -18,6 +18,17 @@
 }
 
 @layer theme {
+	:root {
+		color-scheme: light dark;
+
+		body {
+			color-scheme: light;
+		}
+
+		body:is([data-dark="true"]){
+			color-scheme: dark;
+		}
+	}
 	html {
 		/* Extending border width to include 0.5px -> predominantly the most used	border width in our projects */
 
@@ -54,8 +65,8 @@
 		--anchor-text-decoration-focus: inherit;
 
 		/* Radius */
-		--radius-base: var(--radius-3 ,0.25rem);
-		--radius-container: var(--radius-3 ,0.25rem);
+		--radius-base: var(--radius-3, 0.25rem);
+		--radius-container: var(--radius-3, 0.25rem);
 
 		/* Edges */
 		--default-border-width: 1px;
@@ -68,6 +79,8 @@
 		--animate-progress-circular-indeterminate: progress-circular-indeterminate 1.5s linear infinite;
 
 		/* Primary */
+		/* --color-tranch-purple-50:  */
+
 		--color-primary-0: var(--color-orange-0);
 		--color-primary-1: var(--color-orange-1);
 		--color-primary-2: var(--color-orange-2);
@@ -248,6 +261,7 @@
 		--color-surface-contrast-8: var(--color-surface-contrast-light);
 		--color-surface-contrast-9: var(--color-surface-contrast-light);
 		--color-surface-contrast-10: var(--color-surface-contrast-light);
+
 		/* Backgrounds */
 		--body-background-color: var(--color-surface-0);
 		--body-background-color-dark: var(--color-surface-10);
