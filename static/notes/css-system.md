@@ -1,8 +1,7 @@
 # CSS System
 
 ## Original Goal
-Initially I read [vanilla css
-article](https://www.zolkos.com/2025/12/03/vanilla-css-is-all-you-need) and I
+Initially I read this article titled ["vanilla css is all you need"](https://www.zolkos.com/2025/12/03/vanilla-css-is-all-you-need) and I
 was intrigued. I haven't really used anything but Tailwind since early 2022 so i sort of missed a wave of new features. I wanted to see if a system could be vanilla only and if it wouldn't slow me down too much. This is based on:
 1. Adding new CSS features into my codebase
 2. Writing the CSS and relying heavily on a simple design-token system powered by CSS variables
@@ -10,6 +9,8 @@ was intrigued. I haven't really used anything but Tailwind since early 2022 so i
 
 I also have a few issues with Tailwind, which is a shame as it's so damn good to write with.
 
+> [!NOTE]
+> Most issues I have with tailwind are mostly due to how my brain works. Worth pointing out I love working with it, I love writing it, but I do not enjoy reading it. Perhaps LLMs will remove this obstacle soon.
 
 ## Tailwind issue 1: Readability
 I find it harder to read Tailwind when i go back into a project. Something about css classes being scattered horizontally throws my brain off. 
@@ -77,4 +78,11 @@ The ability to just add a custom value was pretty damn useful in some situations
 Then we got [Arbitrary Properties](https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties) and I was pretty happy with this. We could now just write css with tailwind `[padding:1rem_2rem]`. 
 Of course this is only useful when Tailwind doesn't have a utility for something or when you want to set a css variable `[--widget-padding:2rem]`. And this is great in a way, you still get all the benefits of Tailwind with this. The class is only built once into your CSS, it doesn't increase the size of the total css at all and everybody's happy. 
 
-Except... it looks crap. It's like going a full circle in terms of writing css (I'm excluding things like bundle sizes as it doesn't concern me massively).
+Except... it looks crap. It's like going a full circle in terms of writing css (I'm excluding things like bundle sizes as it doesn't concern me massively at this point in time).
+
+I just don't see a big gain by doing this. Why am i writing literal css as a class? Just how unreadable is my component supposed to be? And don't even get me started on how some classes can look like by the time you're inspecting them in the browser...
+
+```css
+.\[\&\>\*\]\:col-start-2>* {
+  grid-column-start: 2;
+}```

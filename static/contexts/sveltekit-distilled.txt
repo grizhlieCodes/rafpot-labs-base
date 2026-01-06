@@ -1,0 +1,2476 @@
+## docs/kit/10-getting-started/10-introduction.md
+
+# SvelteKit Introduction
+
+## What is SvelteKit?
+
+SvelteKit is a framework for building web applications using Svelte. Similar to Next.js (React) or Nuxt (Vue).
+
+## What is Svelte?
+
+Svelte is a UI component compiler that converts components into optimized JavaScript and CSS.
+
+## SvelteKit vs Svelte
+
+Svelte handles UI components. SvelteKit provides a complete application framework with:
+
+- Router for client-side navigation
+- Build optimizations for minimal code loading
+- Offline support via service workers
+- Page preloading
+- Configurable rendering (SSR, CSR, prerendering)
+- Image optimization
+- HMR development experience via Vite
+
+## Key Concepts
+
+SvelteKit handles the complex infrastructure so you can focus on building your application. It follows modern web development best practices out of the box.
+
+For beginners, check out the [interactive tutorial](/tutorial/kit) or get help in [Discord](/chat).
+
+## docs/kit/10-getting-started/20-creating-a-project.md
+
+# Creating a SvelteKit Project
+
+```bash
+npx sv create my-app
+cd my-app
+npm install
+npm run dev
+```
+
+This scaffolds a new project, installs dependencies, and starts a server on [localhost:5173](http://localhost:5173).
+
+## Core Concepts
+
+- Pages are Svelte components
+- Pages are created by adding files to `src/routes`
+- Pages are server-rendered first, then hydrated as a client-side app
+
+## Editor Setup
+
+- Recommended: [VS Code](https://code.visualstudio.com/download) with [Svelte extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode)
+- [Other editor support](https://sveltesociety.dev/resources#editor-support)
+
+## docs/kit/10-getting-started/25-project-types.md
+
+# Project Types in SvelteKit
+
+SvelteKit offers configurable rendering to build various application types. Rendering settings can be mixed to optimize different parts of your application.
+
+## Default Rendering
+
+- First page: Server-side rendering (SSR)
+- Subsequent pages: Client-side rendering (CSR)
+- Benefits: Better SEO, perceived performance, and smooth navigation
+
+## Static Site Generation (SSG)
+
+```js
+// Use adapter-static
+// In svelte.config.js
+import adapter from '@sveltejs/adapter-static';
+
+export default {
+  kit: {
+    adapter: adapter()
+  }
+};
+
+// Prerender specific pages with
+// +page.js or +page.server.js
+export const prerender = true;
+```
+
+## Single-Page App (SPA)
+
+```js
+// In src/routes/+layout.js
+export const ssr = false;
+```
+
+## Multi-Page App
+
+```html
+<!-- Disable client-side navigation for a page -->
+<script>
+  export const csr = false;
+</script>
+
+<!-- Or for specific links -->
+<a href="/about" data-sveltekit-reload>About</a>
+```
+
+## Deployment Options
+
+- **Separate Backend**: Deploy SvelteKit frontend separately using `adapter-node` or serverless adapters
+- **Serverless**: Use `adapter-auto` (default), `adapter-vercel`, `adapter-netlify`, or `adapter-cloudflare`
+- **Own Server/Container**: Use `adapter-node`
+- **Library**: Use `@sveltejs/package` add-on
+- **Offline/PWA**: Leverage [service workers](service-workers)
+- **Mobile Apps**: Use Tauri or Capacitor with a SvelteKit SPA
+- **Desktop Apps**: Use Tauri, Wails, or Electron with a SvelteKit SPA
+- **Browser Extensions**: Use `adapter-static` or community adapters
+- **Embedded Devices**: Consider `bundleStrategy: 'single'` to reduce concurrent requests
+
+For mobile, desktop, and embedded applications, use:
+
+```js
+// svelte.config.js
+export default {
+  kit: {
+    output: {
+      bundleStrategy: 'single'
+    }
+  }
+};
+```
+
+## docs/kit/10-getting-started/30-project-structure.md
+
+# Project Structure in SvelteKit
+
+A typical SvelteKit project structure:
+
+```bash
+my-project/
+├ src/
+│ ├ lib/
+│ │ ├ server/      # Server-only code
+│ │ └ [lib files]  # Shared components/utilities
+│ ├ params/        # Param matchers
+│ ├ routes/        # Application routes
+│ ├ app.html       # Page template
+│ ├ error.html     # Error page
+│ ├ hooks.client.js
+│ ├ hooks.server.js
+│ └ service-worker.js
+├ static/          # Static assets
+├ tests/           # Tests
+├ package.json
+├ svelte.config.js
+├ tsconfig.json
+└ vite.config.js
+```
+
+## Key Files
+
+### src/app.html
+
+Page template with placeholders:
+- `%sveltekit.head%` - Links, scripts, and `<svelte:head>` content
+- `%sveltekit.body%` - Rendered page markup (place inside a container element)
+- `%sveltekit.assets%` - Path to assets
+- `%sveltekit.nonce%` - CSP nonce
+- `%sveltekit.env.[NAME]%` - Environment variables (must start with public prefix)
+
+### src/error.html
+
+Fallback error page with placeholders:
+- `%sveltekit.status%` - HTTP status
+- `%sveltekit.error.message%` - Error message
+
+### src/lib
+
+Library code importable via `$lib` alias. Server-only code in `lib/server` is importable via `$lib/server` and protected from client imports.
+
+### src/routes
+
+Contains application routes and route-specific components.
+
+### static
+
+Static assets served as-is (favicon, robots.txt, etc.).
+
+### Configuration Files
+
+- **package.json**: Must include `@sveltejs/kit`, `svelte`, and `vite` as `devDependencies`. Uses `"type": "module"`.
+- **svelte.config.js**: Svelte and SvelteKit configuration.
+- **tsconfig.json**: TypeScript configuration (extends `.svelte-kit/tsconfig.json`).
+- **vite.config.js**: Vite configuration with `@sveltejs/kit/vite` plugin.
+
+### Generated Files
+
+The `.svelte-kit` directory contains generated files that can be safely ignored or deleted (they'll be regenerated).
+
+## docs/kit/10-getting-started/40-web-standards.md
+
+# Svelte Web Standards
+
+## Fetch APIs
+
+SvelteKit uses standard `fetch` for network requests in hooks, server routes, and browser.
+
+```js
+// Special fetch in load functions, server hooks, API routes
+// Allows direct endpoint invocation during SSR without HTTP calls
+// Preserves credentials and supports relative requests
+```
+
+### Request
+
+```js
+// Access in hooks and server routes as event.request
+// Methods: request.json(), request.formData()
+```
+
+### Response
+
+```js
+// Returned from fetch() and +server.js handlers
+// A SvelteKit app turns a Request into a Response
+```
+
+### Headers
+
+```js
+/// file: src/routes/what-is-my-user-agent/+server.js
+import { json } from '@sveltejs/kit';
+
+/** @type {import('./$types').RequestHandler} */
+export function GET({ request }) {
+	// log all headers
+	console.log(...request.headers);
+
+	// create a JSON Response using a header we received
+	return json({
+		// retrieve a specific header
+		userAgent: request.headers.get('user-agent')
+	}, {
+		// set a header on the response
+		headers: { 'x-custom-header': 'potato' }
+	});
+}
+```
+
+## FormData
+
+```js
+/// file: src/routes/hello/+server.js
+import { json } from '@sveltejs/kit';
+
+/** @type {import('./$types').RequestHandler} */
+export async function POST(event) {
+	const body = await event.request.formData();
+
+	// log all fields
+	console.log([...body]);
+
+	return json({
+		// get a specific field's value
+		name: body.get('name') ?? 'world'
+	});
+}
+```
+
+## Stream APIs
+
+Use `ReadableStream`, `WritableStream`, and `TransformStream` for large responses or chunked data.
+
+## URL APIs
+
+`URL` interface provides properties like `origin` and `pathname`. Available as `event.url` in hooks/server routes, `page.url` in pages, and `from`/`to` in navigation functions.
+
+### URLSearchParams
+
+```js
+const foo = url.searchParams.get('foo');
+```
+
+## Web Crypto
+
+```js
+const uuid = crypto.randomUUID();
+```
+
+## docs/kit/20-core-concepts/10-routing.md
+
+# SvelteKit Routing
+
+## +page
+
+### +page.svelte
+
+Defines a page component rendered on server (SSR) and browser (CSR).
+
+```svelte
+<h1>Hello and welcome to my site!</h1>
+<a href="/about">About my site</a>
+```
+
+Receive data from load functions:
+
+```svelte
+<script>
+	/** @type {import('./$types').PageProps} */
+	let { data } = $props();
+</script>
+
+<h1>{data.title}</h1>
+<div>{@html data.content}</div>
+```
+
+### +page.js
+
+Load data for pages:
+
+```js
+import { error } from '@sveltejs/kit';
+
+/** @type {import('./$types').PageLoad} */
+export function load({ params }) {
+	if (params.slug === 'hello-world') {
+		return {
+			title: 'Hello world!',
+			content: 'Welcome to our blog. Lorem ipsum dolor sit amet...'
+		};
+	}
+
+	error(404, 'Not found');
+}
+```
+
+Configure page behavior with exports:
+- `export const prerender = true|false|'auto'`
+- `export const ssr = true|false`
+- `export const csr = true|false`
+
+### +page.server.js
+
+Server-only load functions:
+
+```js
+import { error } from '@sveltejs/kit';
+
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ params }) {
+	const post = await getPostFromDatabase(params.slug);
+
+	if (post) {
+		return post;
+	}
+
+	error(404, 'Not found');
+}
+```
+
+Also supports form actions.
+
+## +error
+
+Custom error pages:
+
+```svelte
+<script>
+	import { page } from '$app/state';
+</script>
+
+<h1>{page.status}: {page.error.message}</h1>
+```
+
+SvelteKit walks up the tree to find the closest error boundary.
+
+## +layout
+
+### +layout.svelte
+
+Shared UI elements across multiple pages:
+
+```svelte
+<script>
+	let { children } = $props();
+</script>
+
+<nav>
+	<a href="/">Home</a>
+	<a href="/about">About</a>
+	<a href="/settings">Settings</a>
+</nav>
+
+{@render children()}
+```
+
+Layouts can be nested:
+
+```svelte
+<script>
+	/** @type {import('./$types').LayoutProps} */
+	let { data, children } = $props();
+</script>
+
+<h1>Settings</h1>
+
+<div class="submenu">
+	{#each data.sections as section}
+		<a href="/settings/{section.slug}">{section.title}</a>
+	{/each}
+</div>
+
+{@render children()}
+```
+
+### +layout.js
+
+Load data for layouts:
+
+```js
+/** @type {import('./$types').LayoutLoad} */
+export function load() {
+	return {
+		sections: [
+			{ slug: 'profile', title: 'Profile' },
+			{ slug: 'notifications', title: 'Notifications' }
+		]
+	};
+}
+```
+
+### +layout.server.js
+
+Server-only layout data loading.
+
+## +server
+
+API routes with HTTP verb handlers:
+
+```js
+import { error } from '@sveltejs/kit';
+
+/** @type {import('./$types').RequestHandler} */
+export function GET({ url }) {
+	const min = Number(url.searchParams.get('min') ?? '0');
+	const max = Number(url.searchParams.get('max') ?? '1');
+
+	const d = max - min;
+
+	if (isNaN(d) || d < 0) {
+		error(400, 'min and max must be numbers, and min must be less than max');
+	}
+
+	const random = min + Math.random() * d;
+
+	return new Response(String(random));
+}
+```
+
+Handling POST requests:
+
+```js
+import { json } from '@sveltejs/kit';
+
+/** @type {import('./$types').RequestHandler} */
+export async function POST({ request }) {
+	const { a, b } = await request.json();
+	return json(a + b);
+}
+```
+
+Fallback handler for unhandled methods:
+
+```js
+/** @type {import('./$types').RequestHandler} */
+export async function fallback({ request }) {
+	return text(`I caught your ${request.method} request!`);
+}
+```
+
+Content negotiation: SvelteKit determines whether to serve a page or API response based on the `accept` header.
+
+## $types
+
+TypeScript definitions for route files:
+- `PageProps`/`LayoutProps` - For component props
+- `PageLoad`/`PageServerLoad`/`LayoutLoad`/`LayoutServerLoad` - For load functions
+- `RequestHandler` - For server endpoints
+
+## docs/kit/20-core-concepts/20-load.md
+
+# Loading Data in SvelteKit
+
+## Page Data
+
+Load data with `+page.js` (universal) or `+page.server.js` (server-only):
+
+```js
+/// file: src/routes/blog/[slug]/+page.server.js
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ params }) {
+  return {
+    post: await db.getPost(params.slug)
+  };
+}
+```
+
+```svelte
+<!file: src/routes/blog/[slug]/+page.svelte>
+<script>
+  /** @type {import('./$types').PageProps} */
+  let { data } = $props();
+</script>
+
+<h1>{data.post.title}</h1>
+<div>{@html data.post.content}</div>
+```
+
+## Layout Data
+
+Layout data is available to child layouts and pages:
+
+```js
+/// file: src/routes/blog/[slug]/+layout.server.js
+/** @type {import('./$types').LayoutServerLoad} */
+export async function load() {
+  return {
+    posts: await db.getPostSummaries()
+  };
+}
+```
+
+```svelte
+<!file: src/routes/blog/[slug]/+layout.svelte>
+<script>
+  /** @type {import('./$types').LayoutProps} */
+  let { data, children } = $props();
+</script>
+
+<main>{@render children()}</main>
+
+<aside>
+  <h2>More posts</h2>
+  <ul>
+    {#each data.posts as post}
+      <li><a href="/blog/{post.slug}">{post.title}</a></li>
+    {/each}
+  </ul>
+</aside>
+```
+
+## page.data
+
+Access data from any route component via `page.data`:
+
+```svelte
+<!file: src/routes/+layout.svelte>
+<script>
+  import { page } from '$app/state';
+</script>
+
+<svelte:head>
+  <title>{page.data.title}</title>
+</svelte:head>
+```
+
+## Universal vs Server Load Functions
+
+**Server load functions** (`+page.server.js`, `+layout.server.js`):
+- Always run on server
+- Can access database, filesystem, private env vars
+- Must return serializable data
+- Have access to `cookies`, `locals`, etc.
+
+**Universal load functions** (`+page.js`, `+layout.js`):
+- Run on server during SSR, then in browser
+- Good for fetching from public APIs
+- Can return non-serializable data (like component constructors)
+- Receive server load data via `data` property
+
+## URL Data
+
+Access URL data via:
+
+```js
+/** @type {import('./$types').PageLoad} */
+export function load({ url, route, params }) {
+  console.log(url.pathname);       // Current path
+  console.log(url.searchParams);   // Query parameters
+  console.log(route.id);           // '/a/[b]/[...c]'
+  console.log(params.slug);        // Dynamic route parameter
+}
+```
+
+## Making Fetch Requests
+
+Use the provided `fetch` function:
+
+```js
+/** @type {import('./$types').PageLoad} */
+export async function load({ fetch, params }) {
+  const res = await fetch(`/api/items/${params.id}`);
+  const item = await res.json();
+  return { item };
+}
+```
+
+## Cookies
+
+Server load functions can get/set cookies:
+
+```js
+/** @type {import('./$types').LayoutServerLoad} */
+export async function load({ cookies }) {
+  const sessionid = cookies.get('sessionid');
+  return {
+    user: await db.getUser(sessionid)
+  };
+}
+```
+
+## Headers
+
+Set response headers with `setHeaders`:
+
+```js
+/** @type {import('./$types').PageLoad} */
+export async function load({ fetch, setHeaders }) {
+  const response = await fetch(url);
+  
+  setHeaders({
+    'cache-control': response.headers.get('cache-control')
+  });
+  
+  return response.json();
+}
+```
+
+## Using Parent Data
+
+Access parent data with `await parent()`:
+
+```js
+/** @type {import('./$types').PageLoad} */
+export async function load({ parent }) {
+  const { a, b } = await parent();
+  return { c: a + b };
+}
+```
+
+## Errors and Redirects
+
+Throw errors or redirects:
+
+```js
+import { error, redirect } from '@sveltejs/kit';
+
+/** @type {import('./$types').LayoutServerLoad} */
+export function load({ locals }) {
+  if (!locals.user) {
+    redirect(307, '/login');
+  }
+  
+  if (!locals.user.isAdmin) {
+    error(403, 'not an admin');
+  }
+}
+```
+
+## Streaming with Promises
+
+Server load functions can return promises for streaming:
+
+```js
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ params }) {
+  return {
+    comments: loadComments(params.slug),
+    post: await loadPost(params.slug)
+  };
+}
+```
+
+```svelte
+{#await data.comments}
+  Loading comments...
+{:then comments}
+  {#each comments as comment}
+    <p>{comment.content}</p>
+  {/each}
+{:catch error}
+  <p>Error: {error.message}</p>
+{/await}
+```
+
+## Rerunning Load Functions
+
+Load functions rerun when:
+- Referenced `params` or `url` properties change
+- Parent load function reruns (if using `await parent()`)
+- Manually invalidated with `invalidate()` or `invalidateAll()`
+
+### Manual Invalidation
+
+```js
+/** @type {import('./$types').PageLoad} */
+export async function load({ fetch, depends }) {
+  depends('app:random');
+  const response = await fetch('https://api.example.com/random-number');
+  return { number: await response.json() };
+}
+```
+
+```svelte
+<script>
+  import { invalidate } from '$app/navigation';
+  
+  function rerunLoad() {
+    invalidate('app:random');
+  }
+</script>
+
+<button onclick={rerunLoad}>Update</button>
+```
+
+## Using getRequestEvent
+
+Access request event in shared server code:
+
+```js
+// src/lib/server/auth.js
+import { redirect } from '@sveltejs/kit';
+import { getRequestEvent } from '$app/server';
+
+export function requireLogin() {
+  const { locals, url } = getRequestEvent();
+  
+  if (!locals.user) {
+    redirect(307, `/login?${new URLSearchParams({ redirectTo: url.pathname + url.search })}`);
+  }
+  
+  return locals.user;
+}
+```
+
+## docs/kit/20-core-concepts/30-form-actions.md
+
+# Svelte Form Actions
+
+## Default Actions
+
+Define a default action in `+page.server.js`:
+
+```js
+/// file: src/routes/login/+page.server.js
+export const actions = {
+	default: async (event) => {
+		// TODO log the user in
+	}
+};
+```
+
+Use it with a simple form:
+
+```svelte
+<form method="POST">
+	<label>
+		Email
+		<input name="email" type="email">
+	</label>
+	<label>
+		Password
+		<input name="password" type="password">
+	</label>
+	<button>Log in</button>
+</form>
+```
+
+Target actions from other pages:
+
+```html
+<form method="POST" action="/login">
+	<!-- form fields -->
+</form>
+```
+
+## Named Actions
+
+Multiple actions in one page:
+
+```js
+export const actions = {
+	login: async (event) => {
+		// TODO log the user in
+	},
+	register: async (event) => {
+		// TODO register the user
+	}
+};
+```
+
+Invoke with query parameter:
+
+```svelte
+<form method="POST" action="?/register">
+```
+
+Use `formaction` for multiple actions in one form:
+
+```svelte
+<form method="POST" action="?/login">
+	<!-- fields -->
+	<button>Log in</button>
+	<button formaction="?/register">Register</button>
+</form>
+```
+
+## Action Anatomy
+
+Actions receive a `RequestEvent` and can return data:
+
+```js
+import * as db from '$lib/server/db';
+
+export const actions = {
+	login: async ({ cookies, request }) => {
+		const data = await request.formData();
+		const email = data.get('email');
+		const password = data.get('password');
+
+		const user = await db.getUser(email);
+		cookies.set('sessionid', await db.createSession(user), { path: '/' });
+
+		return { success: true };
+	}
+};
+```
+
+Access returned data in the page:
+
+```svelte
+<script>
+	let { data, form } = $props();
+</script>
+
+{#if form?.success}
+	<p>Successfully logged in! Welcome back, {data.user.name}</p>
+{/if}
+```
+
+### Validation Errors
+
+Return validation errors with the `fail` function:
+
+```js
+import { fail } from '@sveltejs/kit';
+
+export const actions = {
+	login: async ({ cookies, request }) => {
+		const data = await request.formData();
+		const email = data.get('email');
+		const password = data.get('password');
+
+		if (!email) {
+			return fail(400, { email, missing: true });
+		}
+
+		const user = await db.getUser(email);
+
+		if (!user || user.password !== db.hash(password)) {
+			return fail(400, { email, incorrect: true });
+		}
+
+		// Success case
+	}
+};
+```
+
+Display errors in the form:
+
+```svelte
+<form method="POST" action="?/login">
+	{#if form?.missing}<p class="error">The email field is required</p>{/if}
+	{#if form?.incorrect}<p class="error">Invalid credentials!</p>{/if}
+	<label>
+		Email
+		<input name="email" type="email" value={form?.email ?? ''}>
+	</label>
+	<!-- other fields -->
+</form>
+```
+
+### Redirects
+
+Redirect after an action:
+
+```js
+import { fail, redirect } from '@sveltejs/kit';
+
+export const actions = {
+	login: async ({ cookies, request, url }) => {
+		// Authentication logic
+
+		if (url.searchParams.has('redirectTo')) {
+			redirect(303, url.searchParams.get('redirectTo'));
+		}
+
+		return { success: true };
+	}
+};
+```
+
+## Loading Data
+
+After an action runs, the page's `load` functions run again. Update `event.locals` when setting cookies:
+
+```js
+// In action
+event.cookies.delete('sessionid', { path: '/' });
+event.locals.user = null;
+```
+
+## Progressive Enhancement
+
+### use:enhance
+
+Basic enhancement:
+
+```svelte
+<script>
+	import { enhance } from '$app/forms';
+	let { form } = $props();
+</script>
+
+<form method="POST" use:enhance>
+```
+
+### Customizing use:enhance
+
+```svelte
+<form
+	method="POST"
+	use:enhance={({ formElement, formData, action, cancel, submitter }) => {
+		// Pre-submission logic
+		
+		return async ({ result, update }) => {
+			// Post-submission logic
+		};
+	}}
+>
+```
+
+Custom handling with `applyAction`:
+
+```svelte
+<script>
+	import { enhance, applyAction } from '$app/forms';
+	import { goto } from '$app/navigation';
+</script>
+
+<form
+	method="POST"
+	use:enhance={({ formElement, formData, action, cancel }) => {
+		return async ({ result }) => {
+			if (result.type === 'redirect') {
+				goto(result.location);
+			} else {
+				await applyAction(result);
+			}
+		};
+	}}
+>
+```
+
+### Custom Event Listener
+
+Manual form submission:
+
+```svelte
+<script>
+	import { invalidateAll } from '$app/navigation';
+	import { applyAction, deserialize } from '$app/forms';
+
+	/** @param {SubmitEvent & { currentTarget: EventTarget & HTMLFormElement}} event */
+	async function handleSubmit(event) {
+		event.preventDefault();
+		const data = new FormData(event.currentTarget);
+
+		const response = await fetch(event.currentTarget.action, {
+			method: 'POST',
+			body: data
+		});
+
+		const result = deserialize(await response.text());
+
+		if (result.type === 'success') {
+			await invalidateAll();
+		}
+
+		applyAction(result);
+	}
+</script>
+
+<form method="POST" onsubmit={handleSubmit}>
+	<!-- form fields -->
+</form>
+```
+
+To target actions in `+page.server.js` explicitly:
+
+```js
+const response = await fetch(this.action, {
+	method: 'POST',
+	body: data,
+	headers: {
+		'x-sveltekit-action': 'true'
+	}
+});
+```
+
+## GET vs POST
+
+For non-data-modifying forms, use `method="GET"`:
+
+```html
+<form action="/search">
+	<label>
+		Search
+		<input name="q">
+	</label>
+</form>
+```
+
+This navigates to `/search?q=...` using client-side routing without invoking an action.
+
+## docs/kit/20-core-concepts/40-page-options.md
+
+# Svelte 5 Page Options
+
+## Core Concepts
+
+### Rendering Modes
+
+SvelteKit supports three rendering strategies:
+
+- **Server-Side Rendering (SSR)**: Default mode - renders on server first, then hydrates in browser
+- **Client-Side Rendering (CSR)**: Interactive components rendered in browser
+- **Prerendering**: Generate static HTML at build time
+
+Options can be set in `+page.js`, `+page.server.js`, `+layout.js`, or `+layout.server.js`. Child layouts/pages override parent settings.
+
+## Page Options
+
+### prerender
+
+```js
+// Static generation at build time
+export const prerender = true; // Enable prerendering for this route
+export const prerender = false; // Disable prerendering
+export const prerender = 'auto'; // Prerender but keep in SSR manifest
+```
+
+**Notes:**
+- Prerendering crawls your app starting from the root
+- Routes with `prerender = true` are excluded from SSR manifests
+- For fully static sites, use `adapter-static`
+- During prerendering, `building` from `$app/environment` is `true`
+
+**When not to prerender:**
+- When users need different content (authentication, personalization)
+- Pages with form actions
+- Pages that access `url.searchParams` during prerendering
+
+**Route conflicts:**
+- Use file extensions for server routes (`foo.json` instead of `foo`)
+- Pages are written as `foo/index.html` instead of `foo`
+
+### entries
+
+For dynamic routes that should be prerendered:
+
+```js
+// src/routes/blog/[slug]/+page.server.js
+export function entries() {
+  return [
+    { slug: 'hello-world' },
+    { slug: 'another-blog-post' }
+  ];
+}
+
+export const prerender = true;
+```
+
+Can be async to fetch data from CMS/database.
+
+### ssr
+
+```js
+export const ssr = false; // Disable server-side rendering
+```
+
+Renders empty shell page instead of full HTML. Useful for browser-only code but generally not recommended.
+
+### csr
+
+```js
+export const csr = false; // Disable client-side rendering
+```
+
+When disabled:
+- No JavaScript is sent to client
+- Page works with HTML/CSS only
+- No form progressive enhancement
+- Links cause full-page navigation
+- HMR is disabled
+
+For development-only CSR:
+```js
+import { dev } from '$app/environment';
+export const csr = dev;
+```
+
+### trailingSlash
+
+```js
+export const trailingSlash = 'never'; // Default - redirects /about/ to /about
+export const trailingSlash = 'always'; // Redirects /about to /about/
+export const trailingSlash = 'ignore'; // Treats both forms as valid
+```
+
+Affects prerendering output: `always` creates `about/index.html`, otherwise creates `about.html`.
+
+### config
+
+Platform-specific configuration for adapters:
+
+```js
+/** @type {import('some-adapter').Config} */
+export const config = {
+  runtime: 'edge'
+};
+```
+
+Config objects merge at top level but not deeper levels.
+
+## docs/kit/20-core-concepts/50-state-management.md
+
+# Svelte 5 State Management
+
+## Server State Guidelines
+
+### Avoid Shared State on Server
+
+Servers are stateless and shared by multiple users. Never store user data in shared variables:
+
+```js
+// NEVER DO THIS - shared variable exposes data between users
+let user;
+
+export function load() {
+  return { user };
+}
+
+export const actions = {
+  default: async ({ request }) => {
+    const data = await request.formData();
+    user = { name: data.get('name') }; // BAD: shared between users
+  }
+}
+```
+
+Instead, authenticate users with cookies and store data in databases.
+
+### No Side-Effects in Load
+
+Load functions should be pure:
+
+```js
+// NEVER DO THIS - modifies global state
+import { user } from '$lib/user';
+
+export async function load({ fetch }) {
+  const response = await fetch('/api/user');
+  user.set(await response.json()); // BAD: affects all users
+}
+```
+
+Instead, return the data:
+
+```js
+export async function load({ fetch }) {
+  const response = await fetch('/api/user');
+  return { user: await response.json() };
+}
+```
+
+## Using Context for State
+
+Use Svelte's context API for component-scoped state:
+
+```svelte
+<!-- src/routes/+layout.svelte -->
+<script>
+  import { setContext } from 'svelte';
+  
+  let { data } = $props();
+  setContext('user', () => data.user);
+</script>
+```
+
+```svelte
+<!-- src/routes/user/+page.svelte -->
+<script>
+  import { getContext } from 'svelte';
+  const user = getContext('user');
+</script>
+
+<p>Welcome {user().name}</p>
+```
+
+## Component State Preservation
+
+Components are reused during navigation. Reactive values must be properly declared:
+
+```svelte
+<script>
+  let { data } = $props();
+  
+  // BUGGY: won't update on navigation
+  const wordCount = data.content.split(' ').length;
+  const estimatedReadingTime = wordCount / 250;
+</script>
+```
+
+Correct approach:
+
+```svelte
+<script>
+  let { data } = $props();
+  
+  let wordCount = $derived(data.content.split(' ').length);
+  let estimatedReadingTime = $derived(wordCount / 250);
+</script>
+```
+
+To force component remounting on navigation:
+
+```svelte
+<script>
+  import { page } from '$app/state';
+</script>
+
+{#key page.url.pathname}
+  <BlogPost title={data.title} content={data.title} />
+{/key}
+```
+
+## State Storage Options
+
+- **URL Parameters**: For state that should survive reloads (filters, sorting)
+  - Access via `url` in load functions or `page.url.searchParams` in components
+- **Snapshots**: For ephemeral UI state (accordion open/closed)
+  - Persists during navigation but not page reloads
+
+## docs/kit/25-build-and-deploy/10-building-your-app.md
+
+# Building your app
+
+## Build Process
+
+SvelteKit builds in two stages when running `vite build`:
+1. Vite creates optimized production builds of server code, browser code, and service worker
+2. An adapter tunes the build for your target environment
+
+## During the build
+
+Skip code execution during build phase:
+
+```js
+import { building } from '$app/environment';
+import { setupMyDatabase } from '$lib/server/database';
+
+if (!building) {
+	setupMyDatabase();
+}
+
+export function load() {
+	// ...
+}
+```
+
+## Preview
+
+Preview production build locally with `vite preview` (via `npm run preview`). Note that this runs in Node and doesn't perfectly reproduce deployment environment (adapter-specific features like the `platform` object aren't available).
+
+## docs/kit/25-build-and-deploy/20-adapters.md
+
+# Adapters
+
+Adapters convert your SvelteKit app for deployment to specific platforms.
+
+## Official Adapters
+
+- `@sveltejs/adapter-cloudflare` - For Cloudflare Workers/Pages
+- `@sveltejs/adapter-netlify` - For Netlify
+- `@sveltejs/adapter-node` - For Node servers
+- `@sveltejs/adapter-static` - For static site generation (SSG)
+- `@sveltejs/adapter-vercel` - For Vercel
+
+Community adapters available at [sveltesociety.dev](https://sveltesociety.dev/packages?category=sveltekit-adapters).
+
+## Configuration
+
+Specify your adapter in `svelte.config.js`:
+
+```js
+/// file: svelte.config.js
+import adapter from 'svelte-adapter-foo';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    adapter: adapter({
+      // adapter options go here
+    })
+  }
+};
+
+export default config;
+```
+
+## Platform-specific Context
+
+Adapters may provide platform-specific information via the `platform` property in the `RequestEvent` object used in hooks and server routes. Check adapter documentation for details.
+
+## docs/kit/25-build-and-deploy/55-single-page-apps.md
+
+# Single-page apps in SvelteKit
+
+## Basic Setup
+
+Convert any SvelteKit app to a SPA by disabling SSR in the root layout:
+
+```js
+/// file: src/routes/+layout.js
+export const ssr = false;
+```
+
+> **Note**: Not recommended for most cases due to SEO, performance, and accessibility issues.
+
+## Using adapter-static
+
+For apps without server-side logic, use `adapter-static` with a fallback page:
+
+```js
+/// file: svelte.config.js
+import adapter from '@sveltejs/adapter-static';
+
+export default {
+	kit: {
+		adapter: adapter({
+			fallback: '200.html' // platform-specific
+		})
+	}
+};
+```
+
+The fallback page loads your app and navigates to the correct route. The filename varies by hosting platform.
+
+## Apache Configuration
+
+For Apache, add a `static/.htaccess` file:
+
+```
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteRule ^200\.html$ - [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule . /200.html [L]
+</IfModule>
+```
+
+## Selective Prerendering
+
+Enable prerendering for specific pages:
+
+```js
+/// file: src/routes/my-prerendered-page/+page.js
+export const prerender = true;
+export const ssr = true;
+```
+
+## docs/kit/30-advanced/10-advanced-routing.md
+
+# Advanced Routing in SvelteKit
+
+## Rest Parameters
+
+Use rest syntax for unknown number of route segments:
+
+```bash
+/[org]/[repo]/tree/[branch]/[...file]
+```
+
+For `/sveltejs/kit/tree/main/documentation/docs/04-advanced-routing.md`:
+
+```js
+{
+	org: 'sveltejs',
+	repo: 'kit',
+	branch: 'main',
+	file: 'documentation/docs/04-advanced-routing.md'
+}
+```
+
+> Note: `src/routes/a/[...rest]/z/+page.svelte` matches `/a/z`, `/a/b/z`, etc. Always validate rest parameters.
+
+### 404 Pages
+
+For custom 404s with nested routes, create a catch-all route:
+
+```js
+/// file: src/routes/marx-brothers/[...path]/+page.js
+import { error } from '@sveltejs/kit';
+
+/** @type {import('./$types').PageLoad} */
+export function load(event) {
+	error(404, 'Not Found');
+}
+```
+
+## Optional Parameters
+
+Make parameters optional with double brackets: `[[lang]]/home`
+
+This matches both `/home` and `/en/home`.
+
+> Note: Optional parameters can't follow rest parameters.
+
+## Matching
+
+Ensure parameters are well-formed with matchers:
+
+```js
+/// file: src/params/fruit.js
+/**
+ * @param {string} param
+ * @return {param is ('apple' | 'orange')}
+ * @satisfies {import('@sveltejs/kit').ParamMatcher}
+ */
+export function match(param) {
+	return param === 'apple' || param === 'orange';
+}
+```
+
+Use in routes:
+
+```
+src/routes/fruits/[page=fruit]
+```
+
+## Sorting
+
+Routes are sorted by:
+1. Specificity (non-parameterized > parameterized)
+2. Matchers (routes with matchers > without)
+3. Optional/rest parameters (lowest priority)
+4. Alphabetically (ties)
+
+## Encoding
+
+Use hexadecimal escape sequences for special characters:
+- `[x+5c]` for `\`
+- `[x+2f]` for `/`
+- `[x+23]` for `#`
+- etc.
+
+Unicode escape sequences: `[u+nnnn]` (e.g., `[u+d83e][u+dd2a]` = `🤪`)
+
+## Advanced Layouts
+
+### (group)
+
+Group routes without affecting URL paths:
+
+```tree
+src/routes/
+│ (app)/
+│ ├ dashboard/
+│ ├ item/
+│ └ +layout.svelte
+│ (marketing)/
+│ ├ about/
+│ ├ testimonials/
+│ └ +layout.svelte
+├ admin/
+└ +layout.svelte
+```
+
+### Breaking Out of Layouts
+
+Use `@` to specify parent layout:
+
+- `+page@[id].svelte` - inherits from nearest `[id]` layout
+- `+page@item.svelte` - inherits from nearest `item` layout
+- `+page@(app).svelte` - inherits from nearest `(app)` layout
+- `+page@.svelte` - inherits from root layout
+
+Layouts can also break out with `+layout@.svelte`.
+
+Consider composition alternatives for complex cases:
+
+```svelte
+<!file: src/routes/nested/route/+layout@.svelte>
+<script>
+	import ReusableLayout from '$lib/ReusableLayout.svelte';
+	let { data, children } = $props();
+</script>
+
+<ReusableLayout {data}>
+	{@render children()}
+</ReusableLayout>
+```
+
+## docs/kit/30-advanced/20-hooks.md
+
+# SvelteKit Hooks
+
+Hooks are app-wide functions that SvelteKit calls in response to specific events.
+
+## Files
+- `src/hooks.server.js` - server hooks
+- `src/hooks.client.js` - client hooks
+- `src/hooks.js` - universal hooks (both client and server)
+
+## Server Hooks
+
+### handle
+
+Runs on every request to determine the response.
+
+```js
+/** @type {import('@sveltejs/kit').Handle} */
+export async function handle({ event, resolve }) {
+  if (event.url.pathname.startsWith('/custom')) {
+    return new Response('custom response');
+  }
+
+  const response = await resolve(event);
+  return response;
+}
+```
+
+`resolve` accepts optional parameters:
+- `transformPageChunk({ html, done })` - transforms HTML chunks
+- `filterSerializedResponseHeaders(name, value)` - filters headers in serialized responses
+- `preload({ type, path })` - determines files to preload in `<head>`
+
+### handleFetch
+
+Modifies `fetch` requests in server-side `load` or `action` functions.
+
+```js
+/** @type {import('@sveltejs/kit').HandleFetch} */
+export async function handleFetch({ request, fetch }) {
+  if (request.url.startsWith('https://api.yourapp.com/')) {
+    request = new Request(
+      request.url.replace('https://api.yourapp.com/', 'http://localhost:9999/'),
+      request
+    );
+  }
+  return fetch(request);
+}
+```
+
+### locals
+
+Add custom data to the request via `event.locals`:
+
+```js
+/** @type {import('@sveltejs/kit').Handle} */
+export async function handle({ event, resolve }) {
+  event.locals.user = await getUserInformation(event.cookies.get('sessionid'));
+  const response = await resolve(event);
+  return response;
+}
+```
+
+## Shared Hooks (Server & Client)
+
+### handleError
+
+Handles unexpected errors during loading or rendering.
+
+```js
+/** @type {import('@sveltejs/kit').HandleServerError} */
+export async function handleError({ error, event, status, message }) {
+  const errorId = crypto.randomUUID();
+  
+  // Log to service like Sentry
+  console.error(error);
+  
+  return {
+    message: 'Whoops!',
+    errorId
+  };
+}
+```
+
+### init
+
+Runs once when server is created or app starts in browser.
+
+```js
+/** @type {import('@sveltejs/kit').ServerInit} */
+export async function init() {
+  await db.connect();
+}
+```
+
+## Universal Hooks
+
+### reroute
+
+Changes how URLs translate to routes.
+
+```js
+/** @type {Record<string, string>} */
+const translated = {
+  '/en/about': '/en/about',
+  '/de/ueber-uns': '/de/about',
+  '/fr/a-propos': '/fr/about',
+};
+
+/** @type {import('@sveltejs/kit').Reroute} */
+export function reroute({ url }) {
+  if (url.pathname in translated) {
+    return translated[url.pathname];
+  }
+}
+```
+
+Can be async since v2.18:
+
+```js
+/** @type {import('@sveltejs/kit').Reroute} */
+export async function reroute({ url, fetch }) {
+  if (url.pathname === '/api/reroute') return;
+
+  const api = new URL('/api/reroute', url);
+  api.searchParams.set('pathname', url.pathname);
+
+  const result = await fetch(api).then(r => r.json());
+  return result.pathname;
+}
+```
+
+### transport
+
+Passes custom types across server/client boundary.
+
+```js
+/** @type {import('@sveltejs/kit').Transport} */
+export const transport = {
+  Vector: {
+    encode: (value) => value instanceof Vector && [value.x, value.y],
+    decode: ([x, y]) => new Vector(x, y)
+  }
+};
+```
+
+## docs/kit/30-advanced/25-errors.md
+
+# Svelte Errors
+
+## Error Objects
+
+SvelteKit handles two types of errors:
+- Expected errors (created with `error` helper)
+- Unexpected errors (other exceptions)
+
+Both are represented as `{ message: string }` objects by default, but can be extended.
+
+## Expected Errors
+
+```js
+import { error } from '@sveltejs/kit';
+
+export async function load({ params }) {
+  const post = await db.getPost(params.slug);
+
+  if (!post) {
+    error(404, {
+      message: 'Not found'
+    });
+  }
+
+  return { post };
+}
+```
+
+Access errors in components:
+
+```svelte
+<script>
+  import { page } from '$app/state';
+</script>
+
+<h1>{page.error.message}</h1>
+```
+
+Shorthand for simple errors:
+
+```js
+error(404, 'Not found'); // Same as error(404, { message: 'Not found' })
+```
+
+Add custom properties:
+
+```js
+error(404, {
+  message: 'Not found',
+  code: 'NOT_FOUND'
+});
+```
+
+## Unexpected Errors
+
+Unexpected errors are any other exceptions. For security, their details aren't exposed to users.
+
+Default error shape for users:
+```json
+{ "message": "Internal Error" }
+```
+
+Use `handleError` hook for custom error handling (reporting, custom responses).
+
+## Error Responses
+
+Error handling depends on context:
+
+1. Errors in `handle` or `+server.js`: Returns fallback error page or JSON
+2. Errors in `load` functions: Renders nearest `+error.svelte` component
+3. Errors in root `+layout.js/+layout.server.js`: Uses fallback error page
+
+### Custom Fallback Error Page
+
+Create `src/error.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>%sveltekit.error.message%</title>
+  </head>
+  <body>
+    <h1>My custom error page</h1>
+    <p>Status: %sveltekit.status%</p>
+    <p>Message: %sveltekit.error.message%</p>
+  </body>
+</html>
+```
+
+## Type Safety
+
+Customize error shape in TypeScript:
+
+```ts
+declare global {
+  namespace App {
+    interface Error {
+      code: string;
+      id: string;
+    }
+  }
+}
+
+export {};
+```
+
+## docs/kit/30-advanced/30-link-options.md
+
+# SvelteKit Link Options
+
+## Navigation Basics
+
+SvelteKit uses standard `<a>` elements for navigation between routes. When clicking a link within your app, SvelteKit:
+- Imports the code for the new page
+- Calls necessary `load` functions
+- Updates the UI without a full page reload
+
+## data-sveltekit-preload-data
+
+Controls when data loading begins:
+
+```html
+<!-- Default in app.html -->
+<body data-sveltekit-preload-data="hover">
+  <div style="display: contents">%sveltekit.body%</div>
+</body>
+
+<!-- For time-sensitive data -->
+<a data-sveltekit-preload-data="tap" href="/stonks">
+  Get current stonk values
+</a>
+```
+
+- `"hover"`: Preloads on mouse hover or touchstart
+- `"tap"`: Preloads on mousedown or touchstart
+
+Preloading is skipped if `navigator.connection.saveData` is true.
+
+## data-sveltekit-preload-code
+
+Controls when code loading begins:
+
+- `"eager"`: Preloads immediately
+- `"viewport"`: Preloads when link enters viewport
+- `"hover"`: Preloads on hover
+- `"tap"`: Preloads on tap/click
+
+Note: `viewport` and `eager` only apply to links present in DOM immediately after navigation.
+
+## data-sveltekit-reload
+
+Forces full-page navigation:
+
+```html
+<a data-sveltekit-reload href="/path">Path</a>
+```
+
+Links with `rel="external"` behave the same and are ignored during prerendering.
+
+## data-sveltekit-replacestate
+
+Replaces current history entry instead of creating a new one:
+
+```html
+<a data-sveltekit-replacestate href="/path">Path</a>
+```
+
+## data-sveltekit-keepfocus
+
+Maintains focus on the current element after navigation:
+
+```html
+<form data-sveltekit-keepfocus>
+  <input type="text" name="query">
+</form>
+```
+
+Avoid using on links for accessibility reasons. Only use on elements that exist after navigation.
+
+## data-sveltekit-noscroll
+
+Prevents automatic scrolling after navigation:
+
+```html
+<a href="path" data-sveltekit-noscroll>Path</a>
+```
+
+## Disabling Options
+
+Disable options by setting value to `"false"`:
+
+```html
+<div data-sveltekit-preload-data>
+  <a href="/a">a</a>
+  
+  <div data-sveltekit-preload-data="false">
+    <a href="/d">d</a>
+  </div>
+</div>
+```
+
+Conditional application:
+
+```svelte
+<div data-sveltekit-preload-data={condition ? 'hover' : false}>
+```
+
+## docs/kit/30-advanced/40-service-workers.md
+
+# Service Workers in SvelteKit
+
+Service workers act as proxy servers for network requests, enabling offline support and faster navigation through precaching.
+
+## Basic Setup
+
+SvelteKit automatically registers `src/service-worker.js` (or `src/service-worker/index.js`).
+
+```js
+// Manual registration (if you disable automatic registration)
+if ('serviceWorker' in navigator) {
+	addEventListener('load', function () {
+		navigator.serviceWorker.register('./path/to/service-worker.js');
+	});
+}
+```
+
+## Inside the Service Worker
+
+Access the `$service-worker` module for paths to assets, build files, and prerendered pages.
+
+```js
+/// <reference types="@sveltejs/kit" />
+import { build, files, version } from '$service-worker';
+
+// Create a unique cache name for this deployment
+const CACHE = `cache-${version}`;
+
+const ASSETS = [
+	...build, // the app itself
+	...files  // everything in `static`
+];
+
+self.addEventListener('install', (event) => {
+	// Create a new cache and add all files to it
+	async function addFilesToCache() {
+		const cache = await caches.open(CACHE);
+		await cache.addAll(ASSETS);
+	}
+
+	event.waitUntil(addFilesToCache());
+});
+
+self.addEventListener('activate', (event) => {
+	// Remove previous cached data from disk
+	async function deleteOldCaches() {
+		for (const key of await caches.keys()) {
+			if (key !== CACHE) await caches.delete(key);
+		}
+	}
+
+	event.waitUntil(deleteOldCaches());
+});
+
+self.addEventListener('fetch', (event) => {
+	// ignore POST requests etc
+	if (event.request.method !== 'GET') return;
+
+	async function respond() {
+		const url = new URL(event.request.url);
+		const cache = await caches.open(CACHE);
+
+		// `build`/`files` can always be served from the cache
+		if (ASSETS.includes(url.pathname)) {
+			const response = await cache.match(url.pathname);
+
+			if (response) {
+				return response;
+			}
+		}
+
+		// for everything else, try the network first, but
+		// fall back to the cache if we're offline
+		try {
+			const response = await fetch(event.request);
+
+			// if we're offline, fetch can return a value that is not a Response
+			// instead of throwing - and we can't pass this non-Response to respondWith
+			if (!(response instanceof Response)) {
+				throw new Error('invalid response from fetch');
+			}
+
+			if (response.status === 200) {
+				cache.put(event.request, response.clone());
+			}
+
+			return response;
+		} catch (err) {
+			const response = await cache.match(event.request);
+
+			if (response) {
+				return response;
+			}
+
+			// if there's no cache, then just error out
+			throw err;
+		}
+	}
+
+	event.respondWith(respond());
+});
+```
+
+> Be careful with caching - stale data may be worse than unavailable data, and browsers will empty caches if they get too full.
+
+## Development Mode
+
+Service workers are bundled for production but not during development. Only browsers supporting modules in service workers will work in dev mode.
+
+```js
+import { dev } from '$app/environment';
+
+navigator.serviceWorker.register('/service-worker.js', {
+	type: dev ? 'module' : 'classic'
+});
+```
+
+> `build` and `prerendered` are empty arrays during development
+
+## Type Safety
+
+```js
+/// <reference types="@sveltejs/kit" />
+/// <reference no-default-lib="true"/>
+/// <reference lib="esnext" />
+/// <reference lib="webworker" />
+
+const sw = /** @type {ServiceWorkerGlobalScope} */ (/** @type {unknown} */ (self));
+```
+
+## Alternatives
+
+- [Vite PWA plugin](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html) for Workbox integration
+- [MDN Service Worker docs](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+## docs/kit/30-advanced/50-server-only-modules.md
+
+# Server-only modules
+
+## Private environment variables
+
+`$env/static/private` and `$env/dynamic/private` modules can only be imported into server-side modules like `hooks.server.js` or `+page.server.js`.
+
+## Server-only utilities
+
+`$app/server` module (containing `read` function for filesystem access) is server-only.
+
+## Your modules
+
+Make your modules server-only by:
+- Adding `.server` to filename: `secrets.server.js`
+- Placing in `$lib/server`: `$lib/server/secrets.js`
+
+## How it works
+
+SvelteKit prevents importing server-only code in public-facing code:
+
+```js
+/// file: $lib/server/secrets.js
+export const atlantisCoordinates = [/* redacted */];
+```
+
+```js
+/// file: src/routes/utils.js
+export { atlantisCoordinates } from '$lib/server/secrets.js';
+export const add = (a, b) => a + b;
+```
+
+```html
+/// file: src/routes/+page.svelte
+<script>
+	import { add } from './utils.js';
+</script>
+```
+
+This produces an error:
+```
+Cannot import $lib/server/secrets.js into public-facing code:
+src/routes/+page.svelte
+	src/routes/utils.js
+		$lib/server/secrets.js
+```
+
+Works with dynamic imports too, with one caveat: during development, illegal imports may not be detected on first load if there are multiple dynamic imports in the chain.
+
+> Unit testing frameworks don't distinguish between server-only and public-facing code, so illegal import detection is disabled when `process.env.TEST === 'true'`.
+
+## docs/kit/30-advanced/65-snapshots.md
+
+# Snapshots
+
+Preserve ephemeral DOM state (form inputs, scroll positions) between navigations.
+
+```svelte
+<script>
+	let comment = $state('');
+
+	/** @type {import('./$types').Snapshot<string>} */
+	export const snapshot = {
+		capture: () => comment,
+		restore: (value) => comment = value
+	};
+</script>
+
+<form method="POST">
+	<label for="comment">Comment</label>
+	<textarea id="comment" bind:value={comment} />
+	<button>Post comment</button>
+</form>
+```
+
+- `capture`: Called before navigation, returns value to store
+- `restore`: Called when navigating back, receives stored value
+- Data must be JSON-serializable
+- Stored in memory and `sessionStorage` for page reloads
+- Avoid large objects to prevent memory issues
+
+## docs/kit/30-advanced/67-shallow-routing.md
+
+# Shallow Routing in SvelteKit
+
+## Basic Usage
+
+Create history entries without navigation using `pushState` and `replaceState`.
+
+```svelte
+<script>
+	import { pushState } from '$app/navigation';
+	import { page } from '$app/state';
+	import Modal from './Modal.svelte';
+
+	function showModal() {
+		pushState('', {
+			showModal: true
+		});
+	}
+</script>
+
+{#if page.state.showModal}
+	<Modal close={() => history.back()} />
+{/if}
+```
+
+## API
+
+- `pushState(url, state)` - Creates new history entry
+- `replaceState(url, state)` - Updates current history entry
+- Access state via `page.state` from `$app/state`
+- Make state type-safe with `App.PageState` interface in `src/app.d.ts`
+
+## Loading Data for Shallow Routes
+
+Use `preloadData` to load data for components without navigation:
+
+```svelte
+<script>
+	import { preloadData, pushState, goto } from '$app/navigation';
+	import { page } from '$app/state';
+	import Modal from './Modal.svelte';
+	import PhotoPage from './[id]/+page.svelte';
+
+	let { data } = $props();
+</script>
+
+{#each data.thumbnails as thumbnail}
+	<a
+		href="/photos/{thumbnail.id}"
+		onclick={async (e) => {
+			if (innerWidth < 640 || e.shiftKey || e.metaKey || e.ctrlKey) return;
+			e.preventDefault();
+			const { href } = e.currentTarget;
+			const result = await preloadData(href);
+			if (result.type === 'loaded' && result.status === 200) {
+				pushState(href, { selected: result.data });
+			} else {
+				goto(href);
+			}
+		}}
+	>
+		<img alt={thumbnail.alt} src={thumbnail.src} />
+	</a>
+{/each}
+
+{#if page.state.selected}
+	<Modal onclose={() => history.back()}>
+		<PhotoPage data={page.state.selected} />
+	</Modal>
+{/if}
+```
+
+## Caveats
+
+- During SSR, `page.state` is always an empty object
+- State is lost on page reload
+- Requires JavaScript to work
+
+## docs/kit/40-best-practices/03-auth.md
+
+# Auth
+
+## Sessions vs tokens
+
+- **Authentication**: Verify user identity via credentials
+- **Authorization**: Determine allowed actions
+
+Two main approaches after initial authentication:
+- **Session IDs**: Stored in database, revocable, requires DB query per request
+- **JWT**: No DB check, can't be immediately revoked, better latency, less DB load
+
+## Integration points
+
+Check auth cookies in server hooks and store user info in `locals`:
+
+```js
+// hooks.server.js
+export async function handle({ event, resolve }) {
+  const session = event.cookies.get('session');
+  
+  if (session) {
+    const user = await getUser(session);
+    if (user) {
+      event.locals.user = user;
+    }
+  }
+  
+  return resolve(event);
+}
+```
+
+## Guides
+
+[Lucia](https://lucia-auth.com/) provides session-based auth for SvelteKit:
+- Add to new project: `npx sv create`
+- Add to existing project: `npx sv add lucia`
+
+SvelteKit-specific auth guides are recommended over generic JS auth libraries to avoid including multiple web frameworks.
+
+## docs/kit/40-best-practices/06-icons.md
+
+# Icons
+
+## CSS
+
+Use CSS for icons via Iconify, which supports [many icon sets](https://icon-sets.iconify.design/) through [CSS inclusion](https://iconify.design/docs/usage/css/). Works with frameworks via [Tailwind CSS plugin](https://iconify.design/docs/usage/css/tailwind/) or [UnoCSS plugin](https://iconify.design/docs/usage/css/unocss/). No need to import icons into `.svelte` files.
+
+## Svelte
+
+Many [icon libraries for Svelte](https://www.sveltesociety.dev/packages?category=icons) exist. Avoid libraries with thousands of individual `.svelte` files per icon as they slow down [Vite's dependency optimization](https://vite.dev/guide/dep-pre-bundling.html), especially when using both umbrella and subpath imports (see [vite-plugin-svelte FAQ](https://github.com/sveltejs/vite-plugin-svelte/blob/main/docs/faq.md#what-is-going-on-with-vite-and-pre-bundling-dependencies)).
+
+## docs/kit/40-best-practices/07-images.md
+
+# Svelte 5 Images Guide
+
+## Image Optimization Approaches
+
+### Vite's Built-in Handling
+
+Vite automatically processes imported assets, adding hashes for caching and inlining small assets.
+
+```svelte
+<script>
+	import logo from '$lib/assets/logo.png';
+</script>
+
+<img alt="The project logo" src={logo} />
+```
+
+### @sveltejs/enhanced-img
+
+A plugin that creates optimized formats (avif/webp), multiple sizes, sets intrinsic dimensions, and strips EXIF data.
+
+#### Setup
+
+```bash
+npm install --save-dev @sveltejs/enhanced-img
+```
+
+```js
+// vite.config.js
+import { sveltekit } from '@sveltejs/kit/vite';
+import { enhancedImages } from '@sveltejs/enhanced-img';
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+	plugins: [
+		enhancedImages(),
+		sveltekit()
+	]
+});
+```
+
+#### Basic Usage
+
+```svelte
+<enhanced:img src="./path/to/your/image.jpg" alt="An alt text" />
+```
+
+#### Dynamic Image Selection
+
+```svelte
+<script>
+	import MyImage from './path/to/your/image.jpg?enhanced';
+</script>
+
+<enhanced:img src={MyImage} alt="some alt text" />
+```
+
+Using glob imports:
+
+```svelte
+<script>
+	const imageModules = import.meta.glob(
+		'/path/to/assets/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}',
+		{
+			eager: true,
+			query: {
+				enhanced: true
+			}
+		}
+	)
+</script>
+
+{#each Object.entries(imageModules) as [_path, module]}
+	<enhanced:img src={module.default} alt="some alt text" />
+{/each}
+```
+
+#### Responsive Images
+
+For responsive images, specify `sizes`:
+
+```svelte
+<enhanced:img src="./image.png" sizes="min(1280px, 100vw)"/>
+```
+
+Custom widths:
+
+```svelte
+<enhanced:img
+  src="./image.png?w=1280;640;400"
+  sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+/>
+```
+
+#### Image Transforms
+
+Apply transforms via query parameters:
+
+```svelte
+<enhanced:img src="./path/to/your/image.jpg?blur=15" alt="An alt text" />
+```
+
+### CDN-based Dynamic Images
+
+For images not available at build time (CMS, user content), use a CDN:
+- [`@unpic/svelte`](https://unpic.pics/img/svelte/) - CDN-agnostic library
+- CDN-specific libraries (Cloudinary, etc.)
+- CMS with built-in image handling (Contentful, Storyblok, Contentstack)
+
+## Best Practices
+
+- Use appropriate solution for each image type
+- Consider serving all images via CDN
+- Provide 2x resolution images for HiDPI displays
+- Use `sizes` for large images to serve smaller versions on mobile
+- Set `fetchpriority="high"` for important images
+- Constrain images with containers to prevent layout shift
+- Always provide good `alt` text
+- Don't use `em`/`rem` in `sizes` if you change their default size
+
+## docs/kit/40-best-practices/20-seo.md
+
+# Svelte SEO Guide
+
+## Out of the Box SEO Benefits
+
+### SSR
+- Server-side rendering enabled by default
+- Better indexing by search engines
+- Can be configured for dynamic rendering if needed
+
+### Performance
+- Core Web Vitals impact search rankings
+- Minimal overhead improves performance
+- Test with [PageSpeed Insights](https://pagespeed.web.dev/) or [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+
+### URL Normalization
+- Redirects trailing slashes to non-trailing (or vice versa)
+- Prevents duplicate content issues
+
+## Manual SEO Setup
+
+### Metadata
+```svelte
+<svelte:head>
+  <title>Page Title</title>
+  <meta name="description" content="Page description">
+</svelte:head>
+```
+
+Common pattern: Return SEO data from page `load` functions, use in root layout.
+
+### Sitemaps
+Create dynamic sitemap with a server endpoint:
+
+```js
+// src/routes/sitemap.xml/+server.js
+export async function GET() {
+	return new Response(
+		`
+		<?xml version="1.0" encoding="UTF-8" ?>
+		<urlset
+			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+			xmlns:xhtml="https://www.w3.org/1999/xhtml"
+			xmlns:mobile="https://www.google.com/schemas/sitemap-mobile/1.0"
+			xmlns:news="https://www.google.com/schemas/sitemap-news/0.9"
+			xmlns:image="https://www.google.com/schemas/sitemap-image/1.1"
+			xmlns:video="https://www.google.com/schemas/sitemap-video/1.1"
+		>
+			
+		</urlset>`.trim(),
+		{
+			headers: {
+				'Content-Type': 'application/xml'
+			}
+		}
+	);
+}
+```
+
+### AMP Support
+
+1. Configure `svelte.config.js`:
+```js
+// svelte.config.js
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	kit: {
+		// since <link rel="stylesheet"> isn't
+		// allowed, inline all styles
+		inlineStyleThreshold: Infinity
+	}
+};
+
+export default config;
+```
+
+2. Disable CSR:
+```js
+// src/routes/+layout.server.js
+export const csr = false;
+```
+
+3. Add `amp` to `app.html`:
+```html
+<html amp>
+...
+```
+
+4. Transform HTML with hooks:
+```js
+// src/hooks.server.js
+import * as amp from '@sveltejs/amp';
+import dropcss from 'dropcss';
+
+/** @type {import('@sveltejs/kit').Handle} */
+export async function handle({ event, resolve }) {
+	let buffer = '';
+
+	return await resolve(event, {
+		transformPageChunk: ({ html, done }) => {
+			buffer += html;
+
+			if (done) {
+				let css = '';
+				const markup = amp
+					.transform(buffer)
+					.replace('⚡', 'amp') // dropcss can't handle this character
+					.replace(/<style amp-custom([^>]*?)>([^]+?)<\/style>/, (match, attributes, contents) => {
+						css = contents;
+						return `<style amp-custom${attributes}></style>`;
+					});
+
+				css = dropcss({ css, html: markup }).css;
+				return markup.replace('</style>', `${css}</style>`);
+			}
+		}
+	});
+}
+```
+
+Consider validating transformed HTML with `amphtml-validator` in the `handle` hook (only for prerendered pages).
+
+Instructions for LLMs: <SYSTEM>Always use Svelte 5 runes and Svelte 5 syntax. Runes do not need to be imported, they are globals. $state() runes are always declared using `let`, never with `const`. When passing a function to $derived, you must always use $derived.by(() => ...). Error boundaries can only catch errors during component rendering and at the top level of an $effect inside the error boundary. Error boundaries do not catch errors in onclick or other event handlers.</SYSTEM>
