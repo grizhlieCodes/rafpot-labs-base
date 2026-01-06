@@ -24,42 +24,58 @@ I also want to create a color system that I can use across all of my projects (o
    - ** Key Lessons To Learn**
       - Learn some modern css like `@container`, `:has`, `:is` and so on.
       - [X] Implement `oklch` system slowly and build an intuition towards it.
-   - **Core Components**
-      - [ ] Input(s)
-      - [ ] Select
-      - [ ] Checkbox
-      - [ ] Form -> tricky component overall, build my own pattern for it
-         - Will initially be worse than prebuilts, but eh. More learning.
-      - [X] Button
-      - [ ] Accordion
-      - [ ] Alert Dialog
-      - [ ] Calendar
-      - [ ] Combobox
-      - [ ] Date Field
-      - [ ] Date Picker
-      - [ ] Dialog
-      - [ ] Dropdown
-      - [ ] Label
-      - [ ] Navigation Menu
-      - [ ] Popover
-      - [ ] Progress
-      - [ ] Radio group
-      - [ ] Separator (line)
-      - [ ] Slider
-      - [ ] Switch
-      - [ ] Tabs
-      - [ ] Toggle 
-      - [ ] Toggle Group
-      - [ ] Toolbar
-      - [ ] Tooltip
-   - ** Potential Components** *Or just for later*
-      - [ ] Context Menu (?)
-      - [ ] Meter
-      - [ ] App Shell -> potentially complex
-      - [ ] Sidebar
-      - [ ] Works with App Shell
-      - [ ] Works well with mobile -> turns into an app like ui? 
-      - [ ]
+  - **Core Components**
+      - **Actions**
+          - [X] Button
+          - [ ] Toggle
+          - [ ] Toggle Group
+          - [ ] Toolbar
+      - **Forms**
+          - [ ] Form
+          - [ ] Label
+          - [ ] Input
+          - [ ] Textarea
+          - [ ] Select
+          - [ ] Checkbox
+          - [ ] Radio Group
+          - [ ] Switch
+          - [ ] Slider
+          - [ ] Combobox
+          - [ ] Date Field
+          - [ ] Calendar
+          - [ ] Date Picker
+      - **Layout**
+          - [ ] App Shell
+          - [ ] Sidebar
+          - [ ] Section
+          - [ ] Container
+          - [ ] Separator
+          - [ ] Aspect Ratio
+      - **Overlays**
+          - [ ] Dialog
+          - [ ] Alert Dialog
+          - [ ] Popover
+          - [ ] Tooltip
+          - [ ] Dropdown Menu
+          - [ ] Context Menu
+      - **Disclosure**
+          - [ ] Accordion
+          - [ ] Tabs
+          - [ ] Collapsible
+      - **Typography**
+          - [ ] Heading
+          - [ ] Text
+          - [ ] Rich Text
+          - [ ] Code/Kbd
+      - **Feedback**
+          - [ ] Progress
+          - [ ] Meter
+          - [ ] Toast
+          - [ ] Badge
+      - **Navigation**
+          - [ ] Navigation Menu
+          - [ ] Pagination
+          - [ ] Breadcrumbs
 
 
 ## CSS Things to look into
