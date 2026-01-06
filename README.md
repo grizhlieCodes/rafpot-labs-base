@@ -21,7 +21,7 @@ I also want to create a color system that I can use across all of my projects (o
 ## Tasks
 - [X] Build a good CSS base
 - [ ] Build a good base of UI Components that will feed all of my projects
-   - ** Key Lessons To Learn**
+   - **Key Lessons To Learn**
       - Learn some modern css like `@container`, `:has`, `:is` and so on.
       - [X] Implement `oklch` system slowly and build an intuition towards it.
   - **Core Components**
