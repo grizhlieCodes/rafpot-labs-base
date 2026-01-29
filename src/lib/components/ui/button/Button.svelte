@@ -83,38 +83,38 @@
 		*/
 		.button {
 			&.small {
-				--_button-padding: 0.35rem 0.2rem;
+				--_button-padding: var(--spacing-1-5) var(--spacing-2-5);
 				--_button-font-size: var(--size-body-3);
-				--_deco-dot-size: 0.35rem;
-				--_decorative-button-padding-right: 0.25rem;
+				--_deco-dot-size: var(--spacing-1-5);
+				--_decorative-button-padding-right: var(--spacing-1);
 			}
 
 			&.medium {
-				--_button-padding: 0.35rem 0.5rem;
+				--_button-padding: var(--spacing-2) var(--spacing-3);
 				--_button-font-size: var(--size-body-4);
-				--_deco-dot-size: 0.4rem;
-				--_decorative-button-padding-right: 0.3rem;
+				--_deco-dot-size: var(--spacing-1-5);
+				--_decorative-button-padding-right: calc(var(--spacing) * 1.25);
 			}
 
 			&.default {
-				--_button-padding: 0.5rem 0.65rem;
+				--_button-padding: var(--spacing-2) var(--spacing-3-5);
 				--_button-font-size: var(--size-body-5);
-				--_deco-dot-size: 0.425rem;
-				--_decorative-button-padding-right: 0.4rem;
+				--_deco-dot-size: calc(var(--spacing) * 1.75);
+				--_decorative-button-padding-right: var(--spacing-1-5);
 			}
 
 			&.large {
-				--_button-padding: 0.5rem 0.75rem;
+				--_button-padding: var(--spacing-2) var(--spacing-3);
 				--_button-font-size: var(--size-body-6);
-				--_deco-dot-size: 0.45rem;
-				--_decorative-button-padding-right: 0.5rem;
+				--_deco-dot-size: calc(var(--spacing) * 1.8);
+				--_decorative-button-padding-right: var(--spacing-2);
 			}
 
 			&.extra-large {
-				--_button-padding: 0.55rem 1.25rem;
+				--_button-padding: var(--spacing-2.5) var(--spacing-5);
 				--_button-font-size: var(--size-body-7);
-				--_deco-dot-size: 0.5rem;
-				--_decorative-button-padding-right: 0.55rem;
+				--_deco-dot-size: var(--spacing-2);
+				--_decorative-button-padding-right: var(--spacing-2);
 				--_button-font-weight: var(--font-weight-4);
 			}
 		}
