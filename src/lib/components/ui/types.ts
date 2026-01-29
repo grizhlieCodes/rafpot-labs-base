@@ -5,7 +5,7 @@ export type ButtonProps = {
   href?: string | undefined | null;
   disabled?: boolean | undefined | null;
   class?: string | undefined | null;
-  variant?: 'base' | 'primary' | 'outline' | 'ghost';
+  variant?: 'base' | 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'small' | 'medium' | 'default' | 'large' | 'extra-large';
   ref?: HTMLElement | undefined | null;
   type?: 'button' | 'submit' | undefined | null;
