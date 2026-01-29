@@ -1,22 +1,6 @@
 /* Custom Colors: These go on top of Tailwind's color system */
 /* https://tailwindcss.com/docs/colors */
 
-@layer alias {
-  html {
-    /*--color-violet-custom-0: oklch(98.8% 0.01 304.5deg);
-    --color-violet-custom-1: oklch(96.82% 0.01 308.58deg);
-    --color-violet-custom-2: oklch(93.88% 0.02 310.21deg);
-    --color-violet-custom-3: oklch(90.69% 0.03 308.21deg);
-    --color-violet-custom-4: oklch(87.73% 0.03 308.98deg);
-    --color-violet-custom-5: oklch(84.47% 0.04 308.66deg);
-    --color-violet-custom-6: oklch(77.15% 0.04 307.89deg);
-    --color-violet-custom-7: oklch(69.74% 0.04 308.61deg);
-    --color-violet-custom-8: oklch(61.83% 0.04 308.5deg);
-    --color-violet-custom-9: oklch(53.97% 0.04 309.24deg);
-    --color-violet-custom-10: oklch(45.73% 0.04 308.3deg);*/
-  }
-}
-
 @layer theme {
   :root {
     color-scheme: light dark;
