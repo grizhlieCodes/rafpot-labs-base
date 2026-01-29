@@ -1,0 +1,138 @@
+@layer alias {
+  html {
+    /* SURFACE */
+    --surface-border-1: var(--surface-6);
+    --surface-border-1: var(--surface-7);
+    --surface-border-1: var(--surface-8);
+    --surface-border-solid: var(--surface-9);
+
+    --surface-text-1: var(--surface-9);
+    --surface-text-2: var(--surface-10);
+    --surface-text-3: var(--surface-11);
+    --surface-text-4: var(--surface-12);
+
+    --surface-text-on-solid-1: var(--surface-1);
+    --surface-text-on-solid-2: var(--surface-3);
+    --surface-text-on-solid-3: var(--surface-5);
+    --surface-text-on-solid-4: var(--surface-7);
+
+    --surface-bg-solid: var(--surface-12);
+    --surface-bg-solid-hover: var(--surface-11);
+
+    --surface-bg-base-1: var(--surface-1);
+    --surface-bg-base-2: var(--surface-2);
+
+    --surface-bg-1: var(--surface-3);
+    --surface-bg-2: var(--surface-4);
+    --surface-bg-3: var(--surface-5);
+
+    /* PRIMARY */
+    --primary-bg-1: var(--primary-3);
+    --primary-bg-2: var(--primary-4);
+    --primary-bg-3: var(--primary-5);
+    --primary-bg-solid: var(--primary-9);
+    --primary-bg-solid-hover: var(--primary-11);
+
+    --primary-border-1: var(--primary-6);
+    --primary-border-2: var(--primary-7);
+    --primary-border-3: var(--primary-8);
+
+    --primary-text-1: var(--primary-9);
+    --primary-text-2: var(--primary-10);
+    --primary-text-3: var(--primary-11);
+    --primary-text-4: var(--primary-12);
+    --primary-text-on-solid-1: var(--primary-1);
+    --primary-text-on-solid-2: var(--primary-2);
+
+    /* SECONDARY */
+    --secondary-bg-1: var(--secondary-3);
+    --secondary-bg-2: var(--secondary-4);
+    --secondary-bg-3: var(--secondary-5);
+    --secondary-bg-solid: var(--secondary-9);
+    --secondary-bg-solid-hover: var(--secondary-10);
+
+    --secondary-border-1: var(--secondary-6);
+    --secondary-border-2: var(--secondary-7);
+    --secondary-border-3: var(--secondary-8);
+
+    --secondary-text-1: var(--secondary-9);
+    --secondary-text-2: var(--secondary-10);
+    --secondary-text-3: var(--secondary-11);
+    --secondary-text-4: var(--secondary-12);
+    --secondary-text-on-solid-1: var(--secondary-1);
+    --secondary-text-on-solid-2: var(--secondary-2);
+
+    /* SUCCESS */
+    --success-bg-1: var(--success-3);
+    --success-bg-2: var(--success-4);
+    --success-bg-3: var(--success-5);
+    --success-bg-solid: var(--success-9);
+    --success-bg-solid-hover: var(--success-10);
+
+    --success-border-1: var(--success-6);
+    --success-border-2: var(--success-7);
+    --success-border-3: var(--success-8);
+
+    --success-text-1: var(--success-9);
+    --success-text-2: var(--success-10);
+    --success-text-3: var(--success-11);
+    --success-text-4: var(--success-12);
+    --success-text-on-solid-1: var(--success-1);
+    --success-text-on-solid-2: var(--success-2);
+
+    /* INFO */
+    --info-bg-1: var(--info-3);
+    --info-bg-2: var(--info-4);
+    --info-bg-3: var(--info-5);
+    --info-bg-solid: var(--info-9);
+    --info-bg-solid-hover: var(--info-10);
+
+    --info-border-1: var(--info-6);
+    --info-border-2: var(--info-7);
+    --info-border-3: var(--info-8);
+
+    --info-text-1: var(--info-9);
+    --info-text-2: var(--info-10);
+    --info-text-3: var(--info-11);
+    --info-text-4: var(--info-12);
+    --info-text-on-solid-1: var(--info-1);
+    --info-text-on-solid-2: var(--info-2);
+
+    /* WARNING */
+    --warning-bg-1: var(--warning-3);
+    --warning-bg-2: var(--warning-4);
+    --warning-bg-3: var(--warning-5);
+    --warning-bg-solid: var(--warning-9);
+    --warning-bg-solid-hover: var(--warning-10);
+
+    --warning-border-1: var(--warning-6);
+    --warning-border-2: var(--warning-7);
+    --warning-border-3: var(--warning-8);
+
+    --warning-text-1: var(--warning-9);
+    --warning-text-2: var(--warning-10);
+    --warning-text-3: var(--warning-11);
+    --warning-text-4: var(--warning-12);
+    --warning-text-on-solid-1: var(--warning-1);
+    --warning-text-on-solid-2: var(--warning-2);
+
+    /* DANGER */
+    --danger-bg-1: var(--danger-3);
+    --danger-bg-2: var(--danger-4);
+    --danger-bg-3: var(--danger-5);
+    --danger-bg-solid: var(--danger-9);
+    --danger-bg-solid-hover: var(--danger-10);
+
+    --danger-border-1: var(--danger-6);
+    --danger-border-2: var(--danger-7);
+    --danger-border-3: var(--danger-8);
+
+    --danger-text-1: var(--danger-9);
+    --danger-text-2: var(--danger-10);
+    --danger-text-3: var(--danger-11);
+    --danger-text-4: var(--danger-12);
+    --danger-text-on-solid-1: var(--danger-1);
+    --danger-text-on-solid-2: var(--danger-2);
+
+  }
+}

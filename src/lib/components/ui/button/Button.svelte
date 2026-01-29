@@ -127,47 +127,60 @@
 		.button {
 			/* See color-tokens.css to review/change these values */
 			&.base {
-				--_button-bg-col: var(--color-surface-2);
-				--_button-text-col: var(--color-surface-7);
-				--_deco-dot-col: var(--color-primary-4);
-				--_button-border-col: var(--color-surface-3);
+				--_button-bg-col: var(--surface-bg-2);
+				--_button-text-col: var(--surface-text-3);
+				--_deco-dot-col: var(--primary-bg-solid);
+				--_button-border-col: var(--surface-border-1);
 			}
 
 			&.primary {
-				--_button-bg-col: var(--color-primary-6);
-				--_button-text-col: var(--color-primary-0);
-				--_deco-dot-col: var(--color-primary-2);
-				--_button-border-col: var(--color-primary-8);
+				--_button-bg-col: var(--primary-bg-solid);
+				--_button-text-col: var(--primary-text-on-solid-1);
+				--_deco-dot-col: var(--primary-bg-1);
+				--_button-border-col: var(--primary-border-3);
+			}
+
+			&.secondary {
+				--_button-bg-col: var(--secondary-bg-solid);
+				--_button-text-col: var(--secondary-text-on-solid-1);
+				--_deco-dot-col: var(--secondary-bg-1);
+				--_button-border-col: var(--secondary-border-3);
 			}
 
 			&:hover {
 				&:not(:is(.decorative)) {
 					&.base {
-						--_button-text-col-hover: var(--color-surface-9);
-						--_button-bg-col-hover: var(--color-surface-3);
-						--_button-border-col-hover: var(--color-surface-4);
+						--_button-text-col-hover: var(--surface-text-3);
+						--_button-bg-col-hover: var(--surface-bg-3);
+						--_button-border-col-hover: var(--surface-border-solid);
 					}
 
 					&.primary {
-						--_button-text-col-hover: var(--color-primary-1);
-						--_button-bg-col-hover: var(--color-primary-7);
-						--_button-border-col-hover: var(--color-primary-9);
+						--_button-text-col-hover: var(--primary-text-on-solid-2);
+						--_button-bg-col-hover: var(--primary-bg-solid-hover);
+						--_button-border-col-hover: var(--primary-border-3);
+					}
+
+					&.secondary {
+						--_button-text-col-hover: var(--secondary-text-on-solid-2);
+						--_button-bg-col-hover: var(--secondary-bg-solid-hover);
+						--_button-border-col-hover: var(--secondary-border-3);
 					}
 				}
 
 				&:is(.decorative) {
 					&.base {
-						--_button-text-col-hover: var(--color-surface-9);
-						--_button-border-col-hover: var(--color-surface-5);
+						--_button-text-col-hover: var(--primary-text-on-solid-1);
+						--_button-border-col-hover: var(--primary-border-2);
 					}
 
 					&.primary {
-						--_button-text-col-hover: var(--color-primary-8);
-						--_button-bg-col-hover: var(--color-primary-8);
-						--_button-border-col-hover: var(--color-primary-9);
+						--_button-text-col-hover: var(--primary-text-3);
+						--_button-bg-col-hover: var(--primary-bg-solid-hover);
+						--_button-border-col-hover: var(--primary-border-3);
 					}
 					&.secondary {
-						--_button-text-col-hover: var(--color-secondary-8);
+						--_button-text-col-hover: var(--secondary-text-on-solid-1);
 					}
 				}
 			}
