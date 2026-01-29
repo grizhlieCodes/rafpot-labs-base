@@ -26,7 +26,18 @@ I also want to create a color system that I can use across all of my projects (o
       - [X] Implement `oklch` system slowly and build an intuition towards it.
   - **Core Components**
       - **Actions**
-          - [X] Button
+          - [X] Button (Done in Figma, now convert to code)
+            - Base
+            - Primary
+            - Secondary
+            - Tertiary
+            - Subtle (no bg on default)
+            - IconOnly
+            - Additional Buttons
+              - Success
+              - Info
+              - Warning
+              - Danger
           - [ ] Toggle
           - [ ] Toggle Group
           - [ ] Toolbar
