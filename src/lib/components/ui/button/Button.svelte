@@ -7,7 +7,7 @@
 		disabled = false,
 		class: className = undefined,
 		variant = 'base',
-		size = 'default',
+		size = 'base',
 		ref = $bindable(null),
 		decorative = false,
 		type = undefined,
@@ -62,7 +62,7 @@
 
 			font-size: var(--_button-font-size);
 			box-shadow: 1px 3px 10px color-mix(in oklch, var(--color-surface-500) 60%, var(--color-surface-50));
-			border: var(--button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
+			border: var(--_button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
 			padding: var(--_button-padding);
 			border-radius: var(--radius-base);
 
@@ -83,47 +83,33 @@
 		*/
 		.button {
 			&.small {
-				--_button-padding: var(--spacing-1-5) var(--spacing-2-5);
-				--_button-font-size: var(--size-body-3);
+				--_button-padding: var(--spacing-1-5) var(--spacing-3);
+				--_button-font-size: var(--size-body-5);
 				--_deco-dot-size: var(--spacing-1-5);
 				--_decorative-button-padding-right: var(--spacing-1);
 			}
 
-			&.medium {
-				--_button-padding: var(--spacing-2) var(--spacing-3);
-				--_button-font-size: var(--size-body-4);
-				--_deco-dot-size: var(--spacing-1-5);
-				--_decorative-button-padding-right: calc(var(--spacing) * 1.25);
-			}
-
-			&.default {
-				--_button-padding: var(--spacing-2) var(--spacing-3-5);
+			&.base {
+				--_button-padding: var(--spacing-1-5) var(--spacing-4);
 				--_button-font-size: var(--size-body-5);
 				--_deco-dot-size: calc(var(--spacing) * 1.75);
 				--_decorative-button-padding-right: var(--spacing-1-5);
 			}
 
 			&.large {
-				--_button-padding: var(--spacing-2) var(--spacing-3);
+				--_button-padding: var(--spacing-2) var(--spacing-4);
 				--_button-font-size: var(--size-body-6);
 				--_deco-dot-size: calc(var(--spacing) * 1.8);
 				--_decorative-button-padding-right: var(--spacing-2);
-			}
-
-			&.extra-large {
-				--_button-padding: var(--spacing-2.5) var(--spacing-5);
-				--_button-font-size: var(--size-body-7);
-				--_deco-dot-size: var(--spacing-2);
-				--_decorative-button-padding-right: var(--spacing-2);
-				--_button-font-weight: var(--font-weight-4);
 			}
 		}
 
 		/*
 			>>> VARIANT SYSTEM <<<
 			>> "base" | "primary" | "secondary" | "tertiary" | "outline" | "ghost" <<
-			>> This predominantly controls the colors. <<
+
 		*/
+		/* >> This predominantly controls the colors. << */
 		.button {
 			/* See color-tokens.css to review/change these values */
 			&.base {
@@ -147,6 +133,13 @@
 				--_button-border-col: var(--secondary-border-3);
 			}
 
+			&.danger {
+				--_button-bg-col: var(--danger-bg-solid);
+				--_button-text-col: var(--danger-text-on-solid-1);
+				--_deco-dot-col: var(--danger-bg-1);
+				--_button-border-col: var(--danger-border-3);
+			}
+
 			&:hover {
 				&:not(:is(.decorative)) {
 					&.base {
@@ -166,6 +159,12 @@
 						--_button-bg-col-hover: var(--secondary-bg-solid-hover);
 						--_button-border-col-hover: var(--secondary-border-3);
 					}
+
+					&.danger {
+						--_button-text-col-hover: var(--danger-text-on-solid-2);
+						--_button-bg-col-hover: var(--danger-bg-solid-hover);
+						--_button-border-col-hover: var(--danger-border-3);
+					}
 				}
 
 				&:is(.decorative) {
@@ -184,6 +183,11 @@
 					}
 				}
 			}
+		}
+
+		.button {
+		  &.ghost {}
+			&.test{}
 		}
 
 		/* Decorative Add-on (decorative: true) */
