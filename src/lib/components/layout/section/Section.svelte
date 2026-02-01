@@ -1,5 +1,26 @@
 <script module lang="ts">
-	export type ZeroToTwenty = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19' | '20';
+	export type ZeroToTwenty =
+		| '0'
+		| '1'
+		| '2'
+		| '3'
+		| '4'
+		| '5'
+		| '6'
+		| '7'
+		| '8'
+		| '9'
+		| '10'
+		| '11'
+		| '12'
+		| '13'
+		| '14'
+		| '15'
+		| '16'
+		| '17'
+		| '18'
+		| '19'
+		| '20';
 
 	export type SectionStyles = {
 		sectionBase: string;
@@ -38,26 +59,26 @@
 			'0': '' // 0px -> 0px -> 0px
 		},
 		xPaddingOptions: {
-			'20': 'px-36 md:px-48 lg:px-60 xl:px-0', // 144px -> 192px -> 240px -> 0px
-			'19': 'px-34 md:px-46 lg:px-58 xl:px-0', // 136px -> 184px -> 232px -> 0px
-			'18': 'px-32 md:px-44 lg:px-56 xl:px-0', // 128px -> 176px -> 224px -> 0px
-			'17': 'px-30 md:px-42 lg:px-54 xl:px-0', // 120px -> 168px -> 216px -> 0px
-			'16': 'px-28 md:px-40 lg:px-52 xl:px-0', // 112px -> 160px -> 208px -> 0px
-			'15': 'px-26 md:px-38 lg:px-48 xl:px-0', // 104px -> 152px -> 192px -> 0px
-			'14': 'px-24 md:px-36 lg:px-44 xl:px-0', // 96px -> 144px -> 176px -> 0px
-			'13': 'px-22 md:px-32 lg:px-40 xl:px-0', // 88px -> 128px -> 160px -> 0px
-			'12': 'px-20 md:px-28 lg:px-36 xl:px-0', // 80px -> 112px -> 144px -> 0px
-			'11': 'px-18 md:px-24 lg:px-32 xl:px-0', // 72px -> 96px -> 128px -> 0px
-			'10': 'px-16 md:px-20 lg:px-28 xl:px-0', // 64px -> 80px -> 112px -> 0px
-			'9': 'px-14 md:px-18 lg:px-24 xl:px-0', // 56px -> 72px -> 96px -> 0px
-			'8': 'px-12 md:px-16 lg:px-20 xl:px-0', // 48px -> 64px -> 80px -> 0px
-			'7': 'px-10 md:px-14 lg:px-16 xl:px-0', // 40px -> 56px -> 64px -> 0px
-			'6': 'px-8 md:px-12 lg:px-14 xl:px-0', // 32px -> 48px -> 56px -> 0px
-			'5': 'px-6 md:px-10 lg:px-12 xl:px-0', // 24px -> 40px -> 48px -> 0px
-			'4': 'px-7 md:px-10 lg:px-12 xl:px-0', // 28px -> 40px -> 48px -> 0px
-			'3': 'px-5 md:px-7 lg:px-9 xl:px-0', // 20px -> 28px -> 36px -> 0px
-			'2': 'px-3 md:px-5 lg:px-7 xl:px-0', // 12px -> 20px -> 28px -> 0px
-			'1': 'px-1 md:px-3 lg:px-5 xl:px-0', // 4px -> 12px -> 20px -> 0px
+			'20': 'px-36 md:px-48 lg:px-60', // 144px -> 192px -> 240px -> 0px
+			'19': 'px-34 md:px-46 lg:px-58', // 136px -> 184px -> 232px -> 0px
+			'18': 'px-32 md:px-44 lg:px-56', // 128px -> 176px -> 224px -> 0px
+			'17': 'px-30 md:px-42 lg:px-54', // 120px -> 168px -> 216px -> 0px
+			'16': 'px-28 md:px-40 lg:px-52', // 112px -> 160px -> 208px -> 0px
+			'15': 'px-26 md:px-38 lg:px-48', // 104px -> 152px -> 192px -> 0px
+			'14': 'px-24 md:px-36 lg:px-44', // 96px -> 144px -> 176px -> 0px
+			'13': 'px-22 md:px-32 lg:px-40', // 88px -> 128px -> 160px -> 0px
+			'12': 'px-20 md:px-28 lg:px-36', // 80px -> 112px -> 144px -> 0px
+			'11': 'px-18 md:px-24 lg:px-32', // 72px -> 96px -> 128px -> 0px
+			'10': 'px-16 md:px-20 lg:px-28', // 64px -> 80px -> 112px -> 0px
+			'9': 'px-14 md:px-18 lg:px-24', // 56px -> 72px -> 96px -> 0px
+			'8': 'px-12 md:px-16 lg:px-20', // 48px -> 64px -> 80px -> 0px
+			'7': 'px-10 md:px-14 lg:px-16', // 40px -> 56px -> 64px -> 0px
+			'6': 'px-8 md:px-12 lg:px-14', // 32px -> 48px -> 56px -> 0px
+			'5': 'px-6 md:px-10 lg:px-12', // 24px -> 40px -> 48px -> 0px
+			'4': 'px-7 md:px-10 lg:px-12', // 28px -> 40px -> 48px -> 0px
+			'3': 'px-5 md:px-7 lg:px-9', // 20px -> 28px -> 36px -> 0px
+			'2': 'px-3 md:px-5 lg:px-7', // 12px -> 20px -> 28px -> 0px
+			'1': 'px-1 md:px-3 lg:px-5', // 4px -> 12px -> 20px -> 0px
 			'0': '' // 0px -> 0px -> 0px -> 0px
 		},
 		gapOptions: {
@@ -85,23 +106,44 @@
 		}
 	};
 
-	export type SectionProps = {
+	export const BOTTOM_BORDER_STYLE = {
+		mainBlockBorder: 'border-surface-5 dark:border-surface-13 border-b border-solid duration-(--duration-global-cols) transition-colors relative',
+		// topSecondBorder:
+		// 	'after:absolute after:-top-5 after:w-full after:h-px after:left-0 after:bg-surface-5 dark:after:bg-surface-13 after:transition-colors after:duration-(--duration-global-cols)',
+		// bottomSecondBorder:
+		// 	'before:absolute before:-bottom-5 before:w-full before:h-px before:left-0 before:bg-surface-5 dark:before:bg-surface-13 before:transition-colors before:duration-(--duration-global-cols)'
+	};
+
+	export type BaseSectionProps = {
 		class?: string;
+		bottomBorder?: boolean;
 		children?: Snippet;
 	};
+
+	export type SectionProps =
+		| (BaseSectionProps & {
+				type: 'div';
+				id?: null | string;
+				labelId?: null;
+		  })
+		| (BaseSectionProps & {
+				type: 'section';
+				id: string;
+				labelId: string;
+		  });
 </script>
 
 <script lang="ts">
 	import { cn } from '$lib/scripts/utils';
 	import type { Snippet } from 'svelte';
 
-	let { class: classList = '', children }: SectionProps = $props();
+	let { class: classList = '', id, labelId, type = 'section', bottomBorder = true, children }: SectionProps = $props();
 
-	let derivedSectionStyles = $derived('');
-
-	let sectionStyling = $derived(cn(sectionStyles.sectionBase, Object.values(derivedSectionStyles).join(' '), classList));
+	let sectionStyling = $derived(cn(sectionStyles.sectionBase, bottomBorder ? `${Object.values(BOTTOM_BORDER_STYLE).join(' ')} bottom-border` : '', classList));
+	// mb-4.75 = correct gap between sections
 </script>
 
-<section class="section {sectionStyling}">
+<svelte:element this={type} {id} aria-labelledby={labelId} class="section
+{sectionStyling}">
 	{@render children?.()}
-</section>
+</svelte:element>

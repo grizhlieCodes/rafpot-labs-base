@@ -1,16 +1,19 @@
-import SectionRoot from './Section.svelte'
-import Content from './SectionContent.svelte'
-import Background from './SectionBackground.svelte'
+import SectionRoot from './Section.svelte';
+import Content from './SectionContent.svelte';
+import Background from './SectionBackground.svelte';
+import Border from './SectionBorder.svelte';
 
 type SectionComponent = typeof SectionRoot & {
-  Content: typeof Content;
-  Background: typeof Background;
-}
+	Content: typeof Content;
+	Background: typeof Background;
+	Border: typeof Border;
+};
 
 const Section: SectionComponent = Object.assign(SectionRoot, {
-  Content,
-  Background
-})
+	Content,
+	Background,
+	Border
+});
 
 export default Section;
 
