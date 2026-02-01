@@ -1,4 +1,57 @@
+<script module lang="ts">
+	export type ButtonVariant = 'base' | 'primary' | 'secondary' | 'danger' | 'outline' | 'ghost' | 'link';
+	export type ButtonSize = 'small' | 'base' | 'large';
+
+	export const buttonStyles = {
+		base: 'cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap border border-solid shadow-sm overflow-hidden transition-all duration-300 ease-in-out rounded-(--radius-base)',
+		sizeOptions: {
+			small: { button: 'px-3 py-1.5 text-sm', decorativeDotSize: 0.375, decorativePaddingRight: 0.25 },
+			base: { button: 'px-4 py-1.5 text-md', decorativeDotSize: 0.45, decorativePaddingRight: 0.375 },
+			large: { button: 'px-4 py-2 text-base', decorativeDotSize: 0.5, decorativePaddingRight: 0.5 }
+		},
+		variantBase: {
+			base: 'bg-surface-2 text-surface-12 border-surface-4',
+			primary: 'bg-primary-13 text-primary-1 border-primary-10',
+			secondary: 'bg-secondary-9 text-secondary-1 border-secondary-10',
+			danger: 'bg-danger-9 text-danger-1 border-danger-10',
+			outline: 'bg-transparent text-surface-12 border-surface-4',
+			ghost: 'bg-transparent text-surface-12 border-transparent shadow-none',
+			link: 'bg-transparent text-surface-11 border-transparent shadow-none no-underline'
+		},
+		variantHover: {
+			base: 'hover:bg-surface-4 hover:border-surface-5',
+			primary: 'hover:bg-primary-15 hover:text-primary-1 hover:border-primary-11',
+			secondary: 'hover:bg-secondary-10 hover:border-secondary-11',
+			danger: 'hover:bg-danger-11 hover:border-danger-11',
+			outline: 'hover:bg-surface-3 hover:border-surface-6',
+			ghost: 'hover:bg-surface-2',
+			link: 'hover:underline underline-offset-4'
+		},
+		decorative: {
+			buttonBase: 'group',
+			textBase: 'relative z-10 pr-[calc(var(--decorative-padding-right)+var(--decorative-dot-size))] transition-all duration-300 ease-in-out',
+			textHover: 'group-hover:pr-0',
+			dotBase:
+				"before:content-[''] before:absolute before:right-0 before:top-1/2 before:-translate-y-1/2 before:w-(--decorative-dot-size) before:h-(--decorative-dot-size) before:rounded-full before:-z-10 before:transition-transform before:duration-300 before:ease-in-out group-hover:before:scale-[40]"
+		},
+		decorativeVariants: {
+			base: { button: 'border-surface-3 hover:border-primary-3', text: 'group-hover:text-primary-1', dot: 'before:bg-primary-9' },
+			primary: { button: 'border-primary-8 hover:bg-primary-10 hover:border-primary-3', text: 'group-hover:text-primary-12', dot: 'before:bg-primary-2' },
+			secondary: {
+				button: 'border-secondary-8 hover:bg-secondary-10 hover:border-secondary-3',
+				text: 'group-hover:text-secondary-12',
+				dot: 'before:bg-secondary-2'
+			},
+			danger: { button: 'border-danger-8 hover:bg-danger-10 hover:border-danger-3', text: 'group-hover:text-danger-12', dot: 'before:bg-danger-2' },
+			outline: { button: 'border-surface-4 hover:bg-surface-2 hover:border-surface-3', text: 'group-hover:text-surface-12', dot: 'before:bg-surface-4' },
+			ghost: { button: 'hover:bg-surface-2', text: 'group-hover:text-surface-12', dot: 'before:bg-surface-4' },
+			link: { button: 'hover:underline underline-offset-4', text: 'group-hover:text-primary-11', dot: 'before:bg-primary-2' }
+		}
+	} as const;
+</script>
+
 <script lang="ts">
+	import { cn } from '$lib/scripts/utils';
 	import { type ButtonProps } from '$lib/components/ui/types';
 
 	let {
@@ -17,12 +70,43 @@
 
 	let buttonRef: HTMLElement | undefined = $state();
 
+	let sizeConfig = $derived(buttonStyles.sizeOptions[size]);
+
+	let buttonClass = $derived(
+		cn(
+			buttonStyles.base,
+			sizeConfig.button,
+			buttonStyles.variantBase[variant],
+			decorative ? buttonStyles.decorative.buttonBase : buttonStyles.variantHover[variant],
+			decorative ? buttonStyles.decorativeVariants[variant].button : '',
+			className
+		)
+	);
+
+	let decorativeTextClass = $derived(
+		cn(
+			buttonStyles.decorative.textBase,
+			buttonStyles.decorative.textHover,
+			buttonStyles.decorative.dotBase,
+			buttonStyles.decorativeVariants[variant].text,
+			buttonStyles.decorativeVariants[variant].dot
+		)
+	);
+
+	let decorativeStyle = $derived(
+		decorative ? `--decorative-dot-size: ${sizeConfig.decorativeDotSize}rem; --decorative-padding-right: ${sizeConfig.decorativePaddingRight}rem;` : undefined
+	);
+
 	$effect(() => {
-		if (!buttonRef || !decorative) return;
+		if (!buttonRef) return;
+		if (!decorative) {
+			buttonRef.style.minWidth = '';
+			return;
+		}
 		// Set a minWidth of element width + decorative sizing
 		let { width } = buttonRef.getBoundingClientRect();
 		let remWidth = width / 16 + 1;
-		buttonRef.style.minWidth = `calc(${remWidth}rem + var(--_deco-dot-size) + var(--_decorative-button-padding-right))`;
+		buttonRef.style.minWidth = `calc(${remWidth}rem + ${sizeConfig.decorativeDotSize}rem + ${sizeConfig.decorativePaddingRight}rem)`;
 	});
 </script>
 
@@ -33,196 +117,17 @@
 	bind:this={buttonRef}
 	disabled={href ? undefined : disabled}
 	aria-disabled={href ? disabled : undefined}
-	class="button {variant} {size} {className}"
-	class:decorative
+	class={buttonClass}
 	role={href && disabled ? 'link' : undefined}
 	{type}
 	{...restProps}
+	style={decorativeStyle}
 >
 	{#if !decorative}
 		{@render children?.()}
 	{:else}
-		<p class="text-content">
+		<p class={decorativeTextClass}>
 			{@render children?.()}
 		</p>
 	{/if}
 </svelte:element>
-
-<style>
-	@layer components {
-		.button {
-			height: auto;
-
-			background-color: var(--_button-bg-col-hover, var(--_button-bg-col));
-
-			color: var(--_button-text-col-hover, var(--_button-text-col));
-
-			font-weight: var(--_button-font-weight, var(--font-weight-5));
-			font-family: var(--base-font-family);
-
-			font-size: var(--_button-font-size);
-			box-shadow: 1px 3px 10px color-mix(in oklch, var(--color-surface-500) 60%, var(--color-surface-50));
-			border: var(--_button-border-size) solid var(--_button-border-col-hover, var(--_button-border-col, transparent));
-			padding: var(--_button-padding);
-			border-radius: var(--radius-base);
-
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			align-items: center;
-			justify-content: center;
-
-			transition: all 250ms ease-in-out;
-			overflow: hidden;
-		}
-
-		/*
-			>>> SIZE SYSTEM <<<
-			"small" | "medium" | "default" | "large" | "extra-large"
-			This controls things like font size, padding, decorative dot size
-		*/
-		.button {
-			&.small {
-				--_button-padding: var(--spacing-1-5) var(--spacing-3);
-				--_button-font-size: var(--size-body-5);
-				--_deco-dot-size: var(--spacing-1-5);
-				--_decorative-button-padding-right: var(--spacing-1);
-			}
-
-			&.base {
-				--_button-padding: var(--spacing-1-5) var(--spacing-4);
-				--_button-font-size: var(--size-body-5);
-				--_deco-dot-size: calc(var(--spacing) * 1.75);
-				--_decorative-button-padding-right: var(--spacing-1-5);
-			}
-
-			&.large {
-				--_button-padding: var(--spacing-2) var(--spacing-4);
-				--_button-font-size: var(--size-body-6);
-				--_deco-dot-size: calc(var(--spacing) * 1.8);
-				--_decorative-button-padding-right: var(--spacing-2);
-			}
-		}
-
-		/*
-			>>> VARIANT SYSTEM <<<
-			>> "base" | "primary" | "secondary" | "tertiary" | "outline" | "ghost" <<
-
-		*/
-		/* >> This predominantly controls the colors. << */
-		.button {
-			/* See color-tokens.css to review/change these values */
-			&.base {
-				--_button-bg-col: var(--surface-bg-2);
-				--_button-text-col: var(--surface-text-3);
-				--_deco-dot-col: var(--primary-bg-solid);
-				--_button-border-col: var(--surface-border-1);
-			}
-
-			&.primary {
-				--_button-bg-col: var(--primary-bg-solid);
-				--_button-text-col: var(--primary-text-on-solid-1);
-				--_deco-dot-col: var(--primary-bg-1);
-				--_button-border-col: var(--primary-border-3);
-			}
-
-			&.secondary {
-				--_button-bg-col: var(--secondary-bg-solid);
-				--_button-text-col: var(--secondary-text-on-solid-1);
-				--_deco-dot-col: var(--secondary-bg-1);
-				--_button-border-col: var(--secondary-border-3);
-			}
-
-			&.danger {
-				--_button-bg-col: var(--danger-bg-solid);
-				--_button-text-col: var(--danger-text-on-solid-1);
-				--_deco-dot-col: var(--danger-bg-1);
-				--_button-border-col: var(--danger-border-3);
-			}
-
-			&:hover {
-				&:not(:is(.decorative)) {
-					&.base {
-						--_button-text-col-hover: var(--surface-text-3);
-						--_button-bg-col-hover: var(--surface-bg-3);
-						--_button-border-col-hover: var(--surface-border-solid);
-					}
-
-					&.primary {
-						--_button-text-col-hover: var(--primary-text-on-solid-2);
-						--_button-bg-col-hover: var(--primary-bg-solid-hover);
-						--_button-border-col-hover: var(--primary-border-3);
-					}
-
-					&.secondary {
-						--_button-text-col-hover: var(--secondary-text-on-solid-2);
-						--_button-bg-col-hover: var(--secondary-bg-solid-hover);
-						--_button-border-col-hover: var(--secondary-border-3);
-					}
-
-					&.danger {
-						--_button-text-col-hover: var(--danger-text-on-solid-2);
-						--_button-bg-col-hover: var(--danger-bg-solid-hover);
-						--_button-border-col-hover: var(--danger-border-3);
-					}
-				}
-
-				&:is(.decorative) {
-					&.base {
-						--_button-text-col-hover: var(--primary-text-on-solid-1);
-						--_button-border-col-hover: var(--primary-border-2);
-					}
-
-					&.primary {
-						--_button-text-col-hover: var(--primary-text-3);
-						--_button-bg-col-hover: var(--primary-bg-solid-hover);
-						--_button-border-col-hover: var(--primary-border-3);
-					}
-					&.secondary {
-						--_button-text-col-hover: var(--secondary-text-on-solid-1);
-					}
-				}
-			}
-		}
-
-		.button {
-		  &.ghost {}
-			&.test{}
-		}
-
-		/* Decorative Add-on (decorative: true) */
-		/* Decorative color styling is handled above in the (variant) section */
-		.button:is(.decorative) {
-			> .text-content {
-				z-index: 10;
-				position: relative;
-				padding-right: calc(var(--_decorative-button-padding-right) + var(--_deco-dot-size));
-				transition: all 300ms ease-in-out;
-
-				&::before {
-					content: '';
-					position: absolute;
-					right: 0;
-					top: 50%;
-					transform: translateY(-50%);
-					width: var(--_deco-dot-size);
-					height: var(--_deco-dot-size);
-					background-color: var(--_deco-dot-col);
-					border-radius: 999px;
-					transition: transform 300ms ease-in-out;
-					z-index: -1;
-				}
-			}
-
-			&:hover {
-				.text-content {
-					padding-right: 0;
-
-					&::before {
-						transform: scale(4000%);
-					}
-				}
-			}
-		}
-	}
-</style>
