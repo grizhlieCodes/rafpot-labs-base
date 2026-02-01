@@ -675,6 +675,23 @@
   --color-blue-15: oklch(34.67% 0.1217 265.287);
   --color-blue-16: oklch(28.21% 0.0868 266.895);
 
+  --color-azure-1: oklch(97.39% 0.0106 245.063);
+   --color-azure-2: oklch(95.29% 0.0185 245.431);
+   --color-azure-3: oklch(92.58% 0.0303 244.309);
+   --color-azure-4: oklch(89.25% 0.0459 241.696);
+   --color-azure-5: oklch(84.38% 0.072 240.789);
+   --color-azure-6: oklch(78.92% 0.0992 241.187);
+   --color-azure-7: oklch(72.85% 0.1274 242.889);
+   --color-azure-8: oklch(68.1% 0.1415 246.155);
+   --color-azure-9: oklch(62.78% 0.1506 249.1);
+   --color-azure-10: oklch(56.92% 0.1547 251.724);
+   --color-azure-11: oklch(51.95% 0.1473 252.459);
+   --color-azure-12: oklch(47.46% 0.135 252.655);
+   --color-azure-13: oklch(43.45% 0.1177 252.312);
+   --color-azure-14: oklch(40.19% 0.0995 252.309);
+   --color-azure-15: oklch(35.31% 0.0805 253.088);
+   --color-azure-16: oklch(28.81% 0.0606 254.648);
+
   --color-indigo-1: oklch(96.2% 0.0173 272.364);
   --color-indigo-2: oklch(94.07% 0.0275 272.68);
   --color-indigo-3: oklch(91% 0.0426 273.255);
@@ -800,22 +817,22 @@
   --color-surface-15: var(--color-gray-15);
   --color-surface-16: var(--color-gray-16);
 
-  --color-primary-1: var(--color-blue-1);
-  --color-primary-2: var(--color-blue-2);
-  --color-primary-3: var(--color-blue-3);
-  --color-primary-4: var(--color-blue-4);
-  --color-primary-5: var(--color-blue-5);
-  --color-primary-6: var(--color-blue-6);
-  --color-primary-7: var(--color-blue-7);
-  --color-primary-8: var(--color-blue-8);
-  --color-primary-9: var(--color-blue-9);
-  --color-primary-10: var(--color-blue-10);
-  --color-primary-11: var(--color-blue-11);
-  --color-primary-12: var(--color-blue-12);
-  --color-primary-13: var(--color-blue-13);
-  --color-primary-14: var(--color-blue-14);
-  --color-primary-15: var(--color-blue-15);
-  --color-primary-16: var(--color-blue-16);
+  --color-primary-1: var(--color-azure-1);
+  --color-primary-2: var(--color-azure-2);
+  --color-primary-3: var(--color-azure-3);
+  --color-primary-4: var(--color-azure-4);
+  --color-primary-5: var(--color-azure-5);
+  --color-primary-6: var(--color-azure-6);
+  --color-primary-7: var(--color-azure-7);
+  --color-primary-8: var(--color-azure-8);
+  --color-primary-9: var(--color-azure-9);
+  --color-primary-10: var(--color-azure-10);
+  --color-primary-11: var(--color-azure-11);
+  --color-primary-12: var(--color-azure-12);
+  --color-primary-13: var(--color-azure-13);
+  --color-primary-14: var(--color-azure-14);
+  --color-primary-15: var(--color-azure-15);
+  --color-primary-16: var(--color-azure-16);
 
   --color-secondary-1: var(--color-yellow-1);
   --color-secondary-2: var(--color-yellow-2);
