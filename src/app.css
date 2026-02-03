@@ -26,7 +26,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 /* PRIMITIVE COLORS */
 @theme {
-
   --color-*: initial;
   /*--color-slate-1: #f8fafc;
   --color-slate-2: #f3f7fa;
@@ -922,11 +921,15 @@
 
 /* Additional tailwind classes */
 @theme {
-  --font-heading: "Geist Mono", monospace;
-  --font-body: "Geist", sans-serif;
-  --font-ui: "Geist Mono", monospace;
+  --font-mono: "Geist Mono", monospace;
+  --font-sans: "Geist", sans-serif;
+  --font-heading: var(--font-mono);
+  --font-body: var(--font-sans);
+  --font-ui: var(--font-mono);
   --radius-base: 0;
   --radius-base-child: 0;
+  --breakpoint-xs: 31.25rem;
+  --breakpoint-md-2: 56.25rem;
 }
 
 /* Global Variables  */
@@ -975,7 +978,17 @@
     }
 
   }
+  .inline-border {
+    @apply before:hidden before:xs:block before:w-px before:h-full before:row-start-1 before:bg-surface-5 dark:before:bg-surface-13 before:transition-colors before:duration-(--duration-global-cols) before:col-start-2 before:justify-self-start
+    after:hidden after:xs:block after:w-px after:h-full after:row-start-1 after:bg-surface-5 dark:after:bg-surface-13 after:transition-colors after:duration-(--duration-global-cols) after:-col-end-2 after:justify-self-end before:z-1 after:z-1;
+  }
 
 
+  .global-col-transition {
+    @apply transition-colors duration-(--duration-global-cols);
+  }
 
+  .global-border-bottom {
+    @apply border-surface-5 dark:border-surface-13 border-b border-solid transition-colors duration-(--duration-global-cols) relative;
+  }
 }
