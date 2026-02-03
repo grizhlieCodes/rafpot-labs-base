@@ -3,5 +3,9 @@
     "workbench.preferredDarkColorTheme": "Kanagawa Wave",
     "workbench.preferredLightColorTheme": "Kanagawa Lotus",
     "workbench.preferredHighContrastColorTheme": "Kanagawa Wave",
-    "workbench.preferredHighContrastLightColorTheme": "Kanagawa Lotus"
+    "workbench.preferredHighContrastLightColorTheme": "Kanagawa Lotus",
+    "editor.tabSize": 2,
+    "editor.fontFamily": "Monaspace Argon Var",
+    "editor.fontSize": 15,
+    "editor.fontWeight": "250"
 }
