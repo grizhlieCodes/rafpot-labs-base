@@ -10,5 +10,4 @@ export type ButtonProps = {
 	ref?: HTMLElement | undefined | null;
 	type?: 'button' | 'submit' | undefined | null;
 	onclick?: () => void;
-	decorative?: boolean;
 };

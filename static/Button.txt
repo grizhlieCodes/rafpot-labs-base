@@ -2,7 +2,7 @@
 	export type ButtonVariant = 'base' | 'primary' | 'secondary' | 'danger' | 'outline' | 'ghost' | 'link';
 	export type ButtonSize = 'small' | 'base' | 'large';
 
-	export const buttonStyles = {
+	export const clickableStyles = {
 		base: 'cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap border border-solid shadow-sm overflow-hidden transition-all duration-300 ease-in-out rounded-(--radius-base)',
 		sizeOptions: {
 			small: { button: 'px-3 py-1.5 text-sm', decorativeDotSize: 0.375, decorativePaddingRight: 0.25 },
@@ -10,7 +10,7 @@
 			large: { button: 'px-4 py-2 text-base', decorativeDotSize: 0.5, decorativePaddingRight: 0.5 }
 		},
 		variantBase: {
-			base: 'bg-surface-2 text-surface-12 border-surface-4',
+			base: 'bg-surface-2 dark:bg-surface-15 text-surface-12 dark:text-surface-5 border-surface-4 dark:border-surface-14',
 			primary: 'bg-primary-13 text-primary-1 border-primary-10',
 			secondary: 'bg-secondary-9 text-secondary-1 border-secondary-10',
 			danger: 'bg-danger-9 text-danger-1 border-danger-10',
@@ -19,7 +19,7 @@
 			link: 'bg-transparent text-surface-11 border-transparent shadow-none no-underline'
 		},
 		variantHover: {
-			base: 'hover:bg-surface-4 hover:border-surface-5',
+			base: 'hover:bg-surface-4 dark:hover:bg-surface-13 hover:border-surface-5 dark:hover:border-surface-12',
 			primary: 'hover:bg-primary-15 hover:text-primary-1 hover:border-primary-11',
 			secondary: 'hover:bg-secondary-10 hover:border-secondary-11',
 			danger: 'hover:bg-danger-11 hover:border-danger-11',
@@ -35,7 +35,7 @@
 				"before:content-[''] before:absolute before:right-0 before:top-1/2 before:-translate-y-1/2 before:w-(--decorative-dot-size) before:h-(--decorative-dot-size) before:rounded-full before:-z-10 before:transition-transform before:duration-300 before:ease-in-out group-hover:before:scale-[40]"
 		},
 		decorativeVariants: {
-			base: { button: 'border-surface-3 hover:border-primary-3', text: 'group-hover:text-primary-1', dot: 'before:bg-primary-9' },
+			base: { button: 'border-surface-1 hover:border-primary-3', text: 'group-hover:text-primary-1', dot: 'before:bg-primary-9' },
 			primary: { button: 'border-primary-8 hover:bg-primary-10 hover:border-primary-3', text: 'group-hover:text-primary-12', dot: 'before:bg-primary-2' },
 			secondary: {
 				button: 'border-secondary-8 hover:bg-secondary-10 hover:border-secondary-3',
@@ -70,26 +70,26 @@
 
 	let buttonRef: HTMLElement | undefined = $state();
 
-	let sizeConfig = $derived(buttonStyles.sizeOptions[size]);
+	let sizeConfig = $derived(clickableStyles.sizeOptions[size]);
 
 	let buttonClass = $derived(
 		cn(
-			buttonStyles.base,
+			clickableStyles.base,
 			sizeConfig.button,
-			buttonStyles.variantBase[variant],
-			decorative ? buttonStyles.decorative.buttonBase : buttonStyles.variantHover[variant],
-			decorative ? buttonStyles.decorativeVariants[variant].button : '',
+			clickableStyles.variantBase[variant],
+			decorative ? clickableStyles.decorative.buttonBase : clickableStyles.variantHover[variant],
+			decorative ? clickableStyles.decorativeVariants[variant].button : '',
 			className
 		)
 	);
 
 	let decorativeTextClass = $derived(
 		cn(
-			buttonStyles.decorative.textBase,
-			buttonStyles.decorative.textHover,
-			buttonStyles.decorative.dotBase,
-			buttonStyles.decorativeVariants[variant].text,
-			buttonStyles.decorativeVariants[variant].dot
+			clickableStyles.decorative.textBase,
+			clickableStyles.decorative.textHover,
+			clickableStyles.decorative.dotBase,
+			clickableStyles.decorativeVariants[variant].text,
+			clickableStyles.decorativeVariants[variant].dot
 		)
 	);
 
