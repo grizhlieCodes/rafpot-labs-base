@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { NavLinks } from './Header.svelte';
 	import { page } from '$app/state';
-	import Button from '$lib/components/ui/Button.svelte';
+	import HeaderDesktopLink from './HeaderDesktopLink.svelte';
 	type Props = {
 		navLinks: NavLinks;
 	};
@@ -13,16 +13,7 @@
 	<ul class="flex items-center justify-end lg:justify-center">
 		{#each Array.from(Object.values(navLinks)) as link, _i (link.id)}
 			{#if link.linkType.tab === true}
-				<li>
-					<Button
-						variant={link.variant}
-						href={link.href}
-						class="{page.url.pathname === link.href ? 'link-active' : ''}
-							{link?.customClass ?? ''}"
-					>
-						{link.label}
-					</Button>
-				</li>
+				<HeaderDesktopLink {link} linkEqualsCurrentPage={page.url.pathname === link.href} class={link?.customClass ?? ''} />
 			{/if}
 		{/each}
 	</ul>

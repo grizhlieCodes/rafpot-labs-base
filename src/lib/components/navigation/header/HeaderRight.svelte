@@ -2,13 +2,15 @@
 	import Button from '$lib/components/ui/Button.svelte';
 	import type { Snippet } from 'svelte';
 	import { type NavLinks } from './Header.svelte';
+	import { cn } from '$lib/scripts/utils';
 
 	type Props = {
 		navLinks: NavLinks;
     children?: Snippet;
+		class?: string;
 	};
 
-	let { navLinks, children }: Props = $props();
+	let { navLinks, children, class: className }: Props = $props();
 	const headerRightLinks = $derived(
 		Array.from(
 			Object.values(navLinks).filter((l) => {
@@ -18,7 +20,7 @@
 	);
 </script>
 
-<ul class="hidden items-center justify-end lg:flex">
+<ul class={cn("hidden items-center justify-end lg:flex", className)}>
 	{#each headerRightLinks as link, _i (link.id)}
 		<li>
 			<Button variant={link.variant} href={link.href}>

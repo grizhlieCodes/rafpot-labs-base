@@ -4,10 +4,13 @@
 	import Toggle from '$lib/components/ui/Toggle.svelte';
 	import HeaderMobileLink from './HeaderMobileLink.svelte';
 	import { getHeaderContext } from './headerContext';
-	type Props = { navLinks: NavLinks; };
+	type Props = { navLinks: NavLinks };
 
-	const h = getHeaderContext()
-	
+	const h = getHeaderContext();
+	const toggleMobileMenuActive = () => {
+		h.mobMenuOpen = false;
+	};
+
 	let { navLinks }: Props = $props();
 </script>
 
@@ -32,12 +35,7 @@
 		{#each Array.from(Object.values(navLinks)) as link, _i (link.id)}
 			{#if link.linkType.mob === true}
 				<li>
-					<HeaderMobileLink
-						class="{page.url.pathname === link.href ? 'link-active' : ''}
-							{link?.customClass ?? ''} w-full"
-					>
-						{link.label}
-					</HeaderMobileLink>
+					<HeaderMobileLink {link} {toggleMobileMenuActive} class="{page.url.pathname === link.href ? 'link-active' : ''} {link?.customClass ?? ''}" />
 				</li>
 			{/if}
 		{/each}
