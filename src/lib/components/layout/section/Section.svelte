@@ -106,17 +106,12 @@
 		}
 	};
 
-	export const BOTTOM_BORDER_STYLE = {
-		mainBlockBorder: 'border-surface-5 dark:border-surface-13 border-b border-solid duration-(--duration-global-cols) transition-colors relative',
-		// topSecondBorder:
-		// 	'after:absolute after:-top-5 after:w-full after:h-px after:left-0 after:bg-surface-5 dark:after:bg-surface-13 after:transition-colors after:duration-(--duration-global-cols)',
-		// bottomSecondBorder:
-		// 	'before:absolute before:-bottom-5 before:w-full before:h-px before:left-0 before:bg-surface-5 dark:before:bg-surface-13 before:transition-colors before:duration-(--duration-global-cols)'
-	};
+	// export const BOTTOM_BORDER_STYLE = 'border-surface-5 dark:border-surface-13 border-b border-solid global-col-transition relative'
 
 	export type BaseSectionProps = {
 		class?: string;
 		bottomBorder?: boolean;
+		inlineBorder?: boolean;
 		children?: Snippet;
 	};
 
@@ -137,13 +132,13 @@
 	import { cn } from '$lib/scripts/utils';
 	import type { Snippet } from 'svelte';
 
-	let { class: classList = '', id, labelId, type = 'section', bottomBorder = true, children }: SectionProps = $props();
+	let { class: classList = '', id, labelId, type = 'section', bottomBorder = true, inlineBorder = true, children }: SectionProps = $props();
 
-	let sectionStyling = $derived(cn(sectionStyles.sectionBase, bottomBorder ? `${Object.values(BOTTOM_BORDER_STYLE).join(' ')} bottom-border` : '', classList));
+	let sectionStyling = $derived(cn(sectionStyles.sectionBase, bottomBorder ? `global-border-bottom` : '', classList));
 	// mb-4.75 = correct gap between sections
 </script>
 
 <svelte:element this={type} {id} aria-labelledby={labelId} class="section
-{sectionStyling}">
+{sectionStyling}" class:inline-border={inlineBorder}>
 	{@render children?.()}
 </svelte:element>
