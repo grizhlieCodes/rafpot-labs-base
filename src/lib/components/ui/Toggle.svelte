@@ -3,7 +3,6 @@
 	import { cn } from '$lib/scripts/utils';
 	import { Toggle } from 'bits-ui';
 	import { clickableStyles, type ButtonVariant, type ButtonSize } from '$lib/components/ui/Button.svelte';
-	// let toggled = $state(false);
 
 	type ToggleProps = {
 		size?: ButtonSize;

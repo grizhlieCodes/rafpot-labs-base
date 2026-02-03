@@ -28,6 +28,4 @@
 	{/each}
 
   {@render children?.()}
-	<!-- Additional things will go here, like settings/config (dark mode,
-			other stuff if i add it.) -->
 </ul>

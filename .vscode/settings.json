@@ -7,5 +7,6 @@
     "editor.tabSize": 2,
     "editor.fontFamily": "Monaspace Argon Var",
     "editor.fontSize": 15,
-    "editor.fontWeight": "250"
+    "editor.fontWeight": "250",
+    "editor.cursorSurroundingLines": 0
 }

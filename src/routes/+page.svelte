@@ -1,5 +1,4 @@
 <script lang="ts">
-	import BorderX from '$lib/components/decorative/BorderX.svelte';
 	import Section from '$lib/components/layout/section/index';
 	import type { ButtonSize, ButtonVariant } from '$lib/components/ui/Button.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
@@ -9,9 +8,9 @@
 		document.documentElement.classList.toggle('dark');
 	};
 
-	const variants: Array<ButtonVariant> = ['base', 'baseInvert','primary', 'secondary', 'danger', 'outline', 'ghost', 'link'];
+	const variants: Array<ButtonVariant> = ['base', 'baseInvert', 'primary', 'secondary', 'danger', 'outline', 'ghost', 'link'];
 
-	const buttons: Array<{size: ButtonSize, class: string }> = [
+	const buttons: Array<{ size: ButtonSize; class: string }> = [
 		{ size: 'small', class: 'w-max' },
 		{ size: 'base', class: 'w-max' },
 		{ size: 'large', class: 'w-max' }
@@ -19,7 +18,6 @@
 </script>
 
 <div class="grid-wrapper min-h-dvh overflow-hidden">
-
 	<Section type="div">
 		<Section.Background></Section.Background>
 		<Section.Content yPadding="4" xPadding="4" inlineBorder={false}>
@@ -34,5 +32,4 @@
 			</div>
 		</Section.Content>
 	</Section>
-
 </div>
