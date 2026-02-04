@@ -45,11 +45,12 @@
 	];
 </script>
 
-<div class="grid-wrapper min-h-dvh overflow-hidden">
+<div class="grid-wrapper min-h-[200vh] overflow-hidden">
 	<Section type="div">
-		<Section.Background></Section.Background>
-		<Section.Content yPadding="4" xPadding="4" inlineBorder={false}>
+		<!-- <Section.Background class="bg-linear-to-b "></Section.Background> -->
+		<Section.Content yPadding="0" xPadding="4" inlineBorder={false}>
 			<div class="flex flex-col gap-4">
+				<Text type="h1" style="display-xl">What the fuck</Text>
 				<!-- {#each variants as variant, _i (variant)}
 					<div class="flex flex-col gap-1.5">
 						{#each buttons as button, btnIndex (btnIndex)}
