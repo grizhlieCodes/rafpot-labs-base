@@ -4,6 +4,7 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import { cn } from '$lib/scripts/utils';
 	import { clickableStyles } from '$lib/components/ui/Button.svelte';
+	import { page } from '$app/state';
 
 	type Props = {
 		link: NavLink;
@@ -13,6 +14,11 @@
 
 	let { link, toggleMobileMenuActive, class: className }: Props = $props();
 	let isOpen = $state(false);
+
+	const setLinkAsActive = (currentPathname: string, link: NavLink): boolean => {
+		if (currentPathname === link.href) return true;
+		return link.sublinks?.some((sublink) => sublink.href === currentPathname) ?? false;
+	};
 
 	let linkHasSublinks = $derived(!!(link.sublinks && link.sublinks.length));
 	let sizeConfig = $derived(clickableStyles.sizeOptions.base);
@@ -43,7 +49,6 @@
 
 {#if linkHasSublinks}
 	<Collapsible.Root bind:open={isOpen} class="w-full ">
-
 		<Collapsible.Trigger class={buttonClass}>
 			<span class="flex w-full items-center justify-between gap-2">
 				<span class="text-left">{link.label}</span>
@@ -53,36 +58,34 @@
 			</span>
 		</Collapsible.Trigger>
 
-		<Collapsible.Content class="w-full rounded-base">
+		<Collapsible.Content class="rounded-base w-full">
 			<ul class="flex h-max w-full flex-col pt-2 pb-0">
 				{#if link.sublinks && link.sublinks.length > 0}
-					{#each link.sublinks as sublink, i}
-						{#if sublink?.linkType === 'mobileMainLink' && i === 0}
-							<a
-								href={sublink.href ?? sublink.url}
-								data-sveltekit-preload-data
-								onclick={toggleMobileMenuActive}
-								class="text-surface-12 dark:text-surface-5 focus-within:bg-surface-2 dark:focus-within:bg-surface-14 hover:bg-surface-2 dark:hover:bg-surface-14 w-full px-6 py-3 text-base italic"
-							>
-								{sublink.label}
-							</a>
-						{:else if sublink?.linkType !== 'mobileMainLink'}
-							<a
-								href={sublink.href ?? sublink.url}
-								data-sveltekit-preload-data
-								onclick={toggleMobileMenuActive}
-								class="text-surface-12 dark:text-surface-5 focus-within:bg-surface-2 dark:focus-within:bg-surface-14 hover:bg-surface-2 dark:hover:bg-surface-14 w-full px-6 py-3 text-base"
-							>
-								{sublink.label}
-							</a>
-						{/if}
+					{#each link.sublinks as sublink}
+						<a
+							href={sublink.href}
+							data-sveltekit-preload-data
+							onclick={toggleMobileMenuActive}
+							class={cn(
+								'text-surface-12 dark:text-surface-5 focus-within:bg-surface-2 dark:focus-within:bg-surface-14 hover:bg-surface-2 dark:hover:bg-surface-14 w-full px-6 py-3 text-base',
+								page.url.pathname === sublink.href ? 'bg-surface-3 dark:bg-surface-11' : null,
+								page.url.pathname === sublink.href ? 'link-active' : null
+							)}
+						>
+							{sublink.label}
+						</a>
 					{/each}
 				{/if}
 			</ul>
 		</Collapsible.Content>
 	</Collapsible.Root>
 {:else}
-	<a href={link.href} data-sveltekit-preload-data onclick={toggleMobileMenuActive} class={buttonClass}>
+	<a
+		href={link.href}
+		data-sveltekit-preload-data
+		onclick={toggleMobileMenuActive}
+		class={cn(buttonClass, setLinkAsActive(page.url.pathname, link) ? 'link-active' : null)}
+	>
 		{link.label}
 	</a>
 {/if}

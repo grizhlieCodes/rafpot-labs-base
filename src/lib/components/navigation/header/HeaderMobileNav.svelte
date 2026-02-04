@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NavLinks } from './Header.svelte';
+	import type { NavLink, NavLinks } from './Header.svelte';
 	import { page } from '$app/state';
 	import Toggle from '$lib/components/ui/Toggle.svelte';
 	import HeaderMobileLink from './HeaderMobileLink.svelte';
@@ -7,6 +7,11 @@
 	type Props = { navLinks: NavLinks };
 
 	const h = getHeaderContext();
+
+	const setLinkAsActive = (currentPathname: string, link: NavLink): boolean => {
+		if (currentPathname === link.href) return true;
+		return link.sublinks?.some((sublink) => sublink.href === currentPathname) ?? false;
+	};
 	const toggleMobileMenuActive = () => {
 		h.mobMenuOpen = false;
 	};
@@ -35,7 +40,7 @@
 		{#each Array.from(Object.values(navLinks)) as link, _i (link.id)}
 			{#if link.linkType.mob === true}
 				<li>
-					<HeaderMobileLink {link} {toggleMobileMenuActive} class="{page.url.pathname === link.href ? 'link-active' : ''} {link?.customClass ?? ''}" />
+					<HeaderMobileLink {link} {toggleMobileMenuActive} class="{setLinkAsActive(page.url.pathname, link) ? 'link-active' : ''} {link?.customClass ?? ''}" />
 				</li>
 			{/if}
 		{/each}
