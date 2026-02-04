@@ -10,6 +10,7 @@
 	import Moon from '@lucide/svelte/icons/moon';
 	import { dm } from '$lib/stores/darkMode.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
+	import Main from '$lib/components/layout/Main.svelte';
 
 	let mounted = $state(false);
 
@@ -36,14 +37,14 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<Header>
+<Header isFixed={true}>
 	<Header.Left href={resolve('/')}>
 		<span>ANTARA</span>
 	</Header.Left>
 	<Header.DesktopNav navLinks={NAV_LINKS}></Header.DesktopNav>
 	<Header.MobileNav navLinks={NAV_LINKS}></Header.MobileNav>
 	<Header.Right navLinks={NAV_LINKS} class=" p-0 ">
-		<Button variant="base"  onclick={() => dm.toggle()}>
+		<Button variant="base" onclick={() => dm.toggle()}>
 			{#if dm.dm}
 				<Sun class="size-6"></Sun>
 			{:else}
@@ -53,4 +54,6 @@
 	</Header.Right>
 </Header>
 
-{@render children()}
+<Main>
+	{@render children()}
+</Main>
