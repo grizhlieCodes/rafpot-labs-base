@@ -34,7 +34,7 @@
 	export const sectionStyles: SectionStyles = {
 		sectionBase: 'grid-wrapper wrapper-content-full min-h-96',
 		contentBase: 'flex flex-col w-full row-start-1 row-end-2',
-		backgroundBase: 'bg-white dark:bg-surface-16 row-start-1 row-end-2 transition-colors duration-(--duration-global-cols)',
+		backgroundBase: 'bg-white dark:bg-surface-15 row-start-1 row-end-2 transition-colors duration-(--duration-global-cols)',
 		yPaddingOptions: {
 			'20': 'py-36 md:py-48 lg:py-60', // 144px -> 192px -> 240px
 			'19': 'py-34 md:py-46 lg:py-58', // 136px -> 184px -> 232px

@@ -4,13 +4,13 @@
 		variant: ButtonVariant;
 		href: string;
 		label: string;
-		sublinks: Array<any>;
 		linkType: {
 			mob: boolean;
 			tab: boolean;
 			cta: boolean;
 		};
 		customClass?: string;
+		sublinks: Array<NavLink>;
 	};
 
 	export type NavLinks = Record<string, NavLink>;

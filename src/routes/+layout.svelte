@@ -45,9 +45,9 @@
 	<Header.Right navLinks={NAV_LINKS} class=" p-0 ">
 		<Button variant="base"  onclick={() => dm.toggle()}>
 			{#if dm.dm}
-				<Sun></Sun>
+				<Sun class="size-6"></Sun>
 			{:else}
-				<Moon></Moon>
+				<Moon class="size-6"></Moon>
 			{/if}
 		</Button>
 	</Header.Right>

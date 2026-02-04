@@ -3,6 +3,7 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import { cn } from '$lib/scripts/utils';
 	import { clickableStyles } from '$lib/components/ui/Button.svelte';
+	import { page } from '$app/state';
 
 	type Props = {
 		link: NavLink;
@@ -11,6 +12,15 @@
 	};
 
 	let { link, linkEqualsCurrentPage, class: className }: Props = $props();
+
+	$effect(() => {
+		if (link.href === '/resources') {
+			console.log({
+				page,
+				pathname: page.url.pathname
+			});
+		}
+	});
 
 	let linkHasSublinks = $derived(!!(link.sublinks && link.sublinks.length));
 	let ariaHasPopup = $derived(linkHasSublinks ? true : false);
@@ -70,12 +80,12 @@
 		group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100"
 		>
 			<ul
-				class="min-w-20rem border-surface-4 dark:border-surface-11 bg-surface-1 dark: dark:bg-surface-14 flex w-max flex-col rounded-base border border-solid py-4 text-left shadow-sm"
+				class="min-w-20rem border-surface-4 dark:border-surface-11 bg-surface-1 dark: dark:bg-surface-14 rounded-base flex w-max flex-col border border-solid py-4 text-left shadow-sm"
 			>
 				{#if link.sublinks && link.sublinks.length > 0}
 					{#each link.sublinks as sublink}
 						<a
-							href={sublink.href ?? sublink.url}
+							href={sublink.href}
 							data-sveltekit-preload-data
 							class="text-surface-12 dark:text-surface-5 focus-within:bg-surface-2 dark:focus-within:bg-surface-14 hover:bg-surface-2 dark:hover:bg-surface-14 px-6 py-2 text-base outline-0 transition-all duration-300"
 						>
